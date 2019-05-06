@@ -1,0 +1,14 @@
+# use_frameworks!
+
+platform :ios, '8.0'
+
+target 'Flacop_Example' do
+  pod 'Flacop', :path => '../'
+
+  target 'Flacop_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
+end
