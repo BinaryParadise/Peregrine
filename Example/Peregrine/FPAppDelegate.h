@@ -1,6 +1,6 @@
 //
 //  FPAppDelegate.h
-//  Flacop
+//  Peregrine
 //
 //  Created by joengzi on 05/06/2019.
 //  Copyright (c) 2019 joenggaa. All rights reserved.

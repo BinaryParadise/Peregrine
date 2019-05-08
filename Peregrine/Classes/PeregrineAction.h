@@ -1,6 +1,6 @@
 //
-//  FPAction.h
-//  Flacop
+//  PeregrineAction.h
+//  Peregrine
 //
 //  Created by joengzi on 2019/5/6.
 //  Copyright © 2019 joenggaa. All rights reserved.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FPAction : NSObject
+@interface PeregrineAction : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *routerURL;

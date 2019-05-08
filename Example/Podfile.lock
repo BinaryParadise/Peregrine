@@ -1,22 +1,22 @@
 PODS:
   - Expecta (1.0.6)
-  - Flacop (0.1.0)
+  - Peregrine (0.1.0)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta
-  - Flacop (from `../`)
+  - Peregrine (from `../`)
   - Specta
 
 EXTERNAL SOURCES:
-  Flacop:
+  Peregrine:
     :path: ../
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Flacop: 319669dfe2df357ca8fe34749969f0fc79356a2b
+  Peregrine: 71fcff678cf0a8892e22e79d999d2fe8331baa5c
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: fd4a61f99d3a618ff76106f05472944a6419c2a8
+PODFILE CHECKSUM: ee4ff0fccfc7b3edf27ef1c0f9be2fd92f2cf107
 
 COCOAPODS: 1.4.0

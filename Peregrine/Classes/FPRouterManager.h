@@ -1,6 +1,6 @@
 //
 //  FPRouterManager.h
-//  Flacop
+//  Peregrine
 //
 //  Created by joengzi on 2019/5/6.
 //  Copyright © 2019 joenggaa. All rights reserved.
@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FPActionProtocol.h"
 
-#define FPRouterModule(name) __attribute((objc_ioc_inject(name)))
-#define FPRouterTarget(url) __attribute((objc_ioc_inject(url)))
+#define FPRouterTarget(router) __attribute((peregrine_target(router)))
 
 NS_ASSUME_NONNULL_BEGIN
 

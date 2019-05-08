@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "Flacop_Example.app"
-               BlueprintName = "Flacop_Example"
-               ReferencedContainer = "container:Flacop.xcodeproj">
+               BuildableName = "Peregrine_Example.app"
+               BlueprintName = "Peregrine_Example"
+               ReferencedContainer = "container:Peregrine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Flacop_Tests.xctest"
-               BlueprintName = "Flacop_Tests"
-               ReferencedContainer = "container:Flacop.xcodeproj">
+               BuildableName = "Peregrine_Tests.xctest"
+               BlueprintName = "Peregrine_Tests"
+               ReferencedContainer = "container:Peregrine.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Flacop_Example.app"
-            BlueprintName = "Flacop_Example"
-            ReferencedContainer = "container:Flacop.xcodeproj">
+            BuildableName = "Peregrine_Example.app"
+            BlueprintName = "Peregrine_Example"
+            ReferencedContainer = "container:Peregrine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Flacop_Example.app"
-            BlueprintName = "Flacop_Example"
-            ReferencedContainer = "container:Flacop.xcodeproj">
+            BuildableName = "Peregrine_Example.app"
+            BlueprintName = "Peregrine_Example"
+            ReferencedContainer = "container:Peregrine.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Flacop_Example.app"
-            BlueprintName = "Flacop_Example"
-            ReferencedContainer = "container:Flacop.xcodeproj">
+            BuildableName = "Peregrine_Example.app"
+            BlueprintName = "Peregrine_Example"
+            ReferencedContainer = "container:Peregrine.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

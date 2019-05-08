@@ -1,6 +1,6 @@
 //
-//  FlacopTests.m
-//  FlacopTests
+//  PeregrineTests.m
+//  PeregrineTests
 //
 //  Created by joengzi on 05/06/2019.
 //  Copyright (c) 2019 joenggaa. All rights reserved.
@@ -8,7 +8,7 @@
 
 // https://github.com/Specta/Specta
 
-#import "FlacopActionTest.h"
+#import "PeregrineActionTest.h"
 
 SpecBegin(InitialSpecs)
 
