@@ -332,7 +332,7 @@
 		};
 		24208E982281C88700381013 /* [FP] Generator Router Table */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -348,7 +348,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "~/Github/ClangPlugin/llvm_build/Debug/bin/ClangAutoStats ~/Github/Peregrine/Example/Peregrine/PeregrineActionTest.m -- -isysroot ${SDKROOT} -isystem -I${CC_ROOT}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks\n\n";
+			shellScript = "${CCBin}\"/clang-peregrine\" ${SRCROOT}\"/Peregrine/PeregrineActionTest.m\" -- -isysroot ${SDKROOT} -isystem -I${CC_ROOT}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks\n\n";
 		};
 		2BEE42B66A778882142B09AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -592,8 +592,9 @@
 			baseConfigurationReference = E10EC48476D380350CF9CABE /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CC = /Users/bonana/Github/ClangPlugin/llvm_build/Debug/bin/clang;
-				CCInclude = /Users/bonana/Github/ClangPlugin/llvm_build/Debug/lib/clang/9.0.0/include;
+				CC = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/bin/clang;
+				CCBin = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/bin;
+				CCInclude = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/lib/clang/9.0.0/include;
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Peregrine/Peregrine-Prefix.pch";
@@ -610,8 +611,9 @@
 			baseConfigurationReference = 9F3BBD9B01576DA13FC29EDA /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CC = /Users/bonana/Github/ClangPlugin/llvm_build/Debug/bin/clang;
-				CCInclude = /Users/bonana/Github/ClangPlugin/llvm_build/Debug/lib/clang/9.0.0/include;
+				CC = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/bin/clang;
+				CCBin = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/bin;
+				CCInclude = /Users/bonana/Github/ClangPlugin/llvm_xcode/Debug/lib/clang/9.0.0/include;
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Peregrine/Peregrine-Prefix.pch";

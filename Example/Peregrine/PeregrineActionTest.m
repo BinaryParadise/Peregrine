@@ -10,10 +10,6 @@
 
 @implementation PeregrineActionTest
 
-+ (void)load {
-    [FPRouterManager registerURL:@"fp://tlbb/duanyu?t=1"];
-}
-
 + (void)verification1:(NSDictionary *)parameters {
     
 }
