@@ -10,8 +10,16 @@
 
 @implementation PeregrineActionTest
 
-+ (void)verification1:(NSDictionary *)parameters {
++ (id)verification1:(NSDictionary *)parameters __peregrine_router("ap://tlbb/wyy") {
+    return nil;
+}
+
++ (void)verification2:(NSDictionary *)parameters __peregrine_router("ap://tlbb/dy") {
     
+}
+
++ (id)verification3:(NSDictionary *)parameters __peregrine_router("ap://tlbb/mwq") {
+    return @(0);
 }
 
 @end

@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FPRouterManager : NSObject
+@interface FPRouterManager<__covariant ObjectType> : NSObject
 
 /**
  注册路由
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param url 路径，遵循RFC 2396
  */
 + (void)registerURL:(NSString *)url;
-+ (void)openURL:(NSString *)url completion:(void (^)(BOOL success, NSDictionary *result))completion;
++ (ObjectType)openURL:(NSString *)url completion:(void (^)(BOOL success, NSDictionary *result))completion;
 
 @end
 

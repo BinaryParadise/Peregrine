@@ -1,1 +1,0 @@
-$LLVM_HOME -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fmodules -fsyntax-only -Xclang -ast-dump Example/Peregrine/PeregrineActionTest.m

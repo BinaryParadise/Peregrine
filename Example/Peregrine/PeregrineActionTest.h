@@ -14,9 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PeregrineActionTest : NSObject
 
-+ (void)verification1:(NSDictionary *)parameters __peregrine_router("pr://tlbb/wyy");
-+ (void)verification2:(NSDictionary *)parameters __peregrine_router("pr://tlbb/dy");
-
 @end
 
 NS_ASSUME_NONNULL_END
