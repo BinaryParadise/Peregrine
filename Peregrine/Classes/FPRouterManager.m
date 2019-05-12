@@ -8,6 +8,9 @@
 
 #import "FPRouterManager.h"
 
+static NSString * const PGRouterKeyURL = @"url";
+static NSString * const PGRouterKeyClass = @"class";
+static NSString * const PGRouterKeySelector = @"selector";
 static NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *_routerTable;
 
 @implementation FPRouterManager
@@ -15,6 +18,14 @@ static NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *_routerTab
 + (void)initialize {
     if (!_routerTable) {     
         _routerTable = [NSMutableDictionary dictionary];
+        NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine/routers.json" ofType:nil];
+        NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
+        if ([array isKindOfClass:[NSArray class]]) {
+            [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *url = [obj objectForKey:PGRouterKeyURL];
+                [self registerURL:url];
+            }];
+        }
     }
 }
 

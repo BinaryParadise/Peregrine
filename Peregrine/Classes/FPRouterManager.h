@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FPActionProtocol.h"
 
-#define __peregrine_router(router) __attribute__((objc_peregrine_target(router)))
+#define __peregrine_router(router) __attribute__((pe_routed(router)))
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -346,7 +346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "##\"${LLVM_HOME}/clang-peregrine\" \"${SRCROOT}/Peregrine/PeregrineActionTest.m\" -- -isysroot ${SDKROOT} -isystem -I${LLVM_HOME}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks -I`pwd`\n\n";
+			shellScript = "dest=${METAL_LIBRARY_OUTPUT_DIR}/Peregrine \nif [ ! -d \"$dest\" ]; then\nmkdir \"$dest\"\nfi\nsrcfile=${SRCROOT}/Peregrine\nif [ ! -f \"$srcfile\" ]; then\ncp \"$srcfile/.routers.json\" \"${dest}/routers.json\"\nelse\necho '找不到'\nfi\n##${LLVM_HOME}/clang-peregrine ${SRCROOT}/Peregrine/PeregrineActionTest.m -- -isysroot ${SDKROOT} -isystem -I${LLVM_HOME}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks -I`pwd`\n\n";
 		};
 		2BEE42B66A778882142B09AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

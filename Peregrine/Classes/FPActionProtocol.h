@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FPActionProtocol <NSObject>
 
+@optional
+
+- (id)targetMethodTemplate:(NSDictionary *)parameters;
+
 @end
 
 NS_ASSUME_NONNULL_END

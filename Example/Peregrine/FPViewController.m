@@ -7,6 +7,7 @@
 //
 
 #import "FPViewController.h"
+#import <Peregrine/Peregrine.h>
 
 @interface FPViewController ()
 
@@ -18,12 +19,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [FPRouterManager openURL:@"ap://sdyxz/gj" completion:^(BOOL success, NSDictionary * _Nonnull result) {
+        
+    }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
++ (id)flajelijeajglasej:(NSDictionary *)dict __attribute__((pe_routed("ap://sdyxz/gj"))) {
+    return nil;
+}
+
+- (void)ddddd __deprecated {
+    
 }
 
 @end

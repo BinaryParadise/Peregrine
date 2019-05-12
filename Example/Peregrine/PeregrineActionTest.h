@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define __peregrine_router(router) __attribute__((objc_peregrine_target(router)))
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PeregrineActionTest : NSObject

@@ -7,18 +7,15 @@
 //
 
 #import "PeregrineActionTest.h"
+#import <Peregrine/Peregrine.h>
 
 @implementation PeregrineActionTest
 
-+ (id)verification1:(NSDictionary *)parameters __peregrine_router("ap://tlbb/wyy") {
++ (id)verification1:(NSDictionary *)parameters __attribute__((pe_routed("ap://tlbb/wyy"))) {
     return nil;
 }
 
-+ (void)verification2:(NSDictionary *)parameters __peregrine_router("ap://tlbb/dy") {
-    
-}
-
-+ (id)verification3:(NSDictionary *)parameters __peregrine_router("ap://tlbb/mwq") {
++ (id)verification2:(NSDictionary *)parameters __attribute__((pe_routed("ap://tlbb/mwq"))) {
     return @(0);
 }
 
