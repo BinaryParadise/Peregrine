@@ -2,8 +2,8 @@
 //  FPViewController.m
 //  Peregrine
 //
-//  Created by joengzi on 05/06/2019.
-//  Copyright (c) 2019 joenggaa. All rights reserved.
+//  Created by Rake Yang on 05/06/2019.
+//  Copyright (c) 2019 BinaryParadise. All rights reserved.
 //
 
 #import "FPViewController.h"
@@ -20,12 +20,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [FPRouterManager openURL:@"ap://sdyxz/gj" completion:^(BOOL success, NSDictionary * _Nonnull result) {
+    [PGRouterManager openURL:@"ap://sdyxz/mwq/rb?tt=1" completion:^(id  _Nullable result) {
         
+    }];
+    
+    [PGRouterManager<NSString *> openURL:@"" completion:^(NSString * _Nullable result) {
     }];
 }
 
-+ (id)flajelijeajglasej:(NSDictionary *)dict __attribute__((pe_routed("ap://sdyxz/gj"))) {
++ (id)flajelijeajglasej:(NSDictionary *)dict __attribute__((pe_routed("ap://sdyxz/mwq"))) {
+    NSLog(@"It's work.");
     return nil;
 }
 
