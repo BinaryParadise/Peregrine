@@ -11,12 +11,12 @@
 
 @implementation PeregrineActionTest
 
-+ (id)verification1:(NSDictionary *)parameters __attribute__((pe_routed("ap://tlbb/wyy"))) {
++ (id)verification1:(NSDictionary *)parameters PG_Target("ap://tlbb/wyy") {
     return nil;
 }
 
-+ (id)verification2:(NSDictionary *)parameters __attribute__((pe_routed("ap://tlbb/ym"))) {
-    return @(0);
++ (void)verification2:(NSDictionary *)parameters context:(PGRouterContext *)context PG_Target("ap://tlbb/ym") {
+    [context onDone:@(YES)];
 }
 
 @end

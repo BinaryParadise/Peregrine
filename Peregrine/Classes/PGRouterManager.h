@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define __peregrine_router(router) __attribute__((pe_routed(router)))
+#define PG_Target(router) __attribute__((pe_routed(router)))
 
 NS_ASSUME_NONNULL_BEGIN
 
