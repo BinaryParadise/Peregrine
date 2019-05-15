@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) Class targetClass;
 @property (nonatomic, assign) SEL selector;
 
+- (NSString *)actionName;
 
 /**
  Create a instance

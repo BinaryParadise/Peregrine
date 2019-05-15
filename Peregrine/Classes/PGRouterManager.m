@@ -17,6 +17,10 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 
 @implementation PGRouterManager
 
++ (NSDictionary<NSString *,NSArray<PGRouterConfig *> *> *)routerMap {
+    return _routerTable;
+}
+
 + (void)initialize {
     if (!_routerTable) {     
         _routerTable = [NSMutableDictionary dictionary];
@@ -33,6 +37,9 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 + (void)registerWithDictionary:(NSDictionary *)dict {
     PGRouterConfig *router = [[PGRouterConfig alloc] initWithDictionary:dict];
     NSString *prefix = router.URL.host;
+    if (prefix.length == 0) {
+        return;
+    }
     
     NSMutableArray *routers = _routerTable[prefix];
     if (!routers) {

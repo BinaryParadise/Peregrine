@@ -10,9 +10,13 @@
 
 #define PG_Target(router) __attribute__((pe_routed(router)))
 
+@class PGRouterConfig;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PGRouterManager<__covariant ObjectType> : NSObject
+
++ (NSDictionary<NSString *, NSArray<PGRouterConfig *> *> *)routerMap;
 
 /**
  Open a URLString that you have registered in this manager.
