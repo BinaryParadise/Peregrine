@@ -11,7 +11,7 @@
 
 @implementation PeregrineActionTest
 
-+ (id)verification1:(NSDictionary *)parameters PG_Target("ap://tlbb/wyy") {
++ (id)verification1:(NSDictionary *)parameters context:(PGRouterContext *)context PG_Target("ap://tlbb/wyy") {
     return nil;
 }
 
