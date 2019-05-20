@@ -54,7 +54,7 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
     NSMutableArray<PGRouterConfig *> *routers = _routerTable[patternURL.host];
     [routers enumerateObjectsUsingBlock:^(PGRouterConfig * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
-            [self openWithRouter:obj parameters:nil];
+            [self openWithRouter:obj];
             if (completion) {
                 completion(nil);
             }
@@ -63,11 +63,11 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
     }];
 }
 
-+ (void)openWithRouter:(PGRouterConfig *)router parameters:(NSDictionary *)dictionary {
++ (void)openWithRouter:(PGRouterConfig *)router {
     if ([router.targetClass respondsToSelector:router.selector]) {
         IMP imp = [router.targetClass methodForSelector:router.selector];
-        void (*targetMethod)(id, SEL) = (void *)imp;
-        targetMethod(router.targetClass, router.selector);
+        void (*targetMethod)(id, SEL, id) = (void *)imp;
+        targetMethod(router.targetClass, router.selector, router);
     }
 }
 

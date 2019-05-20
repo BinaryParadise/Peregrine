@@ -1,4 +1,4 @@
-$LLVM_HOME/clang-peregrine ~/Github/Peregrine/Example/Peregrine/PeregrineActionTest.m -- \
+$LLVM_HOME/clang-peregrine Example/Peregrine/PeregrineActionTest.m -- \
  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
  -isystem -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include \
  -Iinclude -I./Example/Pods/Headers/Public \

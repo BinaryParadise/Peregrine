@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define PG_Target(router) __attribute__((pe_routed(router)))
+#define __PGTarget(_router) __attribute__((pg_routed(_router)))
 
 @class PGRouterConfig;
 

@@ -23,4 +23,8 @@
     return self;
 }
 
+- (void)onDone:(id)object {
+    
+}
+
 @end

@@ -6,13 +6,15 @@
 //  Copyright © 2019 BinaryParadise. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PGRouterConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PGRouterCallback)(BOOL ret, id object);
 
 @interface PGRouterContext : NSObject
+
+@property (nonatomic, weak) PGRouterConfig *config;
 
 - (instancetype)initWithCallback:(PGRouterCallback)callback;
 
