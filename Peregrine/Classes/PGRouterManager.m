@@ -7,7 +7,7 @@
 //
 
 #import "PGRouterManager.h"
-#import "PGRouterConfig.h"
+#import "PGRouterContext.h"
 
 static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_routerTable;
 
@@ -65,9 +65,11 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 
 + (void)openWithRouter:(PGRouterConfig *)router {
     if ([router.targetClass respondsToSelector:router.selector]) {
+        PGRouterContext *routerContext = [[PGRouterContext alloc] init];
+        routerContext.config = router;
         IMP imp = [router.targetClass methodForSelector:router.selector];
-        void (*targetMethod)(id, SEL, id) = (void *)imp;
-        targetMethod(router.targetClass, router.selector, router);
+        void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
+        targetMethod(router.targetClass, router.selector, routerContext);
     }
 }
 
