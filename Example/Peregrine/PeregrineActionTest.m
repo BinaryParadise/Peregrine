@@ -11,11 +11,11 @@
 
 @implementation PeregrineActionTest
 
-+ (id)verification1:(NSDictionary *)parameters context:(PGRouterContext *)context PG_Target("ap://tlbb/wyy") {
++ (id)verification1:(PGRouterContext *)context PGTarget("ap://tlbb/wyy") {
     return nil;
 }
 
-+ (void)verification2:(NSDictionary *)parameters context:(PGRouterContext *)context PG_Target("ap://tlbb/ym") {
++ (void)verification2:(PGRouterContext *)context PGTarget("ap://tlbb/ym") {
     [context onDone:@(YES)];
 }
 
