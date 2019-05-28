@@ -13,6 +13,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
+```ruby
+brew tap binaryparadise/tap
+brew install peregrine
+```
+
 Peregrine is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
