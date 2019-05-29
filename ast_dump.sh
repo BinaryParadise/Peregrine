@@ -1,4 +1,4 @@
-~/Github/llvm_release/bin/clang \
+$LLVM_HOME/clang \
 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
 -I"./Example/Pods/Headers/Public/Peregrine" \
 -Iinclude -I./Example/Pods/Headers/Public \

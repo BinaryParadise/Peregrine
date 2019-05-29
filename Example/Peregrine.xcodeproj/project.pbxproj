@@ -589,24 +589,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CC = "${CCROOT}/bin/clang";
-				CCROOT = "${HOME}/Github/llvm_release";
+				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-isysroot",
-					"${SDK_DIR}",
-					"-Xclang",
-					"-load",
-					"-Xclang",
-					"${CCROOT}/lib/PeregrinePlugin.dylib",
-					"-Xclang",
-					"-add-plugin",
-					"-Xclang",
-					PeregrinePlugin,
-				);
+				OTHER_CFLAGS = "${inherited}";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -619,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CC = "${CCROOT}/bin/clang";
-				CCROOT = "${HOME}/Github/llvm_release";
+				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";

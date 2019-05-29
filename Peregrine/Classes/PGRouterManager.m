@@ -25,11 +25,13 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
     if (!_routerTable) {     
         _routerTable = [NSMutableDictionary dictionary];
         NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine/routers.json" ofType:nil];
-        NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
-        if ([array isKindOfClass:[NSArray class]]) {
-            [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self registerWithDictionary:obj];
-            }];
+        if (routerPath) {
+            NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
+            if ([array isKindOfClass:[NSArray class]]) {
+                [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self registerWithDictionary:obj];
+                }];
+            }
         }
     }
 }

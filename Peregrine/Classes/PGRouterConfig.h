@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const PGRouterKeyURL = @"url";
-static NSString * const PGRouterKeyClass = @"class";
-static NSString * const PGRouterKeySelector = @"selector";
+static  NSString * _Nonnull const PGRouterKeyURL = @"url";
+static  NSString * _Nonnull const PGRouterKeyClass = @"class";
+static  NSString * _Nonnull const PGRouterKeySelector = @"selector";
 
 NS_ASSUME_NONNULL_BEGIN
 
