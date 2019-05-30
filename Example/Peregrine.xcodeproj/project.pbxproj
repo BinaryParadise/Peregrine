@@ -344,7 +344,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dest=${METAL_LIBRARY_OUTPUT_DIR}/Peregrine \nif [ ! -d \"$dest\" ]; then\nmkdir \"$dest\"\nfi\nsrcfile=${SRCROOT}/Peregrine\nif [ ! -f \"$srcfile\" ]; then\ncp \"$srcfile/.routers.json\" \"${dest}/routers.json\"\nelse\necho '找不到'\nfi\n##${LLVM_HOME}/clang-peregrine ${SRCROOT}/Peregrine/PeregrineActionTest.m -- -isysroot ${SDKROOT} -isystem -I${LLVM_HOME}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks -I`pwd`\n\n";
+			shellScript = "dest=${METAL_LIBRARY_OUTPUT_DIR}/Peregrine \nif [ ! -d \"$dest\" ]; then\nmkdir \"$dest\"\nfi\nsrcfile=${SRCROOT}/Peregrine\nif [ -f \"$srcfile\" ]; then\ncp \"$srcfile/.routers.json\" \"${dest}/routers.json\"\nelse\necho 'no such file at path :${srcfile}/.routers.json'\nfi\n##${LLVM_HOME}/clang-peregrine ${SRCROOT}/Peregrine/PeregrineActionTest.m -- -isysroot ${SDKROOT} -isystem -I${LLVM_HOME}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks -I`pwd`\n\n";
 		};
 		2BEE42B66A778882142B09AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -591,10 +591,10 @@
 				CC = "${CCROOT}/bin/clang";
 				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
-				OTHER_CFLAGS = "${inherited}";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -609,22 +609,10 @@
 				CC = "${CCROOT}/bin/clang";
 				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-isysroot",
-					"${SDK_DIR}",
-					"-Xclang",
-					"-load",
-					"-Xclang",
-					"${CCROOT}/lib/PeregrinePlugin.dylib",
-					"-Xclang",
-					"-add-plugin",
-					"-Xclang",
-					PeregrinePlugin,
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -33,8 +33,8 @@ TODO: Add long description of the pod here.
   s.source_files = 'Peregrine/Classes/**/*'
 
   # s.user_target_xcconfig = {'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local/opt/peregrine', 'OTHER_CFLAGS' => '$(inherited) -isysroot ${SDK_DIR} -Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${METAL_LIBRARY_OUTPUT_DIR}'}
-  s.user_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '${HOME}/Github/llvm_xcode/Debug', 'OTHER_CFLAGS' => '$(inherited) -isysroot ${SDK_DIR} -Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${METAL_LIBRARY_OUTPUT_DIR}'}
-  s.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO'}
+  s.user_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '${HOME}/Github/llvm_xcode/Debug', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${CODESIGNING_FOLDER_PATH}'}
+  # s.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO'}
 
   # s.resource_bundles = {
   #   'Peregrine' => ['Peregrine/Assets/*.png']
