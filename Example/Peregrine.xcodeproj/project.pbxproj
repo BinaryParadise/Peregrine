@@ -213,7 +213,6 @@
 				6003F588195388D20070C39A /* Resources */,
 				80B0CE9684D12F85A010A726 /* [CP] Embed Pods Frameworks */,
 				FAA2C8904937DC8461063588 /* [CP] Copy Pods Resources */,
-				24208E982281C88700381013 /* [FP] Generator Router Table */,
 			);
 			buildRules = (
 			);
@@ -327,24 +326,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		24208E982281C88700381013 /* [FP] Generator Router Table */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[FP] Generator Router Table";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "dest=${METAL_LIBRARY_OUTPUT_DIR}/Peregrine \nif [ ! -d \"$dest\" ]; then\nmkdir \"$dest\"\nfi\nsrcfile=${SRCROOT}/Peregrine\nif [ -f \"$srcfile\" ]; then\ncp \"$srcfile/.routers.json\" \"${dest}/routers.json\"\nelse\necho 'no such file at path :${srcfile}/.routers.json'\nfi\n##${LLVM_HOME}/clang-peregrine ${SRCROOT}/Peregrine/PeregrineActionTest.m -- -isysroot ${SDKROOT} -isystem -I${LLVM_HOME}/lib/clang/9.0.0/include -I${SDKROOT}/usr/include -I${PODS_ROOT}/Headers/Public -F${SDKROOT}/System/Library/Frameworks -I`pwd`\n\n";
 		};
 		2BEE42B66A778882142B09AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -591,8 +572,6 @@
 			baseConfigurationReference = E10EC48476D380350CF9CABE /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMPILER_INDEX_STORE_ENABLE = NO;
-				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
@@ -607,8 +586,6 @@
 			baseConfigurationReference = 9F3BBD9B01576DA13FC29EDA /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMPILER_INDEX_STORE_ENABLE = NO;
-				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
