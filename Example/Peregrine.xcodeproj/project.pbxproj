@@ -63,7 +63,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		781945E4C9CE989FC60A297E /* libPods-Peregrine_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FBDFFA8099A47673CBFEE62 /* Peregrine.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Peregrine.podspec; path = ../Peregrine.podspec; sourceTree = "<group>"; };
+		7FBDFFA8099A47673CBFEE62 /* Peregrine.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Peregrine.podspec; path = ../Peregrine.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9376D106595F12C64AAB5EA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9F3BBD9B01576DA13FC29EDA /* Pods-Peregrine_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,11 +439,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-resources.sh",
+				"${PODS_ROOT}/../../Support/Peregrine.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Peregrine.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -588,8 +591,6 @@
 			baseConfigurationReference = E10EC48476D380350CF9CABE /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CC = "${CCROOT}/bin/clang";
-				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -606,8 +607,6 @@
 			baseConfigurationReference = 9F3BBD9B01576DA13FC29EDA /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CC = "${CCROOT}/bin/clang";
-				CCROOT = "${HOME}/Github/llvm_xcode/Debug";
 				COMPILER_INDEX_STORE_ENABLE = NO;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
