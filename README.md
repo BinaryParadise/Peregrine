@@ -14,7 +14,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Installation
 
 ```ruby
-brew tap binaryparadise/tap
+brew tap binaryparadise/formula
 brew install peregrine
 ```
 
