@@ -12,9 +12,9 @@
 
 SpecBegin(InitialSpecs)
 
-describe(@"these will pass", ^{
+describe(@"Lint", ^{
     
-    it(@"can do maths", ^{
+    it(@"Register", ^{
         [FPRouterManager openURL:@"fp://tlbb/duanyu?t=1" completion:^(BOOL success, NSDictionary * _Nonnull result) {
             expect(success).equal(YES);
         }];
