@@ -12,8 +12,6 @@
 
 @class PGRouterConfig;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 
 + (NSDictionary<NSString *, NSArray<PGRouterConfig *> *> *)routerMap;
@@ -24,8 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param URLString The URL string with which to initialize the NSURL object. Must be a URL that conforms to RFC 2396. This method parses URLString according to RFCs 1738 and 1808.
  @param completion callback
  */
-+ (void)openURL:(NSString *)URLString completion:(void (^)(_Nullable ObjectType result))completion;
++ (void)openURL:(NSString *)URLString completion:(void (^)(BOOL ret, ObjectType object))completion;
 
 @end
-
-NS_ASSUME_NONNULL_END

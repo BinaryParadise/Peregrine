@@ -12,10 +12,12 @@
 @implementation PeregrineActionTest
 
 + (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/wyy") {
+    NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
+    [context onDone:context.userInfo[@"result"]];
 }
 
 + (void)verification2:(nullable PGRouterContext *)context PGTarget("ap://tlbb/ym") {
-    [context onDone:@(YES)];
+    
 }
 
 @end

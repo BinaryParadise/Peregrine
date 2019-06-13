@@ -24,7 +24,7 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 + (void)initialize {
     if (!_routerTable) {     
         _routerTable = [NSMutableDictionary dictionary];
-        NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine/routers.json" ofType:nil];
+        NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine.bundle/routers.json" ofType:nil];
         if (routerPath) {
             NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
             if ([array isKindOfClass:[NSArray class]]) {
@@ -51,27 +51,23 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
     [routers addObject:router];
 }
 
-+ (void)openURL:(NSString *)URLString completion:(nonnull void (^)(id _Nullable))completion {
++ (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL URLWithString:URLString];
     NSMutableArray<PGRouterConfig *> *routers = _routerTable[patternURL.host];
     [routers enumerateObjectsUsingBlock:^(PGRouterConfig * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
-            [self openWithRouter:obj];
-            if (completion) {
-                completion(nil);
-            }
+            [self openWithRouter:obj context:[PGRouterContext contextWithURL:patternURL callback:completion]];
             *stop = YES;
         }
     }];
 }
 
-+ (void)openWithRouter:(PGRouterConfig *)router {
++ (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {
     if ([router.targetClass respondsToSelector:router.selector]) {
-        PGRouterContext *routerContext = [[PGRouterContext alloc] init];
-        routerContext.config = router;
+        context.config = router;
         IMP imp = [router.targetClass methodForSelector:router.selector];
         void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
-        targetMethod(router.targetClass, router.selector, routerContext);
+        targetMethod(router.targetClass, router.selector, context);
     }
 }
 

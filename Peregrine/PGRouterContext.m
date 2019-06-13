@@ -10,8 +10,6 @@
 
 @interface PGRouterContext ()
 
-@property (nonatomic, assign) PGRouterCallback callback;
-
 @end
 
 @implementation PGRouterContext
@@ -22,9 +20,28 @@
     }
     return self;
 }
+    
++ (instancetype)contextWithURL:(NSURL *)openURL callback:(nonnull PGRouterCallback)callback {
+    PGRouterContext *context = [[PGRouterContext alloc] initWithCallback:callback];
+    context->_userInfo = [self queryDictionaryForURL:openURL];
+    return context;
+}
+
++ (NSDictionary *)queryDictionaryForURL:(NSURL *)openURL {
+    NSMutableDictionary *mdict = [NSMutableDictionary dictionary];
+    [[openURL.query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.length) {
+            NSArray<NSString *> *arr = [obj componentsSeparatedByString:@"="];
+            mdict[arr.firstObject] = arr.lastObject.length ? arr.lastObject : @"";
+        }
+    }];
+    return mdict.count ? mdict : nil;
+}
 
 - (void)onDone:(id)object {
-    
+    if (self.callback) {
+        self.callback(YES, object);
+    }
 }
 
 @end

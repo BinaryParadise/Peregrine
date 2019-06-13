@@ -39,9 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		219F105A7CD05A70828E7CE7 /* Pods-Peregrine_Tests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.test.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.test.xcconfig"; sourceTree = "<group>"; };
 		240E7B4B228327C800B5579E /* Peregrine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peregrine-Info.plist"; sourceTree = "<group>"; };
 		240E7B4D22832A3B00B5579E /* PeregrineActionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest.m; sourceTree = "<group>"; };
 		240E7B4E22832A3B00B5579E /* PeregrineActionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest.h; sourceTree = "<group>"; };
+		45ABC97510AE4F912C829CBF /* Pods-Peregrine_Example.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.test.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.test.xcconfig"; sourceTree = "<group>"; };
 		4CD98BDB0E01796EF8837A1C /* libPods-Peregrine_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* Peregrine_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -196,6 +198,8 @@
 				9F3BBD9B01576DA13FC29EDA /* Pods-Peregrine_Example.release.xcconfig */,
 				AF07C86FD42E69B7F2BEC5B7 /* Pods-Peregrine_Tests.debug.xcconfig */,
 				A5C07015EA547BD8401CFA3B /* Pods-Peregrine_Tests.release.xcconfig */,
+				45ABC97510AE4F912C829CBF /* Pods-Peregrine_Example.test.xcconfig */,
+				219F105A7CD05A70828E7CE7 /* Pods-Peregrine_Tests.test.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";

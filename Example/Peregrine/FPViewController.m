@@ -20,11 +20,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [PGRouterManager openURL:@"ap://sdyxz/mwq/rb?tt=1" completion:^(id  _Nullable result) {
+    [PGRouterManager openURL:@"ap://sdyxz/mwq/rb?tt=1" completion:^(BOOL ret, id object) {
         
     }];
     
-    [PGRouterManager<NSString *> openURL:@"" completion:^(NSString * _Nullable result) {
+    [PGRouterManager<NSString *> openURL:@"" completion:^(BOOL ret, NSString *object) {
+        
     }];
 }
 
