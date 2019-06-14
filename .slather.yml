@@ -1,4 +1,4 @@
-# coverage_service: coveralls
+coverage_service: coveralls
 workspace: Example/Peregrine.xcworkspace
 xcodeproj: Example/Peregrine.xcodeproj
 scheme: Peregrine_Example

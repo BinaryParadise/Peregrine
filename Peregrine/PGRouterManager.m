@@ -54,12 +54,20 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL URLWithString:URLString];
     NSMutableArray<PGRouterConfig *> *routers = _routerTable[patternURL.host];
+    __block PGRouterConfig *config;
     [routers enumerateObjectsUsingBlock:^(PGRouterConfig * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
-            [self openWithRouter:obj context:[PGRouterContext contextWithURL:patternURL callback:completion]];
+        if (patternURL.pathComponents.count && [obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
+            config = obj;
             *stop = YES;
         }
     }];
+    if (config) {
+        [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
+    } else {
+        if (completion) {
+            completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
+        }
+    }
 }
 
 + (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {
