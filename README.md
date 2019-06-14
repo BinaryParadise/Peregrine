@@ -65,3 +65,7 @@ Command /usr/local/bin/clang failed with exit code 1
 ```
 
 需要执行`test=1 pod install`才能正确启用单测覆盖率，但是路由表将不能自动生成
+
+## License
+
+Peregrine is available under the MIT license. See the LICENSE file for more info.
