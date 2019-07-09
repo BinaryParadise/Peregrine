@@ -1,5 +1,5 @@
 //
-//  PeregrineActionTest.h
+//  PeregrineActionTest1.h
 //  Peregrine_Example
 //
 //  Created by Rake Yang on 2019/5/6.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PeregrineActionTest : NSObject
+@interface PeregrineActionTest1 : NSObject
 
 @end
