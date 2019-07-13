@@ -14,14 +14,7 @@ target 'Peregrine_Example' do
 end
 
 post_install do |installer|
-  installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-          if ['PGTestSDK'].include?(target.to_s) then
-            config.build_settings['COMPILER_INDEX_STORE_ENABLE'] = 'NO'
-            config.build_settings['CC'] = '${CCROOT}/bin/clang'
-            config.build_settings['CCROOT'] = '${HOME}/Github/llvm_xcode/Debug'
-            config.build_settings['OTHER_CFLAGS'] = '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${PODS_ROOT}/Peregrine/Support/Peregrine.bundle'
-          end
-        end
-    end
+  require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
+  PGConfiguration::configure_project(installer)
+
 end
