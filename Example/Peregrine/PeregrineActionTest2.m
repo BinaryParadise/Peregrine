@@ -11,7 +11,7 @@
 
 @implementation PeregrineActionTest2
 
-+ (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv") {
++ (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv?c=小龙女") {
     NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
     [context onDone:context.userInfo[@"result"]];
 }

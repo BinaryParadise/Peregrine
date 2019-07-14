@@ -7,6 +7,9 @@
 
 ## 原理
 
+> llvm: git@github.com:llvm-mirror/llvm.git 8cc3221f7770718b0416cec1c2592731b080166f
+> clang: git@github.com:BinaryParadise/clang.git 6c72a67631d1ac338630c4670218959f4ab682d2
+
 - 自定义clang的属性和插件[查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
 - 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由
 

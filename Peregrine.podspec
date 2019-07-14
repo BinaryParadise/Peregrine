@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Peregrine'
-  s.version          = '0.2.3'
+  s.version          = '0.3.0'
   s.summary          = 'A short description of Peregrine.'
 
 # This description is used to generate tags and improve search results.
@@ -29,13 +29,12 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
-  s.resources = 'Support/Peregrine.bundle'
+  s.default_subspec = 'Plugin'
 
   s.subspec 'Plugin' do |ss|
       ss.source_files = 'Peregrine/**/*'
-      ss.user_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${PODS_ROOT}/Peregrine/Support/Peregrine.bundle'}
-      ss.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${PODS_ROOT}/Peregrine/Support/Peregrine.bundle'}
+      ss.user_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local/bin', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle'}
+      ss.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local/bin', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle'}
   end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
