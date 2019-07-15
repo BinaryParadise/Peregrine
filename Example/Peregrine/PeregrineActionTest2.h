@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Peregrine/Peregrine.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PeregrineActionTest2 : NSObject
+
++ (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv?c=小龙女");
 
 @end
 

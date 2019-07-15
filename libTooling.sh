@@ -1,7 +1,1 @@
-~/Github/llvm_build/build/bin/clang-peregrine Example/Peregrine/PeregrineActionTest1.m \
-Example/Peregrine/PeregrineActionTest2.m -- \
- -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
- -isystem -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include \
- -Iinclude -I./Example/Pods/Headers/Public \
- -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include \
- -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
+~/Github/llvm_dev/Debug/bin/clang-peregrine /Users/lingjing/Documents/Github/Peregrine/Example/Peregrine/PeregrineActionTest2.m /Users/lingjing/Documents/Github/Peregrine/Example/Peregrine/PeregrineActionTest1.m -- -fmodules     -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.2.sdk      -isystem "/Users/lingjing/Documents/Github/Peregrine/Example/Pods/Headers/Public" -isystem "/Users/lingjing/Documents/Github/Peregrine/Example/Pods/Headers/Public/Expecta" -isystem "/Users/lingjing/Documents/Github/Peregrine/Example/Pods/Headers/Public/Peregrine" -isystem "/Users/lingjing/Documents/Github/Peregrine/Example/Pods/Headers/Public/Specta"

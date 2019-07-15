@@ -7,11 +7,10 @@
 //
 
 #import "PeregrineActionTest2.h"
-#import <Peregrine/Peregrine.h>
 
 @implementation PeregrineActionTest2
 
-+ (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv?c=小龙女") {
++ (void)verification1:(nullable PGRouterContext *)context {
     NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
     [context onDone:context.userInfo[@"result"]];
 }

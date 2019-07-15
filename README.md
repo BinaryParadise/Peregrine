@@ -8,12 +8,15 @@
 ## 原理
 
 > llvm: git@github.com:llvm-mirror/llvm.git 8cc3221f7770718b0416cec1c2592731b080166f
-> clang: git@github.com:BinaryParadise/clang.git 6c72a67631d1ac338630c4670218959f4ab682d2
+> clang: git@github.com:BinaryParadise/clang.git 6c72a67631d1ac338630c4670218959f4ab682d2 [查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
 
-- 自定义clang的属性和插件[查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
-- 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由
+1. Plugin: 高效，在编译阶段就生成，得使用额外编译的clang，可能存在隐藏问题
+  - 自定义clang的属性和插件
+  - 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由
+2. LibTooling: 独立工具，对项目无侵入，但是执行效率低，相当于重新编译项目
+  - 原理同Plugin
 
-下载我已经编译好的`llvm`（`280M`），具体安装时间取决于你的网速
+下载已经编译好的`llvm`（`280M`），具体安装时间取决于你的网速
 
 ```ruby
 brew tap binaryparadise/formula
@@ -59,7 +62,7 @@ test=1 pod install
 
 ## 常见问题
 
-1.启用Code Coverage时会出现以下编译错误
+1. Plugin方式启用Code Coverage时会出现以下编译错误?
 
 ```ruby
 ld: file not found: /usr/local/Cellar/peregrine/0.2.3/lib/clang/9.0.0/lib/darwin/libclang_rt.profile_iossim.a

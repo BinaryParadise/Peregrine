@@ -27,7 +27,7 @@ class PGConfiguration
     install_targets = project_targets.select { |target| target.product_type == 'com.apple.product-type.application' }
     install_targets.each do |project_target|
 
-      rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGConfiguration.rb"
+      rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGGenerator.rb"
 
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
@@ -35,10 +35,11 @@ class PGConfiguration
       end
 
       phase.comments = BUILD_PHASE_VERION
+      phase.run_only_for_deployment_postprocessing = "1"
       phase.shell_script = 'export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby "'+rubypath+'" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}"'
+ruby "'+rubypath+'" "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${OTHER_CFLAGS}" "${PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES}"'
       project.save()
     end
 
@@ -68,24 +69,4 @@ ruby "'+rubypath+'" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}"'
     return nil
   end
 
-  # 生成路由表
-  def self.generator(installer)
-    if installer == nil || installer == ''
-      return
-    end
-    installer.analysis_result.targets.each do |target|
-      files = []
-      target.pod_targets.each do |pod_target|
-        pod_target.file_accessors.each do |file_accessor|
-          file_accessor.source_files.each do |file|
-            files.push(file.to_path)
-          end
-        end
-      end
-      puts files.class
-    end
-  end
-
 end
-
-PGConfiguration::generator(nil)
