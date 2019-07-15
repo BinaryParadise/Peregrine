@@ -10,15 +10,20 @@ DEPENDENCIES:
   - Peregrine (from `../`)
   - Specta
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Expecta
+    - Specta
+
 EXTERNAL SOURCES:
   Peregrine:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: 937402fa4f162756f1d1fa32ea34f568ac5d44d6
+  Peregrine: f8b17a12f9424b2bba69633907b72c2c59b7e520
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: 2b11ffb571337388015dd28bdaee9e230454ec40
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.7.4
