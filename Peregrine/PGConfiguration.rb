@@ -39,7 +39,7 @@ class PGConfiguration
       phase.shell_script = 'export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby "'+rubypath+'" "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${OTHER_CFLAGS}" "${PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES}"'
+ruby "'+rubypath+'" "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${HEADER_SEARCH_PATHS}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}"'
       project.save()
     end
 

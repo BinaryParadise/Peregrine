@@ -13,9 +13,12 @@ class PGGenerator
         pbx_build_file.file_ref.real_path.to_s
     end
 
+    header_searchs = args[4].split(' ')
+
     shell = "~/Github/llvm_dev/Debug/bin/clang-peregrine #{files.join(' ')} -- -fmodules \
     -isysroot #{args[3]} \
-    #{args[4]} \
+    -I#{header_searchs.join(' -I')} \
+    -output #{args[5]} \
     "
     puts shell
     `#{shell}`
