@@ -12,7 +12,12 @@
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, NSString *> *)keyValues {
     if (self = [super init]) {
-        _URL = [NSURL URLWithString:keyValues[PGRouterKeyURL]];
+        NSString *URLString = keyValues[PGRouterKeyURL];
+        _URL = [NSURL URLWithString:URLString];
+        if (!_URL) {
+            NSString *encodeURLString = [URLString  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            _URL = [NSURL URLWithString:encodeURLString];
+        }
         _targetClass = NSClassFromString(keyValues[PGRouterKeyClass]);
         _selector = NSSelectorFromString(keyValues[PGRouterKeySelector]);
     }

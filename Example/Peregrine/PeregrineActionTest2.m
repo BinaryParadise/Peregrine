@@ -2,8 +2,8 @@
 //  PeregrineActionTest2.m
 //  Peregrine_Example
 //
-//  Created by lingjing on 2019/7/3.
-//  Copyright © 2019 joenggaa. All rights reserved.
+//  Created by Rake Yang on 2019/7/3.
+//  Copyright © 2019 BinaryParadiase. All rights reserved.
 //
 
 #import "PeregrineActionTest2.h"

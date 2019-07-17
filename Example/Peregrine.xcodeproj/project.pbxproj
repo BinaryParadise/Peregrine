@@ -26,21 +26,13 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		CEE1A6AE22DEC615001D6B98 /* PeregrineActionTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */; };
-		CEE1A6AF22DEC615001D6B98 /* FPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* FPAppDelegate.m */; };
-		CEE1A6B022DEC615001D6B98 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
-		CEE1A6B122DEC615001D6B98 /* FPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* FPViewController.m */; };
-		CEE1A6B222DEC615001D6B98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
-		CEE1A6B422DEC615001D6B98 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
-		CEE1A6B522DEC615001D6B98 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		CEE1A6B622DEC615001D6B98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		CEE1A6B922DEC615001D6B98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		CEE1A6BA22DEC615001D6B98 /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
-		CEE1A6BB22DEC615001D6B98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
-		CEE1A6BC22DEC615001D6B98 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
-		CEE1A6BD22DEC615001D6B98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
+		CEE1A73522DF0469001D6B98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1A73422DF0469001D6B98 /* AppDelegate.swift */; };
+		CEE1A73722DF0469001D6B98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1A73622DF0469001D6B98 /* ViewController.swift */; };
+		CEE1A73A22DF0469001D6B98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE1A73822DF0469001D6B98 /* Main.storyboard */; };
+		CEE1A73C22DF046A001D6B98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE1A73B22DF046A001D6B98 /* Assets.xcassets */; };
+		CEE1A73F22DF046A001D6B98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE1A73D22DF046A001D6B98 /* LaunchScreen.storyboard */; };
+		CEE1A74A22DF046A001D6B98 /* Peregrine_Example_PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1A74922DF046A001D6B98 /* Peregrine_Example_PluginTests.swift */; };
 		DF98BD79B646D6B36B20AE87 /* libPods-Peregrine_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 899BC783F7AC173516AADEDD /* libPods-Peregrine_Tests.a */; };
-		FA2687D5FFEC1BAFFF42D580 /* libPods-Peregrine_Example_Plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D88DECB91B561AEC6CEED6 /* libPods-Peregrine_Example_Plugin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +42,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = Peregrine;
+		};
+		CEE1A74622DF046A001D6B98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE1A73122DF0469001D6B98;
+			remoteInfo = Peregrine_Example_Plugin;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -88,8 +87,17 @@
 		948AAB4BC3EAD35D117839B0 /* Pods-Peregrine_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.release.xcconfig"; path = "Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BA9C66E56173C359A60C93B9 /* Pods-Peregrine_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.debug.xcconfig"; path = "Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D88DECB91B561AEC6CEED6 /* libPods-Peregrine_Example_Plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example_Plugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEE1A6C222DEC615001D6B98 /* Peregrine_Example_Plugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example_Plugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE1A6C322DEC616001D6B98 /* Peregrine_Example_Plugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Peregrine_Example_Plugin-Info.plist"; path = "/Users/lingjing/Documents/Github/Peregrine/Example/Peregrine_Example_Plugin-Info.plist"; sourceTree = "<absolute>"; };
+		CEE1A73222DF0469001D6B98 /* Peregrine_Example_Plugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example_Plugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE1A73422DF0469001D6B98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CEE1A73622DF0469001D6B98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEE1A73922DF0469001D6B98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CEE1A73B22DF046A001D6B98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEE1A73E22DF046A001D6B98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CEE1A74022DF046A001D6B98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEE1A74522DF046A001D6B98 /* Peregrine_Example_PluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Peregrine_Example_PluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE1A74922DF046A001D6B98 /* Peregrine_Example_PluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peregrine_Example_PluginTests.swift; sourceTree = "<group>"; };
+		CEE1A74B22DF046A001D6B98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D879063F363B6E49168C474F /* libPods-Peregrine_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF0336D4F8BD1D6D7867B52 /* Pods-Peregrine_Example_Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example_Plugin.debug.xcconfig"; path = "Target Support Files/Pods-Peregrine_Example_Plugin/Pods-Peregrine_Example_Plugin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,14 +125,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEE1A6B322DEC615001D6B98 /* Frameworks */ = {
+		CEE1A72F22DF0469001D6B98 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE1A6B422DEC615001D6B98 /* CoreGraphics.framework in Frameworks */,
-				CEE1A6B522DEC615001D6B98 /* UIKit.framework in Frameworks */,
-				CEE1A6B622DEC615001D6B98 /* Foundation.framework in Frameworks */,
-				FA2687D5FFEC1BAFFF42D580 /* libPods-Peregrine_Example_Plugin.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE1A74222DF046A001D6B98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +161,8 @@
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Peregrine */,
 				6003F5B5195388D20070C39A /* Tests */,
+				CEE1A73322DF0469001D6B98 /* Peregrine_Example_Plugin */,
+				CEE1A74822DF046A001D6B98 /* Peregrine_Example_PluginTests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				CEE1A6C322DEC616001D6B98 /* Peregrine_Example_Plugin-Info.plist */,
@@ -162,7 +175,8 @@
 			children = (
 				6003F58A195388D20070C39A /* Peregrine_Example.app */,
 				6003F5AE195388D20070C39A /* Peregrine_Tests.xctest */,
-				CEE1A6C222DEC615001D6B98 /* Peregrine_Example_Plugin.app */,
+				CEE1A73222DF0469001D6B98 /* Peregrine_Example_Plugin.app */,
+				CEE1A74522DF046A001D6B98 /* Peregrine_Example_PluginTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,6 +254,28 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		CEE1A73322DF0469001D6B98 /* Peregrine_Example_Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				CEE1A73422DF0469001D6B98 /* AppDelegate.swift */,
+				CEE1A73622DF0469001D6B98 /* ViewController.swift */,
+				CEE1A73822DF0469001D6B98 /* Main.storyboard */,
+				CEE1A73B22DF046A001D6B98 /* Assets.xcassets */,
+				CEE1A73D22DF046A001D6B98 /* LaunchScreen.storyboard */,
+				CEE1A74022DF046A001D6B98 /* Info.plist */,
+			);
+			path = Peregrine_Example_Plugin;
+			sourceTree = "<group>";
+		};
+		CEE1A74822DF046A001D6B98 /* Peregrine_Example_PluginTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEE1A74922DF046A001D6B98 /* Peregrine_Example_PluginTests.swift */,
+				CEE1A74B22DF046A001D6B98 /* Info.plist */,
+			);
+			path = Peregrine_Example_PluginTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,7 +287,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				052CAFF53AD18E3320361791 /* [Peregrine] Generator Routing Table */,
+				5A3D51587B1C6CCAB03D70F0 /* [Peregrine] Generator Routing Table */,
 			);
 			buildRules = (
 			);
@@ -281,24 +317,41 @@
 			productReference = 6003F5AE195388D20070C39A /* Peregrine_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CEE1A6AB22DEC615001D6B98 /* Peregrine_Example_Plugin */ = {
+		CEE1A73122DF0469001D6B98 /* Peregrine_Example_Plugin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEE1A6BF22DEC615001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_Plugin" */;
+			buildConfigurationList = CEE1A75022DF046A001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_Plugin" */;
 			buildPhases = (
-				42D8A01E84315BB931981962 /* [CP] Check Pods Manifest.lock */,
-				CEE1A6AD22DEC615001D6B98 /* Sources */,
-				CEE1A6B322DEC615001D6B98 /* Frameworks */,
-				CEE1A6B822DEC615001D6B98 /* Resources */,
-				E448B7AEC1A05C1C03B416EF /* [Peregrine] Generator Routing Table */,
+				CEE1A72E22DF0469001D6B98 /* Sources */,
+				CEE1A72F22DF0469001D6B98 /* Frameworks */,
+				CEE1A73022DF0469001D6B98 /* Resources */,
+				F7E9625CCEC302EDD9CE81B3 /* [Peregrine] Generator Routing Table */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Peregrine_Example_Plugin;
-			productName = Peregrine;
-			productReference = CEE1A6C222DEC615001D6B98 /* Peregrine_Example_Plugin.app */;
+			productName = Peregrine_Example_Plugin;
+			productReference = CEE1A73222DF0469001D6B98 /* Peregrine_Example_Plugin.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CEE1A74422DF046A001D6B98 /* Peregrine_Example_PluginTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE1A75122DF046A001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_PluginTests" */;
+			buildPhases = (
+				CEE1A74122DF046A001D6B98 /* Sources */,
+				CEE1A74222DF046A001D6B98 /* Frameworks */,
+				CEE1A74322DF046A001D6B98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEE1A74722DF046A001D6B98 /* PBXTargetDependency */,
+			);
+			name = Peregrine_Example_PluginTests;
+			productName = Peregrine_Example_PluginTests;
+			productReference = CEE1A74522DF046A001D6B98 /* Peregrine_Example_PluginTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -307,11 +360,22 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FP;
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = joenggaa;
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
+					};
+					CEE1A73122DF0469001D6B98 = {
+						CreatedOnToolsVersion = 10.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					CEE1A74422DF046A001D6B98 = {
+						CreatedOnToolsVersion = 10.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CEE1A73122DF0469001D6B98;
 					};
 				};
 			};
@@ -330,8 +394,9 @@
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* Peregrine_Example */,
-				CEE1A6AB22DEC615001D6B98 /* Peregrine_Example_Plugin */,
 				6003F5AD195388D20070C39A /* Peregrine_Tests */,
+				CEE1A73122DF0469001D6B98 /* Peregrine_Example_Plugin */,
+				CEE1A74422DF046A001D6B98 /* Peregrine_Example_PluginTests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,36 +422,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEE1A6B822DEC615001D6B98 /* Resources */ = {
+		CEE1A73022DF0469001D6B98 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE1A6B922DEC615001D6B98 /* Main.storyboard in Resources */,
-				CEE1A6BA22DEC615001D6B98 /* Peregrine-Info.plist in Resources */,
-				CEE1A6BB22DEC615001D6B98 /* LaunchScreen.storyboard in Resources */,
-				CEE1A6BC22DEC615001D6B98 /* Images.xcassets in Resources */,
-				CEE1A6BD22DEC615001D6B98 /* InfoPlist.strings in Resources */,
+				CEE1A73F22DF046A001D6B98 /* LaunchScreen.storyboard in Resources */,
+				CEE1A73C22DF046A001D6B98 /* Assets.xcassets in Resources */,
+				CEE1A73A22DF0469001D6B98 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE1A74322DF046A001D6B98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		052CAFF53AD18E3320361791 /* [Peregrine] Generator Routing Table */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			comments = 2;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[Peregrine] Generator Routing Table";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby \"/Users/lingjing/Documents/Github/Peregrine/Peregrine/PGGenerator.rb\" \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
-		};
 		313346EE7392D1E5E28F61D0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,23 +460,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		42D8A01E84315BB931981962 /* [CP] Check Pods Manifest.lock */ = {
+		5A3D51587B1C6CCAB03D70F0 /* [Peregrine] Generator Routing Table */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			comments = 10;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+			inputFileListPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			inputPaths = (
+			);
+			name = "[Peregrine] Generator Routing Table";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Peregrine_Example_Plugin-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby ~/Github/Peregrine/Peregrine/PGGenerator.rb \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"\n";
 		};
 		C492F33CB3F90647E0EA7EE7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -441,20 +497,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E448B7AEC1A05C1C03B416EF /* [Peregrine] Generator Routing Table */ = {
+		F7E9625CCEC302EDD9CE81B3 /* [Peregrine] Generator Routing Table */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
-			comments = 2;
+			comments = 10;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
 			name = "[Peregrine] Generator Routing Table";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby \"/Users/lingjing/Documents/Github/Peregrine/Peregrine/PGGenerator.rb\" \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/lingjing/Documents/Github/Peregrine/Peregrine/PGGenerator.rb \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -479,15 +539,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEE1A6AD22DEC615001D6B98 /* Sources */ = {
+		CEE1A72E22DF0469001D6B98 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE1A6AE22DEC615001D6B98 /* PeregrineActionTest2.m in Sources */,
-				CEE1A6AF22DEC615001D6B98 /* FPAppDelegate.m in Sources */,
-				CEE1A6B022DEC615001D6B98 /* PeregrineActionTest1.m in Sources */,
-				CEE1A6B122DEC615001D6B98 /* FPViewController.m in Sources */,
-				CEE1A6B222DEC615001D6B98 /* main.m in Sources */,
+				CEE1A73722DF0469001D6B98 /* ViewController.swift in Sources */,
+				CEE1A73522DF0469001D6B98 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE1A74122DF046A001D6B98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE1A74A22DF046A001D6B98 /* Peregrine_Example_PluginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +563,11 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* Peregrine_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		CEE1A74722DF046A001D6B98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEE1A73122DF0469001D6B98 /* Peregrine_Example_Plugin */;
+			targetProxy = CEE1A74622DF046A001D6B98 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -522,6 +592,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				71719F9E1E33DC2100824A3D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CEE1A73822DF0469001D6B98 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEE1A73922DF0469001D6B98 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CEE1A73D22DF046A001D6B98 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEE1A73E22DF046A001D6B98 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -674,31 +760,171 @@
 			};
 			name = Release;
 		};
-		CEE1A6C022DEC615001D6B98 /* Debug */ = {
+		CEE1A74C22DF046A001D6B98 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFF0336D4F8BD1D6D7867B52 /* Pods-Peregrine_Example_Plugin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "Peregrine_Example_Plugin-Info.plist";
-				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Peregrine_Example_Plugin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.binaryparadiase.Peregrine-Example-Plugin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		CEE1A6C122DEC615001D6B98 /* Release */ = {
+		CEE1A74D22DF046A001D6B98 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C70FDF085F8BFB6C8056A4E /* Pods-Peregrine_Example_Plugin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "Peregrine_Example_Plugin-Info.plist";
-				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Peregrine_Example_Plugin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.binaryparadiase.Peregrine-Example-Plugin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CEE1A74E22DF046A001D6B98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Peregrine_Example_PluginTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.binaryparadiase.Peregrine-Example-PluginTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peregrine_Example_Plugin.app/Peregrine_Example_Plugin";
+			};
+			name = Debug;
+		};
+		CEE1A74F22DF046A001D6B98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Peregrine_Example_PluginTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.binaryparadiase.Peregrine-Example-PluginTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peregrine_Example_Plugin.app/Peregrine_Example_Plugin";
 			};
 			name = Release;
 		};
@@ -732,11 +958,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEE1A6BF22DEC615001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_Plugin" */ = {
+		CEE1A75022DF046A001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_Plugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CEE1A6C022DEC615001D6B98 /* Debug */,
-				CEE1A6C122DEC615001D6B98 /* Release */,
+				CEE1A74C22DF046A001D6B98 /* Debug */,
+				CEE1A74D22DF046A001D6B98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEE1A75122DF046A001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_PluginTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE1A74E22DF046A001D6B98 /* Debug */,
+				CEE1A74F22DF046A001D6B98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

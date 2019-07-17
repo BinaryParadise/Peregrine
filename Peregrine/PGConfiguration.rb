@@ -3,7 +3,6 @@ require 'yaml'
 require 'json'
 
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
-BUILD_PHASE_VERION  = '1'
 
 class PGConfiguration
   attr_accessor :dev_path  #本地开发模式路径
@@ -34,12 +33,11 @@ class PGConfiguration
         phase = project_target.new_shell_script_build_phase(BUILD_PHASE_NAME_FETCH_ENV)
       end
 
-      phase.comments = BUILD_PHASE_VERION
       # phase.run_only_for_deployment_postprocessing = "1"
       phase.shell_script = 'export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby "'+rubypath+'" "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${HEADER_SEARCH_PATHS}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle"'
+ruby '+rubypath+' "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${HEADER_SEARCH_PATHS}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle"'
       project.save()
     end
 
