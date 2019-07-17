@@ -1,9 +1,9 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.3.0):
-    - Peregrine/LibTooling (= 0.3.0)
-  - Peregrine/LibTooling (0.3.0)
-  - Peregrine/Plugin (0.3.0):
+  - Peregrine (0.3.1):
+    - Peregrine/LibTooling (= 0.3.1)
+  - Peregrine/LibTooling (0.3.1)
+  - Peregrine/Plugin (0.3.1):
     - Peregrine/LibTooling
   - Specta (1.0.7)
 
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: f8b17a12f9424b2bba69633907b72c2c59b7e520
+  Peregrine: 4706b36fe5d61b7cf32bfb0fabc116c406853a4a
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: c9a3c3cf2e9d0ad4a330eb7dba78b8b262379465
