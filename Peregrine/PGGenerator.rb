@@ -15,10 +15,12 @@ class PGGenerator
 
     header_searchs = args[4].split(' ')
 
-    shell = "~/Github/llvm_dev/Debug/bin/clang-peregrine #{files.join(' ')} -- -fmodules \
+    shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
+    -p=\"#{args[5]}\" \
+    -- \
+    -fmodules \
     -isysroot #{args[3]} \
     -I#{header_searchs.join(' -I')} \
-    -output #{args[5]} \
     "
     puts shell
     `#{shell}`

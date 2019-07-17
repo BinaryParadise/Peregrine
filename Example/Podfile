@@ -1,4 +1,6 @@
-# use_frameworks!
+install! 'cocoapods',
+    :generate_multiple_pod_projects => true,
+    :incremental_installation => true
 
 platform :ios, '9.0'
 
@@ -11,10 +13,13 @@ target 'Peregrine_Example' do
     pod 'Specta'
     pod 'Expecta'
   end
+
+  post_install do |installer|
+    require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
+    PGConfiguration::configure_project(installer)
+  end
 end
 
-post_install do |installer|
-  require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
-  PGConfiguration::configure_project(installer)
-
+target 'Peregrine_Example_Plugin' do
+  pod 'Peregrine/Plugin', :path => '../'
 end

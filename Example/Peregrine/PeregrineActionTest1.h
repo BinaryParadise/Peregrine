@@ -13,5 +13,5 @@
 
 + (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/wyy?c=王语嫣1");
 
-+ (void)verification2:(nullable PGRouterContext *)context PGTarget("ap://tlbb/ym?c=杨幂");
++ (void)verification2:(nullable PGRouterContext *)context PGTarget("ap://tlbb/ym?c=杨幂22");
 @end
