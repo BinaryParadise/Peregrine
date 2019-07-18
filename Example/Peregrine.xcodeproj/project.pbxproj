@@ -11,6 +11,7 @@
 		24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
 		24F05A4D22DB42A700B25CB8 /* PeregrineActionTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */; };
 		40C043208E791063AB0E9B85 /* libPods-Peregrine_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D879063F363B6E49168C474F /* libPods-Peregrine_Example.a */; };
+		426EC9F39A49310407AE58BE /* libPods-Peregrine_Example_Plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D88DECB91B561AEC6CEED6 /* libPods-Peregrine_Example_Plugin.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -87,6 +88,7 @@
 		948AAB4BC3EAD35D117839B0 /* Pods-Peregrine_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.release.xcconfig"; path = "Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BA9C66E56173C359A60C93B9 /* Pods-Peregrine_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.debug.xcconfig"; path = "Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D88DECB91B561AEC6CEED6 /* libPods-Peregrine_Example_Plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example_Plugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED3822922E0611300C2F6A7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CEE1A6C322DEC616001D6B98 /* Peregrine_Example_Plugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Peregrine_Example_Plugin-Info.plist"; path = "/Users/lingjing/Documents/Github/Peregrine/Example/Peregrine_Example_Plugin-Info.plist"; sourceTree = "<absolute>"; };
 		CEE1A73222DF0469001D6B98 /* Peregrine_Example_Plugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example_Plugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE1A73422DF0469001D6B98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426EC9F39A49310407AE58BE /* libPods-Peregrine_Example_Plugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +224,7 @@
 				240E7B4B228327C800B5579E /* Peregrine-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
+				CED3822922E0611300C2F6A7 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -321,6 +325,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEE1A75022DF046A001D6B98 /* Build configuration list for PBXNativeTarget "Peregrine_Example_Plugin" */;
 			buildPhases = (
+				11B800CECD10CEB430C945AD /* [CP] Check Pods Manifest.lock */,
 				CEE1A72E22DF0469001D6B98 /* Sources */,
 				CEE1A72F22DF0469001D6B98 /* Frameworks */,
 				CEE1A73022DF0469001D6B98 /* Resources */,
@@ -442,6 +447,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11B800CECD10CEB430C945AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Peregrine_Example_Plugin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		313346EE7392D1E5E28F61D0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,7 +504,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby ~/Github/Peregrine/Peregrine/PGGenerator.rb \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"\n";
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby ~/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"\n";
 		};
 		C492F33CB3F90647E0EA7EE7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -514,7 +541,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/lingjing/Documents/Github/Peregrine/Peregrine/PGGenerator.rb \"${PROJECT_FILE_PATH}\" \"${TARGET_NAME}\" \"${PODS_ROOT}\" \"${SDKROOT}\" \"${HEADER_SEARCH_PATHS}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby ~/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -693,7 +720,8 @@
 			baseConfigurationReference = BA9C66E56173C359A60C93B9 /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -707,7 +735,8 @@
 			baseConfigurationReference = 948AAB4BC3EAD35D117839B0 /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -762,6 +791,7 @@
 		};
 		CEE1A74C22DF046A001D6B98 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFF0336D4F8BD1D6D7867B52 /* Pods-Peregrine_Example_Plugin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -803,6 +833,7 @@
 		};
 		CEE1A74D22DF046A001D6B98 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C70FDF085F8BFB6C8056A4E /* Pods-Peregrine_Example_Plugin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;

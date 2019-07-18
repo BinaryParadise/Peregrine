@@ -20,6 +20,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    NSString *str = PCH_Test(@"xxxxx");
+    
     [PGRouterManager openURL:@"ap://sdyxz/mwq/rb?tt=1" completion:^(BOOL ret, id object) {
         
     }];

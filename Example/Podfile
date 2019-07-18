@@ -10,8 +10,8 @@ target 'Peregrine_Example' do
   target 'Peregrine_Tests' do
     inherit! :search_paths
 
-    pod 'Specta'
-    pod 'Expecta'
+    pod 'Specta', '~> 1.0'
+    pod 'Expecta', '~> 1.0'
   end
 
   post_install do |installer|

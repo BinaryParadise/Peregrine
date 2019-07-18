@@ -6,21 +6,29 @@ class PGGenerator
 
   # 生成路由表
   def self.generator(args)
-    project_path = args[0]
-    project = Xcodeproj::Project.open(project_path)
-    current_target = (project.targets.select { |target| target.name == args[1] }).first
+    project = Xcodeproj::Project.open(ENV['PROJECT_FILE_PATH'])
+    current_target = (project.targets.select { |target| target.name == ENV['TARGET_NAME'] }).first
+
     files = current_target.source_build_phase.files.to_a.map do |pbx_build_file|
         pbx_build_file.file_ref.real_path.to_s
     end
 
-    header_searchs = args[4].split(' ')
+    header_searchs = ENV['HEADER_SEARCH_PATHS'].split(' ')
+    include = nil
+    if ENV['GCC_PRECOMPILE_PREFIX_HEADER'] == 'YES'
+      include = '-include '+ENV['SRCROOT'] + '/' + ENV['GCC_PREFIX_HEADER']
+    end
+#    -include #{ENV['SHARED_PRECOMPS_DIR']}/11336253693664976894/Header.pch.d \
 
     shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
-    -p=\"#{args[5]}\" \
+    -p=\"#{args[0]}\" \
     -- \
-    -fmodules \
-    -isysroot #{args[3]} \
+    -fmodules -Werror -Wno-implicit-atomic-properties -Wimplicit-function-declaration -fsyntax-only \
+    -Wobjc-missing-super-calls -fobjc-arc \
+    -isysroot #{ENV['SDKROOT']} \
+    #{include} \
     -I#{header_searchs.join(' -I')} \
+    -F#{ENV['DEVELOPER_FRAMEWORKS_DIR']} \
     "
     puts shell
     `#{shell}`

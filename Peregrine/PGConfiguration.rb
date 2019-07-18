@@ -8,8 +8,8 @@ class PGConfiguration
   attr_accessor :dev_path  #本地开发模式路径
 
   def self.configure_project(installer)
-    pepper = installer.sandbox.development_pods['Peregrine']
-    @dev_path = pepper ? pepper.dirname.to_s : nil
+    path = installer.sandbox.development_pods['Peregrine']
+      @dev_path = path ? path.dirname.to_s : nil
 
     installer.analysis_result.targets.each do |target|
       if target.user_project_path.exist? && target.user_target_uuids.any?
@@ -34,10 +34,10 @@ class PGConfiguration
       end
 
       # phase.run_only_for_deployment_postprocessing = "1"
-      phase.shell_script = 'export LANG=en_US.UTF-8
+      phase.shell_script = "export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby '+rubypath+' "${PROJECT_FILE_PATH}" "${TARGET_NAME}" "${PODS_ROOT}" "${SDKROOT}" "${HEADER_SEARCH_PATHS}" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle"'
+ruby #{rubypath} \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\""
       project.save()
     end
 
