@@ -1,6 +1,9 @@
-install! 'cocoapods',
+`rm -f Podfile.lock`
+if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.7.3')
+  install! 'cocoapods',
     :generate_multiple_pod_projects => true,
     :incremental_installation => true
+end
 
 platform :ios, '9.0'
 
@@ -13,13 +16,13 @@ target 'Peregrine_Example' do
     pod 'Specta', '~> 1.0'
     pod 'Expecta', '~> 1.0'
   end
-
-  post_install do |installer|
-    require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
-    PGConfiguration::configure_project(installer)
-  end
 end
 
 target 'Peregrine_Example_Plugin' do
   pod 'Peregrine/Plugin', :path => '../'
+end
+
+post_install do |installer|
+    require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
+    PGConfiguration::configure_project(installer)
 end
