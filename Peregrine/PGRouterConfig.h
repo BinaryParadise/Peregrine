@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PGRouterConfig : NSObject
 
 @property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy) NSDictionary<NSString *,NSString *> *parameters;
 @property (nonatomic, assign) Class targetClass;
 @property (nonatomic, assign) SEL selector;
 

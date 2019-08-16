@@ -8,8 +8,6 @@
 
 #import "PGRouterConfig.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef void(^PGRouterCallback)(BOOL ret, id object);
 
 @interface PGRouterContext : NSObject
@@ -20,8 +18,6 @@ typedef void(^PGRouterCallback)(BOOL ret, id object);
 
 + (instancetype)contextWithURL:(NSURL *)openURL callback:(PGRouterCallback)callback;
 
-- (void)onDone:(id)object;
+- (void)onDone:(BOOL)ret object:(id)object;
 
 @end
-
-NS_ASSUME_NONNULL_END

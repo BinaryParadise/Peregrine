@@ -23,7 +23,7 @@ class PGGenerator
     shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
     -p=\"#{args[0]}\" \
     -- \
-    -fmodules -Werror -Wno-implicit-atomic-properties -Wimplicit-function-declaration -fsyntax-only \
+    -fmodules -Werror -Wno-implicit-atomic-properties -Wimplicit-function-declaration -fsyntax-only -fobjc-arc -ferror-limit=9999 \
     -Wobjc-missing-super-calls -fobjc-arc \
     -isysroot #{ENV['SDKROOT']} \
     #{include} \

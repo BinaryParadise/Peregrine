@@ -28,6 +28,20 @@ describe(@"Lint", ^{
             expect(ret).equal(NO);
         }];
     });
+    
+    it(@"PGRouterConfig", ^{
+        PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?"}];
+        expect(config.parameters).will.beNil();
+        config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c"}];
+        expect(config.parameters.count).equal(1);
+        config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=10000"}];
+        expect(config.parameters[@"c"]).equal(@"10000");
+        config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=王语嫣"}];
+        expect(config.parameters[@"c"]).equal([@"王语嫣" stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
+        config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=t033&"}];
+        expect(config.parameters.count).equal(1);
+        expect(config.parameters[@"c"]).equal(@"t033");
+    });
 });
 
 SpecEnd

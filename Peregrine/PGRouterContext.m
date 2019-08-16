@@ -38,9 +38,9 @@
     return mdict.count ? mdict : nil;
 }
 
-- (void)onDone:(id)object {
+- (void)onDone:(BOOL)ret object:(id)object {
     if (self.callback) {
-        self.callback(YES, object);
+        self.callback(ret, object);
     }
 }
 
