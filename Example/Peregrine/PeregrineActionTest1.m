@@ -12,7 +12,7 @@
 
 + (void)verification1:(nullable PGRouterContext *)context {
     NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
-    [context onDone:context.userInfo[@"result"]];
+    [context onDone:YES object:context.userInfo[@"result"]];
 }
 
 + (void)verification2:(nullable PGRouterContext *)context {

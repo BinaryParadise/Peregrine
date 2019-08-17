@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1031FC535DEDB5F5C226D78C /* libPods-Peregrine_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */; };
+		240ACF7C23077B0500B78838 /* Peregrine.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 240ACF7B23077B0500B78838 /* Peregrine.bundle */; };
 		240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
 		24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
 		24F05A4D22DB42A700B25CB8 /* PeregrineActionTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		240ACF7B23077B0500B78838 /* Peregrine.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Peregrine.bundle; sourceTree = "<group>"; };
 		240E7B4B228327C800B5579E /* Peregrine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peregrine-Info.plist"; sourceTree = "<group>"; };
 		24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest1.m; sourceTree = "<group>"; };
 		24F05A4922DB42A700B25CB8 /* PeregrineActionTest1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest1.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				240ACF7B23077B0500B78838 /* Peregrine.bundle */,
 				240E7B4B228327C800B5579E /* Peregrine-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -283,6 +286,9 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				869B542181A390EF6423A09D /* [CP] Embed Pods Frameworks */,
+				B98E92CB28FF5909383EB23B /* [CP] Copy Pods Resources */,
+				FE156C2071C0B185140F1548 /* [Peregrine] Generator Routing Table */,
 			);
 			buildRules = (
 			);
@@ -301,6 +307,8 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				ADFCB091E956C6D4058E12A9 /* [CP] Embed Pods Frameworks */,
+				0F3C1C34DE0565364677ACCA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -403,6 +411,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				240ACF7C23077B0500B78838 /* Peregrine.bundle in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -436,6 +445,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0F3C1C34DE0565364677ACCA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		842D5995DC0ECC9C1951B7AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,6 +484,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		869B542181A390EF6423A09D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADFCB091E956C6D4058E12A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B98E92CB28FF5909383EB23B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4C6D7C11E54C2F470A70EFC /* [CP] Check Pods Manifest.lock */ = {
@@ -479,6 +564,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FE156C2071C0B185140F1548 /* [Peregrine] Generator Routing Table */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Peregrine] Generator Routing Table";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/bonana/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

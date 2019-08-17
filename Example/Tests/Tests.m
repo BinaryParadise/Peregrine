@@ -31,6 +31,7 @@ describe(@"Lint", ^{
     
     it(@"PGRouterConfig", ^{
         PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?"}];
+        expect(config.actionName).will.beNil();
         expect(config.parameters).will.beNil();
         config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c"}];
         expect(config.parameters.count).equal(1);
