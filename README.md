@@ -16,7 +16,7 @@
 2. LibTooling: 独立工具，对项目无侵入，但是执行效率低，相当于重新编译项目
   - 原理同Plugin
 
-下载已经编译好的`llvm`（`280M`），具体安装时间取决于你的网速
+通过brew安装已经编译好的`llvm`（预计`280M`），具体安装时间取决于你的网速
 
 ```ruby
 brew tap binaryparadise/formula
@@ -24,6 +24,8 @@ brew install peregrine
 ```
 
 ## 安装
+
+> 默认为插件模式
 
 ```ruby
 pod 'Peregrine'
