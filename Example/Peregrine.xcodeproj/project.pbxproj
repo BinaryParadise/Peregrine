@@ -89,7 +89,6 @@
 		AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CED3822922E0611300C2F6A7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		CEE1A6C322DEC616001D6B98 /* Peregrine_Example_Plugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Peregrine_Example_Plugin-Info.plist"; path = "/Users/lingjing/Documents/Github/Peregrine/Example/Peregrine_Example_Plugin-Info.plist"; sourceTree = "<absolute>"; };
 		CEE1A73222DF0469001D6B98 /* Peregrine_Example_Plugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example_Plugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE1A73422DF0469001D6B98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE1A73622DF0469001D6B98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +151,6 @@
 				CEE1A74822DF046A001D6B98 /* Peregrine_Example_PluginTests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				CEE1A6C322DEC616001D6B98 /* Peregrine_Example_Plugin-Info.plist */,
 				A2D6E9F67016F73CFBDED2F1 /* Pods */,
 			);
 			sourceTree = "<group>";

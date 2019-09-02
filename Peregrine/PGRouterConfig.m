@@ -47,7 +47,7 @@
 
 - (NSString *)actionName {
     if (self.URL.pathComponents.count > 1) {
-        return self.URL.pathComponents[1];
+        return self.URL.pathComponents.lastObject;
     }
     return nil;
 }
