@@ -739,6 +739,7 @@
 			baseConfigurationReference = 4AE5344D6E912B110E4D13C3 /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMPILER_INDEX_STORE_ENABLE = Default;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
@@ -754,6 +755,7 @@
 			baseConfigurationReference = 7DF05A23FD0C93C0A260AD29 /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMPILER_INDEX_STORE_ENABLE = Default;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";

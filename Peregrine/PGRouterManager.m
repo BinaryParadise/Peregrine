@@ -9,7 +9,7 @@
 #import "PGRouterManager.h"
 #import "PGRouterContext.h"
 
-static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_routerTable;
+static NSMutableDictionary<NSString *, PGRouterGroup *> *_routerTable;
 
 @interface PGRouterManager <ObjectType> ()
 
@@ -17,7 +17,7 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 
 @implementation PGRouterManager
 
-+ (NSDictionary<NSString *,NSArray<PGRouterConfig *> *> *)routerMap {
++ (NSDictionary<NSString *,PGRouterGroup *> *)routerMap {
     return _routerTable;
 }
 
@@ -37,18 +37,26 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 }
 
 + (void)registerWithDictionary:(NSDictionary *)dict {
-    PGRouterConfig *router = [[PGRouterConfig alloc] initWithDictionary:dict];
-    NSString *prefix = router.URL.host;
+    PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:dict];
+    NSString *prefix = config.URL.host;
     if (prefix.length == 0) {
         return;
     }
     
-    NSMutableArray *routers = _routerTable[prefix];
-    if (!routers) {
-        routers = [NSMutableArray array];
-        _routerTable[prefix] = routers;
+    PGRouterGroup *group = _routerTable[prefix];
+    if (!group) {
+        group = [PGRouterGroup new];
+        group.name = prefix;
+        _routerTable[prefix] = group;
     }
-    [routers addObject:router];
+    NSUInteger count = config.URL.pathComponents.count;
+    [config.URL.pathComponents enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx > 0) {
+            if (idx == count - 1) {
+                
+            }
+        }
+    }];
 }
 
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
