@@ -1,13 +1,11 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.4.0):
-    - Peregrine/Plugin (= 0.4.0)
-  - Peregrine/Plugin (0.4.0)
+  - Peregrine/LibTooling (0.4.0)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta (~> 1.0)
-  - Peregrine (from `../`)
+  - Peregrine/LibTooling (from `../`)
   - Specta (~> 1.0)
 
 EXTERNAL SOURCES:

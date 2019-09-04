@@ -1,8 +1,13 @@
 [
+    {
+        "class" : "PeregrineActionTest1",
+        "selector" : "verification2:",
+        "url" : "ap:///?c=00"
+    },
    {
       "class" : "PeregrineActionTest1",
       "selector" : "verification2:",
-      "url" : "ap://tlbb/ym?c=杨幂22"
+      "url" : "ap://tlbb/ym//ffe/?c=杨幂22"
    },
    {
       "class" : "PeregrineActionTest2",
@@ -12,7 +17,7 @@
    {
       "class" : "PeregrineActionTest2",
       "selector" : "multiComponent:",
-      "url" : "ap://tbbb/most/like/wangyuyan?t=multi"
+      "url" : "ap://tlbb/most/like/wangyuyan?t=multi"
    },
    {
       "class" : "PeregrineActionTest1",

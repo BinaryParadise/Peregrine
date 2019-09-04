@@ -13,6 +13,14 @@
 SpecBegin(InitialSpecs)
 
 describe(@"Lint", ^{
+    
+    it(@"Map", ^{
+        PGRouterNode *node = [PGRouterManager routerMap][@"tlbb"];
+        expect(node.name).equal(@"tlbb");
+        expect(node.config).will.beNil();
+        expect(node.childs.count).beGreaterThan(@1);
+    });
+    
     it(@"OpenURL", ^{
         [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
             expect(object.boolValue).equal(YES);
@@ -20,7 +28,7 @@ describe(@"Lint", ^{
     });
     
     it(@"LoadRouter", ^{
-        expect([PGRouterManager routerMap].allValues.firstObject.count).equal(3);
+        expect([PGRouterManager routerMap].count).equal(1);
     });
     
     it(@"UnRegister", ^{        
@@ -50,6 +58,7 @@ describe(@"Lint", ^{
     it(@"MulitComponent", ^{
         PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/most/like/wangyuyan?t=multi"}];
         expect(config.actionName).equal(@"wangyuyan");
+        expect(config.parameters[@"t"]).equal(@"multi");
     });
 });
 

@@ -9,7 +9,7 @@
 #import "PGRouterManager.h"
 #import "PGRouterContext.h"
 
-static NSMutableDictionary<NSString *, PGRouterGroup *> *_routerTable;
+static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 
 @interface PGRouterManager <ObjectType> ()
 
@@ -17,13 +17,13 @@ static NSMutableDictionary<NSString *, PGRouterGroup *> *_routerTable;
 
 @implementation PGRouterManager
 
-+ (NSDictionary<NSString *,PGRouterGroup *> *)routerMap {
-    return _routerTable;
++ (NSDictionary<NSString *, PGRouterNode *> *)routerMap {
+    return _routerTree;
 }
 
 + (void)initialize {
-    if (!_routerTable) {     
-        _routerTable = [NSMutableDictionary dictionary];
+    if (!_routerTree) {
+        _routerTree = [NSMutableDictionary dictionary];
         NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine.bundle/routers.json" ofType:nil];
         if (routerPath) {
             NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
@@ -43,39 +43,46 @@ static NSMutableDictionary<NSString *, PGRouterGroup *> *_routerTable;
         return;
     }
     
-    PGRouterGroup *group = _routerTable[prefix];
-    if (!group) {
-        group = [PGRouterGroup new];
-        group.name = prefix;
-        _routerTable[prefix] = group;
+    PGRouterNode *node = _routerTree[prefix];
+    if (!node) {
+        node = [PGRouterNode new];
+        node.name = prefix;
+        _routerTree[prefix] = node;
     }
-    NSUInteger count = config.URL.pathComponents.count;
-    [config.URL.pathComponents enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (idx > 0) {
-            if (idx == count - 1) {
-                
-            }
+    NSMutableArray *components = [config.URL.pathComponents mutableCopy];
+    if (components.firstObject) {
+        [components removeObject:components.firstObject];
+    }
+    __block PGRouterNode *context = node;
+    [components enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        context = [node addChildWithName:obj];
+        if (idx == components.count - 1) {
+            context.config = config;
         }
     }];
 }
 
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL URLWithString:URLString];
-    NSMutableArray<PGRouterConfig *> *routers = _routerTable[patternURL.host];
-    __block PGRouterConfig *config;
-    [routers enumerateObjectsUsingBlock:^(PGRouterConfig * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (patternURL.pathComponents.count && [obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
-            config = obj;
-            *stop = YES;
+    PGRouterNode *node = _routerTree[patternURL.host];
+    NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
+    if (componets.firstObject) {
+        [componets removeObject:componets.firstObject];
+    }
+    __block PGRouterNode *context = node;
+    [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        context = [node nodeForName:obj];
+        if (idx == componets.count - 1) {
+            PGRouterConfig *config = context.config;
+            if (config) {
+                [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
+            } else {
+                if (completion) {
+                    completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
+                }
+            }
         }
     }];
-    if (config) {
-        [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
-    } else {
-        if (completion) {
-            completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
-        }
-    }
 }
 
 + (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv?c=小龙女");
 
-+ (void)multiComponent:(PGRouterContext *)context PGTarget("ap://tbbb/most/like/wangyuyan?t=multi");
++ (void)multiComponent:(PGRouterContext *)context PGTarget("ap://tlbb/most/like/wangyuyan?t=multi");
 
 @end
 
