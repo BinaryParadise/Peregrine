@@ -18,6 +18,17 @@ typedef void(^PGRouterCallback)(BOOL ret, id object);
 
 + (instancetype)contextWithURL:(NSURL *)openURL callback:(PGRouterCallback)callback;
 
+/**
+ 路由完成
+
+ @param ret 结果
+ @param object 返回数据
+ */
 - (void)onDone:(BOOL)ret object:(id)object;
+
+/**
+ 路由执行成功，无返回数据
+ */
+- (void)finished;
 
 @end

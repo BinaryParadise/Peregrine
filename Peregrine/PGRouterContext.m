@@ -44,4 +44,8 @@
     }
 }
 
+- (void)finished {
+    [self onDone:YES object:nil];
+}
+
 @end

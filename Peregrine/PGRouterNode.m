@@ -28,7 +28,11 @@
 }
 
 - (instancetype)addChildWithName:(NSString *)name {
-    PGRouterNode *node = [PGRouterNode new];
+    PGRouterNode *node = [self nodeForName:name];
+    if (node) {
+        return node;
+    }
+    node = [PGRouterNode new];
     node.name = name;
     node.parent = self;
     [self.childs addObject:node];

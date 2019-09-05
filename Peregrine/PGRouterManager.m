@@ -55,7 +55,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
     }
     __block PGRouterNode *context = node;
     [components enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        context = [node addChildWithName:obj];
+        context = [context addChildWithName:obj];
         if (idx == components.count - 1) {
             context.config = config;
         }
@@ -71,7 +71,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
     }
     __block PGRouterNode *context = node;
     [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        context = [node nodeForName:obj];
+        context = [context nodeForName:obj];
         if (idx == componets.count - 1) {
             PGRouterConfig *config = context.config;
             if (config) {
