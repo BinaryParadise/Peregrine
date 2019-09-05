@@ -13,6 +13,14 @@
 SpecBegin(InitialSpecs)
 
 describe(@"Lint", ^{
+    
+    it(@"Map", ^{
+        PGRouterNode *node = [PGRouterManager routerMap][@"tlbb"];
+        expect(node.name).equal(@"tlbb");
+        expect(node.config).will.beNil();
+        expect(node.childs.count).beGreaterThan(@1);
+    });
+    
     it(@"OpenURL", ^{
         [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
             expect(object.boolValue).equal(YES);
@@ -20,7 +28,7 @@ describe(@"Lint", ^{
     });
     
     it(@"LoadRouter", ^{
-        expect([PGRouterManager routerMap].allValues.firstObject.count).equal(3);
+        expect([PGRouterManager routerMap].count).equal(1);
     });
     
     it(@"UnRegister", ^{        
@@ -33,7 +41,10 @@ describe(@"Lint", ^{
         PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?"}];
         expect(config.actionName).will.beNil();
         expect(config.parameters).will.beNil();
-        config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c"}];
+    });
+    
+    it(@"Parameter", ^{        
+        PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c"}];
         expect(config.parameters.count).equal(1);
         config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=10000"}];
         expect(config.parameters[@"c"]).equal(@"10000");
@@ -42,6 +53,12 @@ describe(@"Lint", ^{
         config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=t033&"}];
         expect(config.parameters.count).equal(1);
         expect(config.parameters[@"c"]).equal(@"t033");
+    });
+    
+    it(@"MulitComponent", ^{
+        PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/most/like/wangyuyan?t=multi"}];
+        expect(config.actionName).equal(@"wangyuyan");
+        expect(config.parameters[@"t"]).equal(@"multi");
     });
 });
 

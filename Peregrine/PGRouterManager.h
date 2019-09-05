@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PGRouterNode.h"
 
 #define PGTarget(_router) __attribute__((pe_routed(_router, 10.0)))
 
-@class PGRouterConfig;
-
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 
-+ (NSDictionary<NSString *, NSArray<PGRouterConfig *> *> *)routerMap;
++ (NSDictionary<NSString *, PGRouterNode *> *)routerMap;
 
 /**
  Open a URLString that you have registered in this manager.

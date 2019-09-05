@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Peregrine'
-  s.version          = '0.3.2'
+  s.version          = '0.4.0'
   s.summary          = 'A short description of Peregrine.'
 
 # This description is used to generate tags and improve search results.
@@ -29,15 +29,16 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.default_subspec = 'Plugin'
 
-  s.subspec 'LibTooling' do |ss|
-    ss.source_files = 'Peregrine/**/*'
-  end
-
   s.subspec 'Plugin' do |ss|
-    if ENV['coverage'].nil?
+    ss.source_files = 'Peregrine/**/*'
+    if ENV['test'] != '1'
       ss.user_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle'}
       ss.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle'}
     end
-      ss.dependency 'Peregrine/LibTooling'
   end
+  
+  s.subspec 'LibTooling' do |ss|
+      ss.source_files = 'Peregrine/**/*'
+  end
+  
 end

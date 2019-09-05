@@ -15,4 +15,8 @@
     [context onDone:YES object:context.userInfo[@"result"]];
 }
 
++ (void)multiComponent:(PGRouterContext *)context {
+    [context onDone:YES object:context.config.actionName];
+}
+
 @end

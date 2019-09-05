@@ -9,7 +9,7 @@
 #import "PGRouterManager.h"
 #import "PGRouterContext.h"
 
-static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_routerTable;
+static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 
 @interface PGRouterManager <ObjectType> ()
 
@@ -17,13 +17,13 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 
 @implementation PGRouterManager
 
-+ (NSDictionary<NSString *,NSArray<PGRouterConfig *> *> *)routerMap {
-    return _routerTable;
++ (NSDictionary<NSString *, PGRouterNode *> *)routerMap {
+    return _routerTree;
 }
 
 + (void)initialize {
-    if (!_routerTable) {     
-        _routerTable = [NSMutableDictionary dictionary];
+    if (!_routerTree) {
+        _routerTree = [NSMutableDictionary dictionary];
         NSString *routerPath = [[NSBundle mainBundle] pathForResource:@"Peregrine.bundle/routers.json" ofType:nil];
         if (routerPath) {
             NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:routerPath] options:NSJSONReadingMutableLeaves error:nil];
@@ -37,37 +37,52 @@ static NSMutableDictionary<NSString *, NSMutableArray<PGRouterConfig *> *> *_rou
 }
 
 + (void)registerWithDictionary:(NSDictionary *)dict {
-    PGRouterConfig *router = [[PGRouterConfig alloc] initWithDictionary:dict];
-    NSString *prefix = router.URL.host;
+    PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:dict];
+    NSString *prefix = config.URL.host;
     if (prefix.length == 0) {
         return;
     }
     
-    NSMutableArray *routers = _routerTable[prefix];
-    if (!routers) {
-        routers = [NSMutableArray array];
-        _routerTable[prefix] = routers;
+    PGRouterNode *node = _routerTree[prefix];
+    if (!node) {
+        node = [PGRouterNode new];
+        node.name = prefix;
+        _routerTree[prefix] = node;
     }
-    [routers addObject:router];
+    NSMutableArray *components = [config.URL.pathComponents mutableCopy];
+    if (components.firstObject) {
+        [components removeObject:components.firstObject];
+    }
+    __block PGRouterNode *context = node;
+    [components enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        context = [context addChildWithName:obj];
+        if (idx == components.count - 1) {
+            context.config = config;
+        }
+    }];
 }
 
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL URLWithString:URLString];
-    NSMutableArray<PGRouterConfig *> *routers = _routerTable[patternURL.host];
-    __block PGRouterConfig *config;
-    [routers enumerateObjectsUsingBlock:^(PGRouterConfig * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (patternURL.pathComponents.count && [obj.URL.pathComponents[1] isEqualToString:patternURL.pathComponents[1]]) {
-            config = obj;
-            *stop = YES;
+    PGRouterNode *node = _routerTree[patternURL.host];
+    NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
+    if (componets.firstObject) {
+        [componets removeObject:componets.firstObject];
+    }
+    __block PGRouterNode *context = node;
+    [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        context = [context nodeForName:obj];
+        if (idx == componets.count - 1) {
+            PGRouterConfig *config = context.config;
+            if (config) {
+                [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
+            } else {
+                if (completion) {
+                    completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
+                }
+            }
         }
     }];
-    if (config) {
-        [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
-    } else {
-        if (completion) {
-            completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
-        }
-    }
 }
 
 + (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {
