@@ -16,7 +16,7 @@
 }
 
 + (void)verification2:(nullable PGRouterContext *)context {
-    
+    [context finished];
 }
 
 @end

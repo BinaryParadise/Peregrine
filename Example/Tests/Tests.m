@@ -25,6 +25,10 @@ describe(@"Lint", ^{
         [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
             expect(object.boolValue).equal(YES);
         }];
+        
+        [PGRouterManager openURL:@"ap://tlbb/ym" completion:^(BOOL ret, id _Nonnull object) {
+            expect(object).will.beNil();
+        }];
     });
     
     it(@"LoadRouter", ^{
