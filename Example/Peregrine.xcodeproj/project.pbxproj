@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1031FC535DEDB5F5C226D78C /* libPods-Peregrine_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */; };
-		240ACF7C23077B0500B78838 /* Peregrine.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 240ACF7B23077B0500B78838 /* Peregrine.bundle */; };
 		240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
+		245220022363F5DE0092781C /* Peregrine.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 240ACF7B23077B0500B78838 /* Peregrine.bundle */; };
 		24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
 		24F05A4D22DB42A700B25CB8 /* PeregrineActionTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -299,7 +299,6 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				240ACF7C23077B0500B78838 /* Peregrine.bundle in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -310,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				245220022363F5DE0092781C /* Peregrine.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

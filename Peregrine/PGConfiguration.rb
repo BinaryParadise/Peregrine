@@ -30,6 +30,10 @@ class PGConfiguration
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
         phase = project_target.new_shell_script_build_phase(BUILD_PHASE_NAME_FETCH_ENV)
+      else
+        if !"1".eql?(ENV["test"])
+            phase.remove_from_project()
+        end
       end
 
       # phase.run_only_for_deployment_postprocessing = "1"

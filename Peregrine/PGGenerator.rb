@@ -30,7 +30,6 @@ class PGGenerator
     -I#{header_searchs.join(' -I')} \
     -F#{ENV['DEVELOPER_FRAMEWORKS_DIR']} \
     "
-    puts shell
     `#{shell}`
     # installer.analysis_result.targets.each do |target|
     #   files = []

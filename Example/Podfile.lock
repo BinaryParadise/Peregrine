@@ -1,11 +1,13 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine/LibTooling (0.4.0)
+  - Peregrine (0.5.0):
+    - Peregrine/Plugin (= 0.5.0)
+  - Peregrine/Plugin (0.5.0)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta (~> 1.0)
-  - Peregrine/LibTooling (from `../`)
+  - Peregrine (from `../`)
   - Specta (~> 1.0)
 
 EXTERNAL SOURCES:
@@ -14,9 +16,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: 62203afd8225bf338995ce384b9a2f2549413be7
+  Peregrine: 5111e4f78245cec89b7737eb1d923a82170f3b93
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: 9e3312d72342013702fa1f9054e637a7104095e3
+PODFILE CHECKSUM: 3b69aaf01433f7eb07f628c0367123122a920cec
 
 COCOAPODS: 1.4.0

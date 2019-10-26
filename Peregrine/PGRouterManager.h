@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PGRouterNode.h"
 
-#define PGTarget(_router) __attribute__((pe_routed(_router, 10.0)))
+#define PGTarget(_router) __attribute__((pe_routed(_router)))
 
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 
