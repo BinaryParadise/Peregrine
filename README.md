@@ -7,8 +7,8 @@
 
 ## 原理
 
-> llvm: git@github.com:llvm-mirror/llvm.git 8cc3221f7770718b0416cec1c2592731b080166f
-> clang: git@github.com:BinaryParadise/clang.git 6c72a67631d1ac338630c4670218959f4ab682d2 [查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
+> llvm: git@github.com:llvm-mirror/llvm.git 2c4ca6832fa6b306ee6a7010bfb80a3f2596f824
+> clang: git@github.com:BinaryParadise/clang.git 65acf43270ea2894dffa0d0b292b92402f80c8cb [查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
 
 1. Plugin: 高效，在编译阶段就生成，得使用额外编译的clang，可能存在隐藏问题
   - 自定义clang的属性和插件
