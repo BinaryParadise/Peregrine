@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/BinaryParadise/Peregrine'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Rake Yang' => 'mylcode.ali@gmail.com' }
+  s.author           = { 'Rake Yang' => 'fenglaijun@gmail.com' }
   s.source           = { :git => 'https://github.com/BinaryParadise/Peregrine.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'

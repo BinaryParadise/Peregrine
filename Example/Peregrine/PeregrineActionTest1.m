@@ -7,6 +7,7 @@
 //
 
 #import "PeregrineActionTest1.h"
+#import "FPWebViewViewController.h"
 
 @implementation PeregrineActionTest1
 
@@ -17,6 +18,27 @@
 
 + (void)verification2:(nullable PGRouterContext *)context {
     [context finished];
+}
+
++ (void)webview:(PGRouterContext *)context {
+    FPWebViewViewController *vc = [[FPWebViewViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:^{
+        [context finished];
+    }];
+}
+
++ (void)wkwebview:(PGRouterContext *)context {
+    FPWebViewViewController *vc = [[FPWebViewViewController alloc] init];
+    vc.webkit = YES;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:^{
+        [context finished];
+    }];
+}
+
++ (void)jscalloc:(PGRouterContext *)context {
+    [context onDone:YES object:context.userInfo[@"c"]];
 }
 
 @end

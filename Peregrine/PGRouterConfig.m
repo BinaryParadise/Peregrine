@@ -8,6 +8,18 @@
 
 #import "PGRouterConfig.h"
 
+@implementation NSURL (Peregrine)
+
++ (instancetype)pg_SafeURLWithString:(NSString *)URLString {
+    NSURL *URL = [self URLWithString:URLString];
+    if (!URL) {
+        URL = [self URLWithString:[URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    }
+    return URL;
+}
+
+@end
+
 @implementation PGRouterConfig
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *, NSString *> *)keyValues {
@@ -16,12 +28,7 @@
         _selector = NSSelectorFromString(keyValues[PGRouterKeySelector]);
         
         NSString *URLString = keyValues[PGRouterKeyURL];
-        _URL = [NSURL URLWithString:URLString];
-        if (!_URL) {
-            NSString *encodeURLString = [URLString  stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-            _URL = [NSURL URLWithString:encodeURLString];
-        }
-        
+        _URL = [NSURL pg_SafeURLWithString:URLString];        
         [self parseParameters];
     }
     return self;

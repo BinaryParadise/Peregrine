@@ -14,6 +14,12 @@ static  NSString * _Nonnull const PGRouterKeySelector = @"selector";
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface NSURL (Peregrine)
+
++ (instancetype)pg_SafeURLWithString:(NSString *)URLString;
+
+@end
+
 @interface PGRouterConfig : NSObject
 
 @property (nonatomic, copy) NSURL *URL;

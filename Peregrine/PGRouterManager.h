@@ -10,6 +10,8 @@
 #import "PGRouterNode.h"
 
 #define PGTarget(_router) __attribute__((pe_routed(_router)))
+#define PGMethod(_name, _url) \
++ (void)_name:(nullable PGRouterContext *)context PGTarget(_url) \
 
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 
@@ -22,5 +24,12 @@
  @param completion callback
  */
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL ret, ObjectType object))completion;
+
+/**
+ Verify the url is correct
+
+ @param URLString The URL string with which to initialize the NSURL object. Must be a URL that conforms to RFC 2396. This method parses URLString according to RFCs 1738 and 1808.
+ */
++ (BOOL)dryRun:(NSString *)URLString;
 
 @end

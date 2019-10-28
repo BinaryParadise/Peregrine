@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" />
+<meta charset="UTF-8">
+<title>WebView功能演示</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	jQuery(function() {
+	});
+
+	//提供给OC调用
+	function callJSFunc1(str) {
+		alert(unescape(str));
+		return "JS返回结果";
+	};
+
+	//调用OC代码
+	function callOCFunc1(url) {
+		document.location = url;
+	}
+
+    //调用OC代码（JSC）
+    function callOCFunc2(url) {
+        callJSFunc1(exportoc.callFromJS(url));
+    }
+
+	//WKWebView
+	function postMessage() {
+        var arg = 100;
+        _postMessage('objc', 'ap://webview/calloc?c=成功调用OC方法!').then((val) => {
+                                                                     alert(val+' '+arg)
+                                                                     });
+	}
+
+    function _postMessage(name, val) {
+        var channel = new MessageChannel(); // 创建一个 MessageChannel
+        var _cname = name+"_native_callback";
+        // 2.
+        window[_cname] = function(nativeValue) {
+            // 5.
+            channel.port1.postMessage(nativeValue)
+        };
+        // 3.
+        window.webkit.messageHandlers[name].postMessage({url:val,callback:_cname});
+        return new Promise((resolve, reject) => {
+                           
+                           channel.port2.onmessage = function(e){
+                           // 6.
+                           var data = e.data;
+                           resolve(data);
+                           channel = null;
+                           window[_cname] = null;
+                           }
+                           })
+    }
+
+    function disableUIWebBtn() {
+        $('#btn1').attr('disabled','disabled');
+        $('#btn2').attr('disabled','disabled');
+    }
+
+    function disableWKWebView() {
+        $('#btn3').attr('disabled','disabled');
+        $('#btn4').attr('disabled','disabled');
+    }
+</script>
+<style type="text/css">
+body {
+	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica,
+		sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+a {
+	color: #c75f3e;
+}
+
+#rstable {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	font-size: 11px;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+</style>
+</head>
+<body>
+	<div id="result">
+		<table id="rstable" cellspacing="0">
+			<tr>
+				<th>功能</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td colspan="2">UIWebView
+			</tr>
+			<tr>
+				<td><button id="btn1" onclick="callOCFunc1('ap://webview/calloc?c=成功调用OC方法!')">callOCFunc1</button></td>
+				<td>调用OC代码</td>
+			</tr>
+			<tr>
+				<td><button id="btn2" onclick="callOCFunc2('ap://webview/calloc?c=成功调用OC方法!')">callOCFunc2</button></td>
+				<td>调用OC代码（JSC)</td>
+			</tr>
+			<tr>
+				<td colspan="2">WkWebView</td>
+			</tr>
+			<tr>
+				<td><button id="btn3" onclick="postMessage()">postMessage</button></td>
+				<td>调用OC代码</td>
+			</tr>
+            <tr>
+                <td><button id="btn4" onclick="callOCFunc2('ap://webview/calloc?c=成功调用OC方法!')">callOCFunc2</button></td>
+                <td>调用OC代码（JSC)</td>
+            </tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -63,7 +63,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 }
 
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
-    NSURL *patternURL = [NSURL URLWithString:URLString];
+    NSURL *patternURL = [NSURL pg_SafeURLWithString:URLString];
     PGRouterNode *node = _routerTree[patternURL.host];
     NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
     if (componets.firstObject) {
@@ -92,6 +92,27 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
         void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
         targetMethod(router.targetClass, router.selector, context);
     }
+}
+
++ (BOOL)dryRun:(NSString *)URLString {
+    NSURL *patternURL = [NSURL pg_SafeURLWithString:URLString];
+    PGRouterNode *node = _routerTree[patternURL.host];
+    NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
+    if (componets.firstObject) {
+        [componets removeObject:componets.firstObject];
+    }
+    __block BOOL valid = NO;
+    __block PGRouterNode *context = node;
+    [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        context = [context nodeForName:obj];
+        if (idx == componets.count - 1) {
+            PGRouterConfig *config = context.config;
+            if (config) {
+                valid = YES;
+            }
+        }
+    }];
+    return valid;
 }
 
 @end
