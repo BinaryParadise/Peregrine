@@ -19,4 +19,12 @@
     [context onDone:YES object:context.config.actionName];
 }
 
++ (void)multiComponent1:(PGRouterContext *)context {
+    
+}
+
++ (void)invalid:(PGRouterContext *)context {
+    
+}
+
 @end

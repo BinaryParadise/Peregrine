@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)multiComponent:(PGRouterContext *)context PGTarget("ap://tlbb/most/like/wangyuyan?t=multi");
 
+PGMethod(multiComponent1, "ap://tlbb/most/like/wangzuxian?c=nice");
+
+PGMethod(invalid, "invalidurl/haha");
+
 @end
 
 NS_ASSUME_NONNULL_END

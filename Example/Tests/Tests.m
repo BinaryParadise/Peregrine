@@ -22,17 +22,23 @@ describe(@"Lint", ^{
     });
     
     it(@"OpenURL", ^{
-        [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
-            expect(object.boolValue).equal(YES);
-        }];
+        if ([PGRouterManager dryRun:@"ap://tlbb/wyy?result=1"]) {
+            [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
+                expect(object.boolValue).equal(YES);
+            }];
+        }
         
         [PGRouterManager openURL:@"ap://tlbb/ym" completion:^(BOOL ret, id _Nonnull object) {
             expect(object).will.beNil();
         }];
+        
+        [PGRouterManager openURL:@"ap://nullable/wtf" completion:^(BOOL ret, id object) {
+            expect(ret).equal(NO);
+        }];
     });
     
     it(@"LoadRouter", ^{
-        expect([PGRouterManager routerMap].count).equal(1);
+        expect([PGRouterManager routerMap].count).equal(2);
     });
     
     it(@"UnRegister", ^{        
