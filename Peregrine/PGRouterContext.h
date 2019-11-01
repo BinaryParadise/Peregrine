@@ -14,9 +14,10 @@ typedef void(^PGRouterCallback)(BOOL ret, id object);
 
 @property (nonatomic, weak) PGRouterConfig *config;
 @property (nonatomic, copy, readonly) PGRouterCallback callback;
+@property (nonatomic, retain, readonly) id object;
 @property (nonatomic, copy, readonly) NSDictionary *userInfo;
 
-+ (instancetype)contextWithURL:(NSURL *)openURL callback:(PGRouterCallback)callback;
++ (instancetype)contextWithURL:(NSURL *)openURL object:(id)object callback:(PGRouterCallback)callback;
 
 /**
  路由完成

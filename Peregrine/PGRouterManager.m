@@ -63,19 +63,23 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 }
 
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL, id))completion {
+    [self openURL:URLString object:nil completion:completion];
+}
+
++ (void)openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL pg_SafeURLWithString:URLString];
     PGRouterNode *node = _routerTree[patternURL.host];
     NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
     if (componets.firstObject) {
         [componets removeObject:componets.firstObject];
     }
-    __block PGRouterNode *context = node;
+    __block PGRouterNode *curNode = node;
     [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        context = [context nodeForName:obj];
+        curNode = [curNode nodeForName:obj];
         if (idx == componets.count - 1) {
-            PGRouterConfig *config = context.config;
+            PGRouterConfig *config = curNode.config;
             if (config) {
-                [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL callback:completion]];
+                [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL object:object callback:completion]];
             } else {
                 if (completion) {
                     completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);

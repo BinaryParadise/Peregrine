@@ -26,6 +26,15 @@
 + (void)openURL:(NSString *)URLString completion:(void (^)(BOOL ret, ObjectType object))completion;
 
 /**
+Open a URLString that you have registered in this manager.
+
+@param URLString The URL string with which to initialize the NSURL object. Must be a URL that conforms to RFC 2396. This method parses URLString according to RFCs 1738 and 1808.
+@param object object
+@param completion callback
+*/
++ (void)openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL ret, ObjectType object))completion;
+
+/**
  Verify the url is correct
 
  @param URLString The URL string with which to initialize the NSURL object. Must be a URL that conforms to RFC 2396. This method parses URLString according to RFCs 1738 and 1808.

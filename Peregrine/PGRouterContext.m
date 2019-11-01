@@ -21,9 +21,10 @@
     return self;
 }
     
-+ (instancetype)contextWithURL:(NSURL *)openURL callback:(nonnull PGRouterCallback)callback {
++ (instancetype)contextWithURL:(NSURL *)openURL object:(id)object callback:(PGRouterCallback)callback {
     PGRouterContext *context = [[PGRouterContext alloc] initWithCallback:callback];
     context->_userInfo = [self queryDictionaryForURL:openURL];
+    context->_object = object;
     return context;
 }
 
