@@ -8,11 +8,7 @@ end
 platform :ios, '9.0'
 
 target 'Peregrine_Example' do
-  if ENV['travis'] == '1' || ENV['test'] == '1'
-    pod 'Peregrine/LibTooling', :path => '../'
-  else
-    pod 'Peregrine', :path => '../'
-  end
+  pod 'Peregrine', :path => '../'
 
   target 'Peregrine_Tests' do
     inherit! :search_paths
@@ -22,7 +18,6 @@ target 'Peregrine_Example' do
   end
 
   post_install do |installer|
-    # if use LibTooling mode, please set env test=1.
     require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
     PGConfiguration::configure_project(installer)
   end
