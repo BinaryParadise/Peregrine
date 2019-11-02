@@ -10,9 +10,9 @@
 > llvm: git@github.com:llvm-mirror/llvm.git 2c4ca6832fa6b306ee6a7010bfb80a3f2596f824
 > clang: git@github.com:BinaryParadise/clang.git 65acf43270ea2894dffa0d0b292b92402f80c8cb [查看源码](https://github.com/BinaryParadise/clang/tree/peregrine)
 
-1. Plugin: 高效，在编译阶段就生成，得使用额外编译的clang，可能存在隐藏问题
+~~1. Plugin（不推荐）: 高效，在编译阶段就生成，得使用额外编译的clang，可能存在隐藏问题~~
   - 自定义clang的属性和插件
-  - 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由
+  - 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由~~
 2. LibTooling: 独立工具，对项目无侵入，但是执行效率低，相当于重新编译项目
   - 原理同Plugin
 
@@ -49,30 +49,32 @@ test=1 pod install
 ### 注册路由
 
 ```objc
-+ (void)method:(PGRouterContext *)context PGTarget("ap://tlbb/wyy") {
+
+@interface TestClass
+
+PGMethod(method,"ap://tlbb/wyy")
+
+@end
+
+@implement TestClass
+
+@end
+
++ (void)method:(PGRouterContext *)context {
   //TOOD: do something
 }
 
 ```
-### 打开路由
+### 调用路由
 
 ```objc
 [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
   //TOOD: do something
 }];
+
 ```
 
 ## 常见问题
-
-1. Plugin方式启用Code Coverage时会出现以下编译错误?
-
-```ruby
-ld: file not found: /usr/local/Cellar/peregrine/0.2.3/lib/clang/9.0.0/lib/darwin/libclang_rt.profile_iossim.a
-clang-9: error: linker command failed with exit code 1 (use -v to see invocation)
-Command /usr/local/bin/clang failed with exit code 1
-```
-
-需要执行`test=1 pod install`才能正确启用单测覆盖率，但是路由表将不能自动生成
 
 ## License
 

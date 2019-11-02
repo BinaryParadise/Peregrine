@@ -23,13 +23,16 @@ class PGGenerator
     shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
     -p=\"#{args[0]}\" \
     -- \
-    -fmodules -Werror -Wno-implicit-atomic-properties -Wimplicit-function-declaration -fsyntax-only -fobjc-arc -ferror-limit=9999 \
-    -Wobjc-missing-super-calls -fobjc-arc \
+    -fmodules -Werror -Wno-implicit-atomic-properties \
+    -Wimplicit-function-declaration -fsyntax-only \
+    -fobjc-arc -ferror-limit=0 #{args[1]} \
+    -Wobjc-missing-super-calls \
     -isysroot #{ENV['SDKROOT']} \
     #{include} \
     -I#{header_searchs.join(' -I')} \
     -F#{ENV['DEVELOPER_FRAMEWORKS_DIR']} \
     "
+puts "#{shell}"
     `#{shell}`
     # installer.analysis_result.targets.each do |target|
     #   files = []
