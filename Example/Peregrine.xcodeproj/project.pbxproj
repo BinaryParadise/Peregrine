@@ -26,6 +26,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		CE17E91E236FC59800F259C1 /* routers.json in Resources */ = {isa = PBXBuildFile; fileRef = CE17E91C236FC59300F259C1 /* routers.json */; };
 		CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */; };
 		CE3FD9E12366957700F8803D /* webview.html in Resources */ = {isa = PBXBuildFile; fileRef = CE3FD9E02366957700F8803D /* webview.html */; };
 		E5A84D84070803FA6A3FE4F9 /* libPods-Peregrine_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */; };
@@ -75,6 +76,7 @@
 		9376D106595F12C64AAB5EA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE17E91C236FC59300F259C1 /* routers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routers.json; sourceTree = "<group>"; };
 		CE3FD9DB23668E5400F8803D /* FPWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPWebViewViewController.h; sourceTree = "<group>"; };
 		CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPWebViewViewController.m; sourceTree = "<group>"; };
 		CE3FD9E02366957700F8803D /* webview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = webview.html; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CE17E91C236FC59300F259C1 /* routers.json */,
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -311,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE17E91E236FC59800F259C1 /* routers.json in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/bonana/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\" \"-ferror-limit=0 -w\"\n";
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby ../Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\" \"-ferror-limit=0 -w\"";
 		};
 		F4C6D7C11E54C2F470A70EFC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

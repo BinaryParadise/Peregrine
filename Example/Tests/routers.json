@@ -1,0 +1,47 @@
+[
+   {
+      "class" : "PeregrineActionTest2xxxx",
+      "selector" : "verification1:",
+      "url" : "ap://tlbb/xlv?c=小龙女"
+   },
+   {
+      "class" : "PeregrineActionTest2",
+      "selector" : "multiComponent:",
+      "url" : "ap://tlbb/most/like/wangyuyan?t=multi"
+   },
+   {
+      "class" : "PeregrineActionTest2",
+      "selector" : "multiComponent1:",
+      "url" : "ap://tlbb/most/like/wangzuxian?c=nice"
+   },
+   {
+      "class" : "PeregrineActionTest2",
+      "selector" : "invalid:",
+      "url" : "invalidurl/haha"
+   },
+   {
+      "class" : "PeregrineActionTest1",
+      "selector" : "verification1:",
+      "url" : "ap://tlbb/wyy?c=王语嫣1"
+   },
+   {
+      "class" : "PeregrineActionTest1",
+      "selector" : "verification2:",
+      "url" : "ap://tlbb/ym?c=杨幂22"
+   },
+   {
+      "class" : "PeregrineActionTest1",
+      "selector" : "webview:",
+      "url" : "ap://webview/UIWebView"
+   },
+   {
+      "class" : "PeregrineActionTest1",
+      "selector" : "wkwebview:",
+      "url" : "ap://webview/WKWebView"
+   },
+   {
+      "class" : "PeregrineActionTest1",
+      "selector" : "jscalloc:",
+      "url" : "ap://webview/calloc"
+   }
+]

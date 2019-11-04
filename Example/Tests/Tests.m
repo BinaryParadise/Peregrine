@@ -14,6 +14,11 @@ SpecBegin(InitialSpecs)
 
 describe(@"Lint", ^{
     
+    beforeAll(^{
+        NSString *file = [[NSBundle bundleForClass:self.class] pathForResource:@"routers.json" ofType:nil];
+        [PGRouterManager performSelector:@selector(registerWithFile:) withObject:file];
+    });
+    
     it(@"Map", ^{
         PGRouterNode *node = [PGRouterManager routerMap][@"tlbb"];
         expect(node.name).equal(@"tlbb");

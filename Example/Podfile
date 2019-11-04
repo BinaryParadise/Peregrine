@@ -18,7 +18,7 @@ target 'Peregrine_Example' do
   end
 
   post_install do |installer|
-    require File.expand_path('PGConfiguration.rb', (installer.sandbox.development_pods['Peregrine'] ? installer.sandbox.development_pods['Peregrine'].dirname.to_s : installer.sandbox.root.to_s + '/Peregrine') + '/Peregrine/')
+    require_relative '../Peregrine/PGConfiguration.rb'
     PGConfiguration::configure_project(installer)
   end
 end

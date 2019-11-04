@@ -9,8 +9,6 @@ env:
 #before_install: gem install slather
 install: bundle install --without=documentation
 script:
-- brew tap binaryparadise/formula
-- brew install peregrine
 - travis=1 pod install --project-directory=Example
 - xcodebuild clean test -enableCodeCoverage=YES -workspace Example/Peregrine.xcworkspace -scheme 'Peregrine_Example' -sdk iphonesimulator PLATFORM_NAME=iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' -configuration Debug | xcpretty -c
 

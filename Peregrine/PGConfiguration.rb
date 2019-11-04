@@ -26,7 +26,7 @@ class PGConfiguration
   def self.add_shell_script(project_targets, project, target, extra)
     install_targets = project_targets.select { |target| target.product_type == 'com.apple.product-type.application' && target.build_configurations.first.build_settings['SWIFT_OPTIMIZATION_LEVEL'] == nil }
     install_targets.each do |project_target|
-      rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGGenerator.rb"
+      rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : "..") + "/Peregrine/PGGenerator.rb"
 
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
