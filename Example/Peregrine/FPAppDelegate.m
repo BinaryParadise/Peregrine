@@ -13,6 +13,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    __block NSInteger num = 10;
+    void (^blockName)() = ^() {
+        num = 20;
+    };
+    NSLog(@"%@", blockName);
     return YES;
 }
 

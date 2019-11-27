@@ -6,11 +6,14 @@ class PGGenerator
 
   # 生成路由表
   def self.generator(args)
+    if args.length == 1
+        args.push('-ferror-limit=0 -w')
+    end
     project = Xcodeproj::Project.open(ENV['PROJECT_FILE_PATH'])
     current_target = (project.targets.select { |target| target.name == ENV['TARGET_NAME'] }).first
 
     files = current_target.source_build_phase.files.to_a.map do |pbx_build_file|
-        pbx_build_file.file_ref.real_path.to_s
+        "\""+pbx_build_file.file_ref.real_path.to_s+"\""
     end
 
     header_searchs = ENV['HEADER_SEARCH_PATHS'].split(' ')

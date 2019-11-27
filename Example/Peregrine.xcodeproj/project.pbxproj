@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1031FC535DEDB5F5C226D78C /* libPods-Peregrine_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */; };
 		240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
+		2440D8402389304E0031BC26 /* FPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2440D83F2389304E0031BC26 /* FPModel.m */; };
 		24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
 		24F05A4D22DB42A700B25CB8 /* PeregrineActionTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		240E7B4B228327C800B5579E /* Peregrine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peregrine-Info.plist"; sourceTree = "<group>"; };
+		2440D83E2389304E0031BC26 /* FPModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPModel.h; sourceTree = "<group>"; };
+		2440D83F2389304E0031BC26 /* FPModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPModel.m; sourceTree = "<group>"; };
 		24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest1.m; sourceTree = "<group>"; };
 		24F05A4922DB42A700B25CB8 /* PeregrineActionTest1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest1.h; sourceTree = "<group>"; };
 		24F05A4A22DB42A700B25CB8 /* PeregrineActionTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest2.h; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				24F05A4A22DB42A700B25CB8 /* PeregrineActionTest2.h */,
 				24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				2440D83E2389304E0031BC26 /* FPModel.h */,
+				2440D83F2389304E0031BC26 /* FPModel.m */,
 			);
 			name = "Example for Peregrine";
 			path = Peregrine;
@@ -395,6 +400,7 @@
 				6003F59E195388D20070C39A /* FPAppDelegate.m in Sources */,
 				24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */,
 				6003F5A7195388D20070C39A /* FPViewController.m in Sources */,
+				2440D8402389304E0031BC26 /* FPModel.m in Sources */,
 				CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
