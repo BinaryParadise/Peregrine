@@ -13,7 +13,11 @@ class PGGenerator
     current_target = (project.targets.select { |target| target.name == ENV['TARGET_NAME'] }).first
 
     files = current_target.source_build_phase.files.to_a.map do |pbx_build_file|
-        "\""+pbx_build_file.file_ref.real_path.to_s+"\""
+        pbx_build_file.file_ref.real_path.to_s
+    end
+    files = files.select {|file| File.extname(file).eql?(".swift") == false}
+    files = files.map do |file|
+        "\""+file+"\""
     end
 
     header_searchs = ENV['HEADER_SEARCH_PATHS'].split(' ')
