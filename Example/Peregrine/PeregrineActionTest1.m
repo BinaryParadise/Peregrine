@@ -11,7 +11,7 @@
 
 @implementation PeregrineActionTest1
 
-+ (void)verification1:(nullable PGRouterContext *)context {
++ (void)verification1:(nullable PGRouterContext *)context {    
     NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
     [context onDone:YES object:context.userInfo[@"result"]];
 }

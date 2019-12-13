@@ -11,7 +11,7 @@
 
 #define PGTarget(_router) __attribute__((pe_routed(_router)))
 #define PGMethod(_name, _url) \
-+ (void)_name:(nullable PGRouterContext *)context PGTarget(_url) \
++ (void)_name:(PGRouterContext *)context PGTarget(_url) \
 
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 

@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PeregrineActionTest2 : NSObject
 
-+ (void)verification1:(nullable PGRouterContext *)context PGTarget("ap://tlbb/xlv?c=小龙女");
+PGMethod(verification1, "ap://tlbb/xlv?c=小龙女");
 
-+ (void)multiComponent:(PGRouterContext *)context PGTarget("ap://tlbb/most/like/wangyuyan?t=multi");
+PGMethod(multiComponent, "ap://tlbb/most/like/wangyuyan?t=multi");
 
 PGMethod(multiComponent1, "ap://tlbb/most/like/wangzuxian?c=nice");
 

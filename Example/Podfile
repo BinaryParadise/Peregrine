@@ -18,8 +18,8 @@ target 'Peregrine_Example' do
   end
 
   post_install do |installer|
-    require_relative '../Peregrine/PGConfiguration.rb'
-    PGConfiguration::configure_project(installer)
+    require_relative '../Peregrine/PGGenerator.rb'
+    PGGenerator::configure_project(installer)
   end
 end
 
