@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1031FC535DEDB5F5C226D78C /* libPods-Peregrine_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */; };
+		18B0C51432699A6EAA0AA8D5 /* Pods_Peregrine_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C20B6298A280A37EEFAE1 /* Pods_Peregrine_Tests.framework */; };
+		19FD2F3C18A45BD4E25E58FD /* Pods_Peregrine_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B17BE52729276AC7C2099D /* Pods_Peregrine_Example.framework */; };
 		240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
 		243B492423A3CCA7004D3E71 /* FPInsertEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 243B492323A3CCA7004D3E71 /* FPInsertEvent.m */; };
 		2440D8402389304E0031BC26 /* FPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2440D83F2389304E0031BC26 /* FPModel.m */; };
@@ -31,7 +32,6 @@
 		CE17E91E236FC59800F259C1 /* routers.json in Resources */ = {isa = PBXBuildFile; fileRef = CE17E91C236FC59300F259C1 /* routers.json */; };
 		CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */; };
 		CE3FD9E12366957700F8803D /* webview.html in Resources */ = {isa = PBXBuildFile; fileRef = CE3FD9E02366957700F8803D /* webview.html */; };
-		E5A84D84070803FA6A3FE4F9 /* libPods-Peregrine_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		235C20B6298A280A37EEFAE1 /* Pods_Peregrine_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Peregrine_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240E7B4B228327C800B5579E /* Peregrine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peregrine-Info.plist"; sourceTree = "<group>"; };
 		243B492223A3CCA7004D3E71 /* FPInsertEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPInsertEvent.h; sourceTree = "<group>"; };
 		243B492323A3CCA7004D3E71 /* FPInsertEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPInsertEvent.m; sourceTree = "<group>"; };
@@ -54,7 +55,7 @@
 		24F05A4922DB42A700B25CB8 /* PeregrineActionTest1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest1.h; sourceTree = "<group>"; };
 		24F05A4A22DB42A700B25CB8 /* PeregrineActionTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest2.h; sourceTree = "<group>"; };
 		24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest2.m; sourceTree = "<group>"; };
-		2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B17BE52729276AC7C2099D /* Pods_Peregrine_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Peregrine_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE5344D6E912B110E4D13C3 /* Pods-Peregrine_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Peregrine_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peregrine_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,7 +81,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91F1F1D12A795DC44A4FC7D1 /* Pods-Peregrine_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9376D106595F12C64AAB5EA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Peregrine_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91B8E6C23B0E92700875343 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE17E91C236FC59300F259C1 /* routers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routers.json; sourceTree = "<group>"; };
 		CE3FD9DB23668E5400F8803D /* FPWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPWebViewViewController.h; sourceTree = "<group>"; };
@@ -97,7 +98,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				E5A84D84070803FA6A3FE4F9 /* libPods-Peregrine_Example.a in Frameworks */,
+				19FD2F3C18A45BD4E25E58FD /* Pods_Peregrine_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +109,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				1031FC535DEDB5F5C226D78C /* libPods-Peregrine_Tests.a in Frameworks */,
+				18B0C51432699A6EAA0AA8D5 /* Pods_Peregrine_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,12 +140,13 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C91B8E6C23B0E92700875343 /* libz.tbd */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				AE7B1CB459B76D5803941776 /* libPods-Peregrine_Example.a */,
-				2C7EBF0F7B5434EC3F13629B /* libPods-Peregrine_Tests.a */,
+				25B17BE52729276AC7C2099D /* Pods_Peregrine_Example.framework */,
+				235C20B6298A280A37EEFAE1 /* Pods_Peregrine_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -239,7 +241,8 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				A9B7F51BD9A4B27C9098CA17 /* [Peregrine] Generator Routing Table */,
+				59D65F152413D9FE901E58FD /* [CP] Embed Pods Frameworks */,
+				61AEAA3EB466F106CB0403C5 /* [Peregrine] Generator Routing Table */,
 			);
 			buildRules = (
 			);
@@ -258,6 +261,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				5110AA4E86475C4EF3B13B31 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -332,6 +336,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5110AA4E86475C4EF3B13B31 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59D65F152413D9FE901E58FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Peregrine/Peregrine.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Peregrine.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61AEAA3EB466F106CB0403C5 /* [Peregrine] Generator Routing Table */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Peregrine] Generator Routing Table";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/rakeyang/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"";
+		};
 		842D5995DC0ECC9C1951B7AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,24 +413,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		A9B7F51BD9A4B27C9098CA17 /* [Peregrine] Generator Routing Table */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Peregrine] Generator Routing Table";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/bonana/Github/Peregrine/Peregrine/PGGenerator.rb \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle\"\n";
 		};
 		F4C6D7C11E54C2F470A70EFC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

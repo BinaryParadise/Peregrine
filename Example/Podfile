@@ -6,6 +6,7 @@ if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.7.3')
 end
 
 platform :ios, '9.0'
+use_frameworks!
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'
@@ -19,7 +20,8 @@ target 'Peregrine_Example' do
 
   post_install do |installer|
     require_relative '../Peregrine/PGGenerator.rb'
-    PGGenerator::configure_project(installer)
+    callback = proc { |name| name.index("Peregrine") == 0 }
+    PGGenerator::configure_project(installer, callback, '${PODS_CONFIGURATION_BUILD_DIR}/Peregrine_Example.app')
   end
 end
 

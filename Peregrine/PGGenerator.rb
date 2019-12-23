@@ -5,17 +5,11 @@ require 'json'
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 
 class PGGenerator
-
   # 生成路由表
-  def initialize(args)
-    puts args.length
-    return
-    if args[0].class == 'xxxx'
-      generator(args)
-    end
-  end
-
   def self.generator(args)
+    if !ENV["ACTION"].eql?("build")
+      return
+    end
     if args.length == 1
         args.push('-ferror-limit=0 -w')
     end
@@ -37,8 +31,20 @@ class PGGenerator
     end
     framework_searchs = ENV['FRAMEWORK_SEARCH_PATHS'].split(' ')
 
+    output = ENV["BUILT_PRODUCTS_DIR"]
+    if !ENV["PODS_CONFIGURATION_BUILD_DIR"].nil?
+      output = ENV["PODS_CONFIGURATION_BUILD_DIR"]      
+    end
+
+    Dir::entries(output).each{|item|(
+      if File.extname(item).eql?(".app")
+        output = ENV["PODS_CONFIGURATION_BUILD_DIR"] + "/"+item
+      end
+    )}
+
+    puts "router path: #{output}"
     shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
-    -p=\"#{args[0]}\" \
+    -p=\"#{output}\" \
     -- \
     -fmodules -Wno-implicit-atomic-properties \
     -Wimplicit-function-declaration -fsyntax-only \
@@ -55,7 +61,7 @@ class PGGenerator
     `#{shell}`
   end
 
-  def self.configure_project(installer, pod_path=nil)
+  def self.configure_project(installer, condition=nil, pod_path=nil)
     path = installer.sandbox.development_pods['Peregrine']
     @dev_path = path ? path.dirname.to_s : nil
 
@@ -70,7 +76,7 @@ class PGGenerator
 
     # 处理Pod的路由生成脚本
     installer.pod_targets.each do |target|
-        if target.pod_name.index('NL') == 0
+        if condition.call(target.pod_name)
           project = Xcodeproj::Project.open(installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj")
           self.add_shell_script(project.targets, project, pod_path)
         end
@@ -128,3 +134,5 @@ ruby #{rubypath} \"#{output}/Peregrine.bundle\""
   end
 
 end
+
+PGGenerator::generator(ARGV)
