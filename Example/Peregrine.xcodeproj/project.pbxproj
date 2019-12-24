@@ -29,6 +29,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		C91B8E7723B1B6E000875343 /* PeregrineActionTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */; };
 		CE17E91E236FC59800F259C1 /* routers.json in Resources */ = {isa = PBXBuildFile; fileRef = CE17E91C236FC59300F259C1 /* routers.json */; };
 		CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */; };
 		CE3FD9E12366957700F8803D /* webview.html in Resources */ = {isa = PBXBuildFile; fileRef = CE3FD9E02366957700F8803D /* webview.html */; };
@@ -82,6 +83,8 @@
 		91F1F1D12A795DC44A4FC7D1 /* Pods-Peregrine_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9376D106595F12C64AAB5EA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C91B8E6C23B0E92700875343 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest3.m; sourceTree = "<group>"; };
+		C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest3.h; sourceTree = "<group>"; };
 		CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE17E91C236FC59300F259C1 /* routers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routers.json; sourceTree = "<group>"; };
 		CE3FD9DB23668E5400F8803D /* FPWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPWebViewViewController.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */,
 				24F05A4A22DB42A700B25CB8 /* PeregrineActionTest2.h */,
 				24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */,
+				C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */,
+				C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for Peregrine";
@@ -443,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91B8E7723B1B6E000875343 /* PeregrineActionTest3.m in Sources */,
 				24F05A4D22DB42A700B25CB8 /* PeregrineActionTest2.m in Sources */,
 				6003F59E195388D20070C39A /* FPAppDelegate.m in Sources */,
 				24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */,

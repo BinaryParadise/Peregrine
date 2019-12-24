@@ -38,7 +38,7 @@ class PGGenerator
 
     Dir::entries(output).each{|item|(
       if File.extname(item).eql?(".app")
-        output = ENV["PODS_CONFIGURATION_BUILD_DIR"] + "/"+item
+        output = ENV["PODS_CONFIGURATION_BUILD_DIR"] + "/"+item+"/Peregrine.bundle"
       end
     )}
 
