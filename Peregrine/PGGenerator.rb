@@ -3,6 +3,7 @@ require 'yaml'
 require 'json'
 
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
+CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 
 class PGGenerator
   # 生成路由表
@@ -12,6 +13,15 @@ class PGGenerator
     end
     if args.length == 1
         args.push('-ferror-limit=0 -w')
+    end
+    if args[1].eql?('required')
+        if !File::exist?(CLANG_TOOL_PATH)
+          raise "Peregrine not install
+要安装请执行以下命令:
+brew tap binaryparadise/formula
+brew install peregrine"
+          return
+        end
     end
     project = Xcodeproj::Project.open(ENV['PROJECT_FILE_PATH'])
     current_target = (project.targets.select { |target| target.name == ENV['TARGET_NAME'] }).first
@@ -43,7 +53,7 @@ class PGGenerator
     )}
 
     puts "router path: #{output}"
-    shell = "/usr/local/bin/clang-peregrine #{files.join(' ')} \
+    shell = "#{CLANG_TOOL_PATH} #{files.join(' ')} \
     -p=\"#{output}\" \
     -- \
     -fmodules -Wno-implicit-atomic-properties \
@@ -102,7 +112,7 @@ class PGGenerator
       phase.shell_script = "export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby #{rubypath} \"#{output}/Peregrine.bundle\""
+ruby #{rubypath} \"#{output}/Peregrine.bundle\" required"
 
       project.save()
     end
