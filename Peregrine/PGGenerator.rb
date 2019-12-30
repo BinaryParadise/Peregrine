@@ -84,7 +84,7 @@ brew install peregrine"
 
     # 处理Pod的路由生成脚本
     installer.pod_targets.each do |target|
-        if condition.call(target.pod_name)
+        if !condition.nil? && condition.call(target.pod_name)
           project = Xcodeproj::Project.open(installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj")
           self.add_shell_script(project.targets, project)
         end
