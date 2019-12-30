@@ -28,7 +28,15 @@ brew install peregrine
 > 默认为插件模式
 
 ```ruby
-pod 'Peregrine'
+pod 'Peregrine', '~> 0.6.0'
+
+post_install do |installer|
+  require_relative 'Pods/Peregrine/PGGenerator.rb'
+  # 依赖库判断条件
+  callback = proc { |name| name.index("Peregrine") == 0 }
+  # true表示未安装clang插件的编译错误
+  PGGenerator::configure_project(installer, true, callback)
+end
 ```
 
 ```ruby

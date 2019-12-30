@@ -21,7 +21,7 @@ target 'Peregrine_Example' do
   post_install do |installer|
     require_relative '../Peregrine/PGGenerator.rb'
     callback = proc { |name| name.index("Peregrine") == 0 }
-    PGGenerator::configure_project(installer, callback, '${PODS_CONFIGURATION_BUILD_DIR}/Peregrine_Example.app')
+    PGGenerator::configure_project(installer, false, callback)
   end
 end
 

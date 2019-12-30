@@ -11,10 +11,8 @@ class PGGenerator
     if !ENV["ACTION"].eql?("build")
       return
     end
-    if args.length == 1
-        args.push('-ferror-limit=0 -w')
-    end
-    if args[1].eql?('required')
+    puts args[0]
+    if args[0] == 1 || args[0].nil?
         if !File::exist?(CLANG_TOOL_PATH)
           raise "Peregrine not install
 要安装请执行以下命令:
@@ -58,7 +56,7 @@ brew install peregrine"
     -- \
     -fmodules -Wno-implicit-atomic-properties \
     -Wimplicit-function-declaration -fsyntax-only \
-    -fobjc-arc #{args[1]} -fmacro-backtrace-limit=0 \
+    -fobjc-arc -ferror-limit=0 -w -fmacro-backtrace-limit=0 \
     -Wobjc-missing-super-calls \
     -isysroot #{ENV['SDKROOT']} \
     #{include} \
@@ -70,8 +68,8 @@ brew install peregrine"
     puts "#{shell}"
     `#{shell}`
   end
-
-  def self.configure_project(installer, condition=nil, pod_path=nil)
+  # required=true表示未安装peregrine的clang插件时会编译失败（防止路由表未生成） 
+  def self.configure_project(installer, required=true, condition=nil)
     path = installer.sandbox.development_pods['Peregrine']
     @dev_path = path ? path.dirname.to_s : nil
 
@@ -79,7 +77,7 @@ brew install peregrine"
       if target.user_project_path.exist? && target.user_target_uuids.any?
         project = Xcodeproj::Project.open(target.user_project_path)
         project_targets = self.project_targets(project, target)
-        self.add_shell_script(project_targets, project)
+        self.add_shell_script(project_targets, project, required)
       end
 
     end
@@ -88,13 +86,13 @@ brew install peregrine"
     installer.pod_targets.each do |target|
         if condition.call(target.pod_name)
           project = Xcodeproj::Project.open(installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj")
-          self.add_shell_script(project.targets, project, pod_path)
+          self.add_shell_script(project.targets, project)
         end
     end
 
   end
 
-  def self.add_shell_script(project_targets, project, output = '${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}')
+  def self.add_shell_script(project_targets, project, required=true)
     install_targets = project_targets.select { |target| ['com.apple.product-type.application','com.apple.product-type.framework'].include?(target.product_type) }
     install_targets.each do |project_target|
       rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGGenerator.rb"
@@ -108,11 +106,16 @@ brew install peregrine"
         end
       end
 
+      clang_reqired = 0
+      if required
+        clang_reqired = 1
+      end
+
       phase.run_only_for_deployment_postprocessing = "0"
       phase.shell_script = "export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby #{rubypath} \"#{output}/Peregrine.bundle\" required"
+ruby #{rubypath} #{clang_reqired}"
 
       project.save()
     end
