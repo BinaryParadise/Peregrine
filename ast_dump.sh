@@ -1,5 +1,6 @@
-~/Github/llvm_build/llvm_release/bin/clang \
+/usr/local/bin/clang \
 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
+-include-pch "./Example/Peregrine/PrefixHeader.pch" \
 -I"./Peregrine" \
 -I"./Example/Pods/Headers/Public" \
 -fmodules \

@@ -11,7 +11,6 @@ class PGGenerator
     if !ENV["ACTION"].eql?("build")
       return
     end
-    puts args[0]
     if args[0] == 1 || args[0].nil?
         if !File::exist?(CLANG_TOOL_PATH)
           raise "Peregrine not install

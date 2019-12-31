@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Peregrine/Peregrine.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
