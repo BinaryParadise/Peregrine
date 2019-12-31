@@ -10,6 +10,7 @@
 		18B0C51432699A6EAA0AA8D5 /* Pods_Peregrine_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C20B6298A280A37EEFAE1 /* Pods_Peregrine_Tests.framework */; };
 		19FD2F3C18A45BD4E25E58FD /* Pods_Peregrine_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B17BE52729276AC7C2099D /* Pods_Peregrine_Example.framework */; };
 		240E7B4C228327C800B5579E /* Peregrine-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 240E7B4B228327C800B5579E /* Peregrine-Info.plist */; };
+		2432139323BB8A4500DF8407 /* FPFileBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432139223BB8A4500DF8407 /* FPFileBox.swift */; };
 		243B492423A3CCA7004D3E71 /* FPInsertEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 243B492323A3CCA7004D3E71 /* FPInsertEvent.m */; };
 		2440D8402389304E0031BC26 /* FPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2440D83F2389304E0031BC26 /* FPModel.m */; };
 		24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F05A4822DB42A700B25CB8 /* PeregrineActionTest1.m */; };
@@ -30,7 +31,6 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C91B8E7723B1B6E000875343 /* PeregrineActionTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */; };
-		CE17E91E236FC59800F259C1 /* routers.json in Resources */ = {isa = PBXBuildFile; fileRef = CE17E91C236FC59300F259C1 /* routers.json */; };
 		CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */; };
 		CE3FD9E12366957700F8803D /* webview.html in Resources */ = {isa = PBXBuildFile; fileRef = CE3FD9E02366957700F8803D /* webview.html */; };
 /* End PBXBuildFile section */
@@ -48,6 +48,8 @@
 /* Begin PBXFileReference section */
 		235C20B6298A280A37EEFAE1 /* Pods_Peregrine_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Peregrine_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240E7B4B228327C800B5579E /* Peregrine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Peregrine-Info.plist"; sourceTree = "<group>"; };
+		2432139123BB8A4400DF8407 /* Peregrine_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Peregrine_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		2432139223BB8A4500DF8407 /* FPFileBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPFileBox.swift; sourceTree = "<group>"; };
 		243B492223A3CCA7004D3E71 /* FPInsertEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPInsertEvent.h; sourceTree = "<group>"; };
 		243B492323A3CCA7004D3E71 /* FPInsertEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPInsertEvent.m; sourceTree = "<group>"; };
 		2440D83E2389304E0031BC26 /* FPModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPModel.h; sourceTree = "<group>"; };
@@ -86,7 +88,6 @@
 		C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest3.m; sourceTree = "<group>"; };
 		C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest3.h; sourceTree = "<group>"; };
 		CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peregrine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Peregrine_Tests/Pods-Peregrine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CE17E91C236FC59300F259C1 /* routers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routers.json; sourceTree = "<group>"; };
 		CE3FD9DB23668E5400F8803D /* FPWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPWebViewViewController.h; sourceTree = "<group>"; };
 		CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPWebViewViewController.m; sourceTree = "<group>"; };
 		CE3FD9E02366957700F8803D /* webview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = webview.html; sourceTree = "<group>"; };
@@ -177,6 +178,8 @@
 				C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */,
 				C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				2432139223BB8A4500DF8407 /* FPFileBox.swift */,
+				2432139123BB8A4400DF8407 /* Peregrine_Example-Bridging-Header.h */,
 			);
 			name = "Example for Peregrine";
 			path = Peregrine;
@@ -197,7 +200,6 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE17E91C236FC59300F259C1 /* routers.json */,
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -290,6 +292,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = BinaryParadise;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						LastSwiftMigration = 1010;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -333,7 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE17E91E236FC59800F259C1 /* routers.json in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\nruby /Users/rakeyang/Github/Peregrine/Peregrine/PGGenerator.rb 1\n";
+			shellScript = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=0.6.0 \nruby /Users/bonana/Github/Peregrine/Peregrine/PGGenerator.rb\n";
 		};
 		842D5995DC0ECC9C1951B7AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -453,6 +457,7 @@
 				6003F59E195388D20070C39A /* FPAppDelegate.m in Sources */,
 				24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */,
 				6003F5A7195388D20070C39A /* FPViewController.m in Sources */,
+				2432139323BB8A4500DF8407 /* FPFileBox.swift in Sources */,
 				2440D8402389304E0031BC26 /* FPModel.m in Sources */,
 				CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
@@ -584,12 +589,17 @@
 			baseConfigurationReference = 4AE5344D6E912B110E4D13C3 /* Pods-Peregrine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Peregrine/Peregrine_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -599,12 +609,16 @@
 			baseConfigurationReference = 7DF05A23FD0C93C0A260AD29 /* Pods-Peregrine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Peregrine/PrefixHeader.pch;
 				INFOPLIST_FILE = "Peregrine/Peregrine-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Peregrine/Peregrine_Example-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -613,6 +627,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB6CE61360BBC12792B872B7 /* Pods-Peregrine_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -637,6 +652,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91F1F1D12A795DC44A4FC7D1 /* Pods-Peregrine_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

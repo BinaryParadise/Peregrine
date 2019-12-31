@@ -10,6 +10,6 @@
 
 @interface PeregrineActionTest3 : NSObject
 
-PGMethod(verification1, "ap://tlbb/xlv?c=小龙女");
+PGMethod(verification1, "ap://tlbb/xxlv?c=小龙女");
 
 @end

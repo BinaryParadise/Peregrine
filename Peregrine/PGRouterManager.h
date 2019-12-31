@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PGRouterNode.h"
+#import "PGRouter-generate.h"
 
 #define PGTarget(_router) __attribute__((pe_routed(_router)))
 #define PGMethod(_name, _url) \

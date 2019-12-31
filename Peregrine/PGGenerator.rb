@@ -1,21 +1,26 @@
+#!/usr/bin/ruby -W0
+
 require 'xcodeproj'
 require 'yaml'
 require 'json'
+require 'uri'
 
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
+CLANG_MODE = 'Clang'
 
 class PGGenerator
   attr_accessor:routers
+  attr_accessor:version
   def initialize(args)
     if args[0].eql?('install')
       return
     end
-    if args[0].eql?('1')
+    if ENV["GENERATE_MODE"].eql?(CLANG_MODE)
+      buildWithClang(args)
+    else
       @routers = Array.new
       buildWithRegularExpression(args)
-    else
-      buildWithClang(args)
     end
   end
 
@@ -72,9 +77,10 @@ class PGGenerator
   # 通过正则表达式匹配生成路由表
   def buildWithRegularExpression(args)
     srcroot = ENV['SRCROOT']
-    # srcroot = "/Users/rakeyang/Github/Peregrine/"
     
     collectPath(srcroot)
+    
+    # 生成路由表到目标App中
     destination_file = ENV["BUILT_PRODUCTS_DIR"]
     if !ENV["PODS_CONFIGURATION_BUILD_DIR"].nil?
       destination_file = ENV["PODS_CONFIGURATION_BUILD_DIR"]      
@@ -92,6 +98,32 @@ class PGGenerator
     router_json_file = File.new("#{destination_file}/routers.json", 'w+')
     router_json_file.write(JSON.pretty_generate(@routers))
     router_json_file.close
+
+    # 更新路由的定义头文件
+    # `rm PGRouter-generate.h`
+    generate_file = File.new("#{File.dirname(__FILE__)}/PGRouter-generate.h", 'w+')
+    generate_file.write("//
+//  PGRouter-generate.h
+//  Peregrine
+//
+//  Created by Rake Yang on 2019/12/31.
+//  Copyright © 2019 BinaryParadise. All rights reserved.
+    
+/**
+  Generated automatic by Peregrine version 0.6.0 (#{Time.now})
+  Don't modify manual ⚠️
+*/
+
+typedef NSString * PGRouterURLKey;
+
+")
+    @routers.each {|item| (
+      uri = URI(URI::encode(item['url']))
+
+      generate_file.write("static PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
+    )}
+    generate_file.close
+
   end
 
   # 收集所有.h中声明的路由
@@ -122,7 +154,6 @@ class PGGenerator
     file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0]
       class_content = match[1]
-      # puts match
       class_content.scan(/PGMethod\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
         @routers.push({ 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] })
       end
@@ -132,7 +163,11 @@ class PGGenerator
   # expression=true表示使用正则匹配模式 
   def self.configure_project(installer, expression=true, condition=nil)
     path = installer.sandbox.development_pods['Peregrine']
-    @dev_path = path ? path.dirname.to_s : nil
+    file_content = File.read(installer.sandbox.manifest.defined_in_file)
+    file_content.scan(/(Peregrine\s\()(\d.+)(\))/) do |match|
+      @version = match[1]
+    end
+    @ruby_path = path ? path.dirname.to_s : "${PODS_ROOT}/Peregrine"
 
     installer.analysis_result.targets.each do |target|
       if target.user_project_path.exist? && target.user_target_uuids.any?
@@ -147,7 +182,7 @@ class PGGenerator
     installer.pod_targets.each do |target|
         if !condition.nil? && condition.call(target.pod_name)
           project = Xcodeproj::Project.open(installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj")
-          self.add_shell_script(project.targets, project)
+          self.add_shell_script(project.targets, project, expression)
         end
     end
 
@@ -156,8 +191,6 @@ class PGGenerator
   def self.add_shell_script(project_targets, project, expression=true)
     install_targets = project_targets.select { |target| ['com.apple.product-type.application','com.apple.product-type.framework'].include?(target.product_type) }
     install_targets.each do |project_target|
-      rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGGenerator.rb"
-
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
         phase = project_target.new_shell_script_build_phase(BUILD_PHASE_NAME_FETCH_ENV)
@@ -167,16 +200,14 @@ class PGGenerator
         end
       end
 
-      expr = 0
-      if expression
-        expr = 1
+      mode = nil
+      if !expression
+        mode = "export GENERATE_MODE=#{CLANG_MODE}"
       end
 
       phase.run_only_for_deployment_postprocessing = "0"
-      phase.shell_script = "export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-ruby #{rubypath} #{expr}"
+      phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=#{@version} #{mode}
+ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
 
       project.save()
     end

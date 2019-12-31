@@ -27,8 +27,8 @@ describe(@"Lint", ^{
     });
     
     it(@"OpenURL", ^{
-        if ([PGRouterManager dryRun:@"ap://tlbb/wyy?result=1"]) {
-            [PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
+        if ([PGRouterManager dryRun:ap_tlbb_wyy]) {
+            [PGRouterManager<NSNumber *> openURL:[ap_tlbb_wyy stringByAppendingString:@"?result=1"] completion:^(BOOL ret, NSNumber * _Nonnull object) {
                 expect(object.boolValue).equal(YES);
             }];
         }
