@@ -34,7 +34,7 @@ post_install do |installer|
   require_relative 'Pods/Peregrine/Peregrine/PGGenerator.rb'
   # 依赖库判断条件
   callback = proc { |name| name.index("Peregrine") == 0 }
-  # true表示未安装clang插件的编译错误
+  # true表示使用正则匹配模式
   PGGenerator::configure_project(installer, true, callback)
 end
 ```

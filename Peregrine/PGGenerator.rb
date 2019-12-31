@@ -6,20 +6,21 @@ BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 
 class PGGenerator
-  # 生成路由表
-  def self.generator(args)
-    if !ENV["ACTION"].eql?("build")
+  attr_accessor:routers
+  def initialize(args)
+    if args[0].eql?('install')
       return
     end
-    if args[0] == 1 || args[0].nil?
-        if !File::exist?(CLANG_TOOL_PATH)
-          raise "Peregrine not install
-要安装请执行以下命令:
-brew tap binaryparadise/formula
-brew install peregrine"
-          return
-        end
+    if args[0].eql?('1')
+      @routers = Array.new
+      buildWithRegularExpression(args)
+    else
+      buildWithClang(args)
     end
+  end
+
+  # 通过Clang生成路由表
+  def buildWithClang(args)
     project = Xcodeproj::Project.open(ENV['PROJECT_FILE_PATH'])
     current_target = (project.targets.select { |target| target.name == ENV['TARGET_NAME'] }).first
 
@@ -67,8 +68,69 @@ brew install peregrine"
     puts "#{shell}"
     `#{shell}`
   end
-  # required=true表示未安装peregrine的clang插件时会编译失败（防止路由表未生成） 
-  def self.configure_project(installer, required=true, condition=nil)
+
+  # 通过正则表达式匹配生成路由表
+  def buildWithRegularExpression(args)
+    srcroot = ENV['SRCROOT']
+    # srcroot = "/Users/rakeyang/Github/Peregrine/"
+    
+    collectPath(srcroot)
+    destination_file = ENV["BUILT_PRODUCTS_DIR"]
+    if !ENV["PODS_CONFIGURATION_BUILD_DIR"].nil?
+      destination_file = ENV["PODS_CONFIGURATION_BUILD_DIR"]      
+    end
+
+    Dir::entries(destination_file).each{|item|(
+      if File.extname(item).eql?(".app")
+        destination_file = ENV["PODS_CONFIGURATION_BUILD_DIR"] + "/"+item+"/Peregrine.bundle"
+      end
+    )}
+    if !File::exist?(destination_file)
+      `mkdir #{destination_file}`
+    end
+    
+    router_json_file = File.new("#{destination_file}/routers.json", 'w+')
+    router_json_file.write(JSON.pretty_generate(@routers))
+    router_json_file.close
+  end
+
+  # 收集所有.h中声明的路由
+  def collectPath(path)
+    Dir::entries(path).each {|item| (
+      subPath = path+"/"+item
+      if File.directory?(subPath)
+        if isDirectory(item)
+          collectPath(subPath)
+        end
+      else
+        if File.extname(item).eql?('.h')
+          mapRouter(subPath)
+        end
+      end
+    )}
+  end
+
+  def isDirectory(path)
+    if path.eql?('.') || path.eql?('..') || path.eql?('.git') || File.extname(path).length > 0
+      return false
+    end
+    return true
+  end
+
+  def mapRouter(file_path)
+    file_content = File.read(file_path)
+    file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
+      class_name = match[0]
+      class_content = match[1]
+      # puts match
+      class_content.scan(/PGMethod\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
+        @routers.push({ 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] })
+      end
+    end
+  end
+
+  # expression=true表示使用正则匹配模式 
+  def self.configure_project(installer, expression=true, condition=nil)
     path = installer.sandbox.development_pods['Peregrine']
     @dev_path = path ? path.dirname.to_s : nil
 
@@ -76,7 +138,7 @@ brew install peregrine"
       if target.user_project_path.exist? && target.user_target_uuids.any?
         project = Xcodeproj::Project.open(target.user_project_path)
         project_targets = self.project_targets(project, target)
-        self.add_shell_script(project_targets, project, required)
+        self.add_shell_script(project_targets, project, expression)
       end
 
     end
@@ -91,7 +153,7 @@ brew install peregrine"
 
   end
 
-  def self.add_shell_script(project_targets, project, required=true)
+  def self.add_shell_script(project_targets, project, expression=true)
     install_targets = project_targets.select { |target| ['com.apple.product-type.application','com.apple.product-type.framework'].include?(target.product_type) }
     install_targets.each do |project_target|
       rubypath = (@dev_path == nil ?  "${PODS_ROOT}/Peregrine" : @dev_path) + "/Peregrine/PGGenerator.rb"
@@ -105,16 +167,16 @@ brew install peregrine"
         end
       end
 
-      clang_reqired = 0
-      if required
-        clang_reqired = 1
+      expr = 0
+      if expression
+        expr = 1
       end
 
       phase.run_only_for_deployment_postprocessing = "0"
       phase.shell_script = "export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-ruby #{rubypath} #{clang_reqired}"
+ruby #{rubypath} #{expr}"
 
       project.save()
     end
@@ -147,4 +209,4 @@ ruby #{rubypath} #{clang_reqired}"
 
 end
 
-PGGenerator::generator(ARGV)
+PGGenerator::new(ARGV)
