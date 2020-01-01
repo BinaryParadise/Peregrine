@@ -1,6 +1,6 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.6.0)
+  - Peregrine (0.6.2)
   - Specta (1.0.7)
 
 DEPENDENCIES:
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: 87cfcb0d9ef7dcf38ebb21ca6c7b5a93a76fbaa0
+  Peregrine: 8083cd7f9b48a815893755f1efb6cd10ec9fe7d5
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: d76d71e8befa29d376a0d577864c2209ab26ac39

@@ -8,6 +8,7 @@ require 'uri'
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 CLANG_MODE = 'Clang'
+PG_VERSION = "0.6.2"
 
 class PGGenerator
   attr_accessor:routers
@@ -20,8 +21,8 @@ class PGGenerator
       buildWithClang(args)
     else
       @routers = Array.new
-      buildWithRegularExpression(args)
-    end
+      buildWithRegularExpression(args)      
+    end    
   end
 
   # 通过Clang生成路由表
@@ -55,7 +56,6 @@ class PGGenerator
       end
     )}
 
-    puts "router path: #{output}"
     shell = "#{CLANG_TOOL_PATH} #{files.join(' ')} \
     -p=\"#{output}\" \
     -- \
@@ -72,6 +72,10 @@ class PGGenerator
     "
     puts "#{shell}"
     `#{shell}`
+    
+    routers = JSON.parse(File.read("#{output}/routers.json"))      
+    prettify(routers, output)
+
   end
 
   # 通过正则表达式匹配生成路由表
@@ -93,36 +97,9 @@ class PGGenerator
     )}
     if !File::exist?(destination_file)
       `mkdir #{destination_file}`
-    end
-    
-    router_json_file = File.new("#{destination_file}/routers.json", 'w+')
-    router_json_file.write(JSON.pretty_generate(@routers))
-    router_json_file.close
+    end    
 
-    # 更新路由的定义头文件
-    # `rm PGRouter-generate.h`
-    generate_file = File.new("#{File.dirname(__FILE__)}/PGRouter-generate.h", 'w+')
-    generate_file.write("//
-//  PGRouter-generate.h
-//  Peregrine
-//
-//  Created by Rake Yang on 2019/12/31.
-//  Copyright © 2019 BinaryParadise. All rights reserved.
-    
-/**
-  Generated automatic by Peregrine version 0.6.0 (#{Time.now})
-  Don't modify manual ⚠️
-*/
-
-typedef NSString * PGRouterURLKey;
-
-")
-    @routers.each {|item| (
-      uri = URI(URI::encode(item['url']))
-
-      generate_file.write("static PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
-    )}
-    generate_file.close
+    prettify(@routers, destination_file)
 
   end
 
@@ -160,13 +137,71 @@ typedef NSString * PGRouterURLKey;
     end
   end
 
+  # 路由表格式化为指定结构
+  def prettify(routers, destination_file)
+    if routers.class != Array
+      return
+    end
+    routerMap = Hash.new
+    routers.each {|item| (
+      routerURL = URI(URI::encode(item['url']))
+      group = "#{routerURL.scheme}://#{routerURL.host}"
+      rootNode = routerMap[group]
+      if rootNode.nil?
+        rootNode = Array.new
+        routerMap[group] = rootNode
+      end
+      rootNode.push(item)
+    )}
+
+    router_json_file = File.new("#{destination_file}/routers.json", 'w+')
+    router_json_file.write(JSON.pretty_generate(routerMap))
+    router_json_file.close
+    puts "🍺router write to #{router_json_file.path}"
+
+    generate_header_file(routerMap)
+
+  end
+
+  def generate_header_file(routerMap)
+    # 更新路由的定义头文件
+    # `rm PGRouter-generate.h`
+    generate_file = File.new("#{File.dirname(__FILE__)}/PGRouter-generate.h", 'w+')
+    generate_file.write("//
+//  PGRouter-generate.h
+//  Peregrine
+//
+//  Created by Rake Yang on 2019/12/31.
+//  Copyright © 2019 BinaryParadise. All rights reserved.
+    
+/**
+  Generated automatic by Peregrine version 0.6.0 
+  Don't modify manual ⚠️
+*/
+
+/// Build Time #{Time.now}
+
+typedef NSString * PGRouterURLKey;
+")
+    routerMap.each {|key, value| (
+      generate_file.write("
+#pragma - mark #{key.split('//').last}
+
+")
+      sorted = value.sort {|a, b| a['url'] <=> b['url'] }
+      sorted.each {|item| (
+        uri = URI(URI::encode(item['url']))
+        generate_file.write("static PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
+      )}
+    )}
+    generate_file.close
+
+    puts "🍺Objective-C header file write to #{generate_file.path}"
+  end
+
   # expression=true表示使用正则匹配模式 
   def self.configure_project(installer, expression=true, condition=nil)
-    path = installer.sandbox.development_pods['Peregrine']
-    file_content = File.read(installer.sandbox.manifest.defined_in_file)
-    file_content.scan(/(Peregrine\s\()(\d.+)(\))/) do |match|
-      @version = match[1]
-    end
+    path = installer.sandbox.development_pods['Peregrine']    
     @ruby_path = path ? path.dirname.to_s : "${PODS_ROOT}/Peregrine"
 
     installer.analysis_result.targets.each do |target|
@@ -181,8 +216,11 @@ typedef NSString * PGRouterURLKey;
     # 处理Pod的路由生成脚本
     installer.pod_targets.each do |target|
         if !condition.nil? && condition.call(target.pod_name)
-          project = Xcodeproj::Project.open(installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj")
-          self.add_shell_script(project.targets, project, expression)
+          project_path = installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj"
+          if File::exist?("#{project_path}/project.pbxproj")
+            project = Xcodeproj::Project.open(project_path)
+            self.add_shell_script(project.targets, project, expression)
+          end
         end
     end
 
@@ -205,8 +243,17 @@ typedef NSString * PGRouterURLKey;
         mode = "export GENERATE_MODE=#{CLANG_MODE}"
       end
 
+      pg_version = PG_VERSION
+      if File::exist?("#{Dir.pwd}/Podfile.lock")
+        file_content = File.read("#{Dir.pwd}/Podfile.lock")
+        file_content.scan(/(Peregrine\s\()(\d.+)(\))/) do |match|
+          pg_version = match[1]
+          break
+        end
+      end
+
       phase.run_only_for_deployment_postprocessing = "0"
-      phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=#{@version} #{mode}
+      phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=#{pg_version} #{mode}
 ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
 
       project.save()

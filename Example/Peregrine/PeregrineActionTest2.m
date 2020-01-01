@@ -11,7 +11,7 @@
 @implementation PeregrineActionTest2
 
 + (void)verification1:(PGRouterContext *)context {
-    NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
+    NSAssert([context.config.actionName isEqualToString:@"xlv"], @"not the same");
     [context onDone:YES object:context.userInfo[@"result"]];
 }
 

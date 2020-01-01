@@ -31,10 +31,12 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 
 + (void)registerWithFile:(NSString *)file {
     if (file) {
-        NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:file] options:NSJSONReadingMutableLeaves error:nil];
-        if ([array isKindOfClass:[NSArray class]]) {
-            [array enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self registerWithDictionary:obj];
+        NSDictionary<NSString *, NSArray *> *routerMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:file] options:NSJSONReadingMutableLeaves error:nil];
+        if ([routerMap isKindOfClass:[NSDictionary class]]) {
+            [routerMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+                [obj enumerateObjectsUsingBlock:^(id  _Nonnull router, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self registerWithDictionary:router];
+                }];
             }];
         }
     }
