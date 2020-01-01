@@ -165,8 +165,9 @@ class PGGenerator
 
   def generate_header_file(routerMap)
     # 更新路由的定义头文件
-    # `rm PGRouter-generate.h`
-    generate_file = File.new("#{File.dirname(__FILE__)}/PGRouter-generate.h", 'w+')
+    path = "#{File.dirname(__FILE__)}/PGRouter-generate.h"
+    `chmod 755 #{path}`
+    generate_file = File.new(path, 'w+')
     generate_file.write("//
 //  PGRouter-generate.h
 //  Peregrine
