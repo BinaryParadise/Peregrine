@@ -182,7 +182,7 @@ class PGGenerator
 
 /// Build Time #{Time.now}
 
-typedef NSString * PGRouterURLKey;
+typedef NSString *PGRouterURLKey;
 ")
     routerMap.each {|key, value| (
       generate_file.write("
@@ -232,7 +232,13 @@ typedef NSString * PGRouterURLKey;
     install_targets.each do |project_target|
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
-        phase = project_target.new_shell_script_build_phase(BUILD_PHASE_NAME_FETCH_ENV)
+          phase = project_target.new_shell_script_build_phase(BUILD_PHASE_NAME_FETCH_ENV)
+          if expression
+            # 插入到源码之前
+            project_target.build_phases.delete(phase)
+            source_index = project_target.build_phases.index(project_target.source_build_phase)
+            project_target.build_phases.insert(source_index, phase)
+          end
       else
         if false
             phase.remove_from_project()
@@ -253,7 +259,6 @@ typedef NSString * PGRouterURLKey;
         end
       end
 
-      phase.run_only_for_deployment_postprocessing = "0"
       phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=#{pg_version} #{mode}
 ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
 

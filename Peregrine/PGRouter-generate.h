@@ -12,5 +12,5 @@
 
 /// Build Time 2020-01-01 10:40:45 +0800
 
-typedef NSString * PGRouterURLKey;
+typedef NSString *PGRouterURLKey;
 
