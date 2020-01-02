@@ -160,30 +160,40 @@ class PGGenerator
     puts "🍺router write to #{router_json_file.path}"
 
     generate_header_file(routerMap)
+    generate_header_file(routerMap, false)
 
   end
 
-  def generate_header_file(routerMap)
+  def generate_header_file(routerMap, header=true)
     # 更新路由的定义头文件
-    path = "#{File.dirname(__FILE__)}/PGRouter-generate.h"
+    ext = header ? '.h' : '.m'
+    path = "#{File.dirname(__FILE__)}/PGRouter-Generate#{ext}"
     `chmod 755 #{path}`
     generate_file = File.new(path, 'w+')
     generate_file.write("//
-//  PGRouter-generate.h
+//  PGRouter-Generate.#{ext}
 //  Peregrine
 //
 //  Created by Rake Yang on 2019/12/31.
 //  Copyright © 2019 BinaryParadise. All rights reserved.
-    
-/**
-  Generated automatic by Peregrine version 0.6.0 
+
+")
+
+  if header
+    generate_file.write("/**
+  Generated automatic by Peregrine version #{ENV['PG_VERSION']} 
   Don't modify manual ⚠️
 */
-
+  
 /// Build Time #{Time.now}
 
 typedef NSString *PGRouterURLKey;
 ")
+  else
+    generate_file.write("#import \"PGRouter-Generate.h\"
+    ")
+  end
+
     routerMap.each {|key, value| (
       generate_file.write("
 #pragma - mark #{key.split('//').last}
@@ -192,7 +202,11 @@ typedef NSString *PGRouterURLKey;
       sorted = value.sort {|a, b| a['url'] <=> b['url'] }
       sorted.each {|item| (
         uri = URI(URI::encode(item['url']))
-        generate_file.write("static PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
+        if header
+          generate_file.write("FOUNDATION_EXPORT PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')};\n")
+        else
+          generate_file.write("PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
+        end
       )}
     )}
     generate_file.close
