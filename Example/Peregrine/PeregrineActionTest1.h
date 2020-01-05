@@ -16,8 +16,8 @@ PGMethod(verification2, "ap://tlbb/ym?c=杨幂22");
 
 PGMethod(webview, "ap://webview/UIWebView");
 
-PGMethod(wkwebview, "ap://webview/WKWebView");
+PGMethodA(wkwebview, "ap://webview/WKWebView");
 
-PGMethod(jscalloc, "ap://webview/calloc");
+PGMethodA(jscalloc, "ap://webview/calloc");
 
 @end

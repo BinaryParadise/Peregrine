@@ -8,7 +8,7 @@ require 'uri'
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 CLANG_MODE = 'Clang'
-PG_VERSION = "0.6.2"
+PG_VERSION = "0.6.3"
 
 class PGGenerator
   attr_accessor:routers
