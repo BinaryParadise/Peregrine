@@ -10,8 +10,13 @@
 #import "PGRouterNode.h"
 #import "PGRouter-Generate.h"
 
+//类方法
 #define PGMethod(_name, _url) \
 + (void)_name:(PGRouterContext *)context;
+
+//实例方法
+#define PGInstanceMethod(_name, _url) \
+- (void)_name:(PGRouterContext *)context;
 
 //使用__attribute__
 #define PGMethodA(_name, _url) \

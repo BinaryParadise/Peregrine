@@ -6,11 +6,27 @@
 //  Copyright © 2019 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.6.2 
+  Generated automatic by Peregrine version 0.6.4 
   Don't modify manual ⚠️
 */
-
-/// Build Time 2020-01-01 10:40:45 +0800
+  
+/// Build Time 2020-02-08 12:05:02 +0800
 
 typedef NSString *PGRouterURLKey;
 
+#pragma - mark tlbb
+
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_most_like_wangyuyan;
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_most_like_wangzuxian;
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_wyy;
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_xlv;
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_xxlv;
+FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_ym;
+
+#pragma - mark webview
+
+FOUNDATION_EXPORT PGRouterURLKey const ap_webview_UIWebView;
+
+#pragma - mark :
+
+FOUNDATION_EXPORT PGRouterURLKey const _invalidurl_haha;

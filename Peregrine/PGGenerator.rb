@@ -8,7 +8,7 @@ require 'uri'
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 CLANG_MODE = 'Clang'
-PG_VERSION = "0.6.3"
+PG_VERSION = "0.6.4"
 
 class PGGenerator
   attr_accessor:routers
@@ -131,7 +131,7 @@ class PGGenerator
     file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0]
       class_content = match[1]
-      class_content.scan(/PGMethod\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
+      class_content.scan(/PG\w*Method\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
         @routers.push({ 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] })
       end
     end

@@ -19,8 +19,6 @@ PGRouterURLKey const ap_tlbb_ym = @"ap://tlbb/ym";
 #pragma - mark webview
 
 PGRouterURLKey const ap_webview_UIWebView = @"ap://webview/UIWebView";
-PGRouterURLKey const ap_webview_WKWebView = @"ap://webview/WKWebView";
-PGRouterURLKey const ap_webview_calloc = @"ap://webview/calloc";
 
 #pragma - mark :
 
