@@ -8,3 +8,5 @@
 
 #import <Peregrine/PGRouterContext.h>
 #import <Peregrine/PGRouterManager.h>
+#import <Peregrine/NSObject+Peregrine.h>
+#import <Peregrine/PGRouter-Generate.h>
