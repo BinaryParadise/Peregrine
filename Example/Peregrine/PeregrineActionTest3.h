@@ -12,4 +12,6 @@
 
 PGMethod(verification1, "ap://tlbb/xxlv?c=小龙女");
 
+PGInstanceMethod(instanceMethod, "ap://instance/method1");
+
 @end

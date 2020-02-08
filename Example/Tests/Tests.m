@@ -9,14 +9,18 @@
 // https://github.com/Specta/Specta
 
 #import <Peregrine/Peregrine.h>
+#import "PeregrineActionTest3.h"
 
 SpecBegin(InitialSpecs)
 
 describe(@"Lint", ^{
     
+         __block PeregrineActionTest3 *test3;
+         
     beforeAll(^{
         NSString *file = [[NSBundle bundleForClass:self.class] pathForResource:@"routers.json" ofType:nil];
         [PGRouterManager performSelector:@selector(registerWithFile:) withObject:file];
+        test3 = [PeregrineActionTest3 new];
     });
     
     it(@"Map", ^{
@@ -28,12 +32,12 @@ describe(@"Lint", ^{
     
     it(@"OpenURL", ^{
         if ([PGRouterManager dryRun:ap_tlbb_wyy]) {
-            [PGRouterManager<NSNumber *> openURL:[ap_tlbb_wyy stringByAppendingString:@"?result=1"] completion:^(BOOL ret, NSNumber * _Nonnull object) {
+            [PGRouterManager<NSNumber *> openURL:[NSString stringWithFormat:ap_tlbb_wyy, 1] completion:^(BOOL ret, NSNumber * _Nonnull object) {
                 expect(object.boolValue).equal(YES);
             }];
         }
         
-        [PGRouterManager openURL:@"ap://tlbb/ym" completion:^(BOOL ret, id _Nonnull object) {
+        [PGRouterManager openURL:ap_tlbb_yangmi completion:^(BOOL ret, id _Nonnull object) {
             expect(object).will.beNil();
         }];
         
@@ -43,7 +47,7 @@ describe(@"Lint", ^{
     });
     
     it(@"LoadRouter", ^{
-        expect([PGRouterManager routerMap].count).equal(2);
+        expect([PGRouterManager routerMap].count).equal(3);
     });
     
     it(@"UnRegister", ^{        
@@ -74,6 +78,18 @@ describe(@"Lint", ^{
         PGRouterConfig *config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/most/like/wangyuyan?t=multi"}];
         expect(config.actionName).equal(@"wangyuyan");
         expect(config.parameters[@"t"]).equal(@"multi");
+    [PGRouterManager openURL:[NSString stringWithFormat:ap_tlbb_most_like_wangzuxian, 10, @"参数b"] completion:^(BOOL ret, NSDictionary *object) {
+        expect(object[@"a"]).equal(@"10");
+        expect(object[@"b"]).equal(@"参数b");
+    }];
+    
+    it(@"instance", ^{
+        [test3 pg_dryRun:ap_instance_method1];
+        [test3 pg_openURL:ap_instance_method1 object:nil completion:^(BOOL ret, id object) {
+            expect(ret).equal(YES);
+        }];
+    });
+    
     });
 });
 

@@ -13,4 +13,8 @@
 + (void)verification1:(PGRouterContext *)context {
 }
 
+- (void)instanceMethod:(PGRouterContext *)context {
+    [context finished];
+}
+
 @end

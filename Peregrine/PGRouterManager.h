@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PGRouterNode.h"
-#import "PGRouter-Generate.h"
+#import "PGRouter+Generate.h"
 
 /// 路由未实现时的通知
 static NSString * const kPGDidRouterNotFoundNotificaion  = @"PGDidRouterNotFoundNotificaion";

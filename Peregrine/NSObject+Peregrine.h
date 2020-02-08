@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-/// 示例的路由实现
+/// 实例方法的路由实现
 @interface NSObject (Peregrine)
 
 /// 打开路由

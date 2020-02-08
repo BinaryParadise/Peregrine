@@ -8,7 +8,7 @@ require 'uri'
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 CLANG_MODE = 'Clang'
-PG_VERSION = "0.6.5"
+PG_VERSION = "0.6.6"
 
 class PGGenerator
   attr_accessor:routers
@@ -167,11 +167,11 @@ class PGGenerator
   def generate_header_file(routerMap, header=true)
     # 更新路由的定义头文件
     ext = header ? '.h' : '.m'
-    path = "#{File.dirname(__FILE__)}/PGRouter-Generate#{ext}"
+    path = "#{File.dirname(__FILE__)}/PGRouter+Generate#{ext}"
     `chmod 755 #{path}`
     generate_file = File.new(path, 'w+')
     generate_file.write("//
-//  PGRouter-Generate.#{ext}
+//  PGRouter+Generate.#{ext}
 //  Peregrine
 //
 //  Created by Rake Yang on 2019/12/31.
@@ -190,7 +190,7 @@ class PGGenerator
 typedef NSString *PGRouterURLKey;
 ")
   else
-    generate_file.write("#import \"PGRouter-Generate.h\"
+    generate_file.write("#import \"PGRouter+Generate.h\"
     ")
   end
 
@@ -203,9 +203,10 @@ typedef NSString *PGRouterURLKey;
       sorted.each {|item| (
         uri = URI(URI::encode(item['url']))
         if header
-          generate_file.write("FOUNDATION_EXPORT PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')};\n")
+          generate_file.write("/// #{item['url']}\n")
+          generate_file.write("FOUNDATION_EXPORT PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')};\n\n")
         else
-          generate_file.write("PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{uri.scheme}://#{uri.host}#{uri.path}\";\n")
+          generate_file.write("\nPGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{item['url']}\";\n")
         end
       )}
     )}

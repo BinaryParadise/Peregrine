@@ -10,9 +10,9 @@
 
 @interface PeregrineActionTest1 : NSObject
 
-PGMethod(verification1, "ap://tlbb/wyy?c=王语嫣1");
+PGMethod(verification1, "ap://tlbb/wyy?c=王语嫣1&result=%d");
 
-PGMethod(verification2, "ap://tlbb/ym?c=杨幂22");
+PGMethod(verification2, "ap://tlbb/yangmi?c=杨幂22");
 
 PGMethod(webview, "ap://webview/UIWebView");
 

@@ -20,7 +20,7 @@
 }
 
 + (void)multiComponent1:(PGRouterContext *)context {
-    
+    [context onDone:YES object:context.userInfo];
 }
 
 + (void)invalid:(PGRouterContext *)context {

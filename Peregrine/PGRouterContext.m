@@ -30,7 +30,8 @@
 
 + (NSDictionary *)queryDictionaryForURL:(NSURL *)openURL {
     NSMutableDictionary *mdict = [NSMutableDictionary dictionary];
-    [[openURL.query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSString *query = [openURL.query stringByRemovingPercentEncoding];
+    [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.length) {
             NSArray<NSString *> *arr = [obj componentsSeparatedByString:@"="];
             mdict[arr.firstObject] = arr.lastObject.length ? arr.lastObject : @"";

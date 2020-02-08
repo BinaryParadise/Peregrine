@@ -16,7 +16,7 @@ PGMethod(verification1, "ap://tlbb/xlv?c=小龙女");
 
 PGMethod(multiComponent, "ap://tlbb/most/like/wangyuyan?t=multi");
 
-PGMethod(multiComponent1, "ap://tlbb/most/like/wangzuxian?c=nice");
+PGMethod(multiComponent1, "ap://tlbb/most/like/wangzuxian?c=nice&a=%d&b=%@");
 
 PGMethod(invalid, "invalidurl/haha");
 
