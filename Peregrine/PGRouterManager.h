@@ -10,6 +10,11 @@
 #import "PGRouterNode.h"
 #import "PGRouter-Generate.h"
 
+/// 路由未实现时的通知
+static NSString * const kPGDidRouterNotFoundNotificaion  = @"PGDidRouterNotFoundNotificaion";
+/// 通知userinfo地址的Key
+static NSString * const KPGRouterURLKey = @"PGRouterURLKey";
+
 //类方法
 #define PGMethod(_name, _url) \
 + (void)_name:(PGRouterContext *)context;

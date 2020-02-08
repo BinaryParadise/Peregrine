@@ -22,6 +22,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRouterNotFoundNotification:) name:kPGDidRouterNotFoundNotificaion object:nil];
+    
     self.data = [[PGRouterManager routerMap].allValues sortedArrayUsingComparator:^NSComparisonResult(PGRouterNode *  _Nonnull obj1, PGRouterNode * _Nonnull obj2) {
         return [obj1.name compare:obj2.name];
     }];
@@ -30,6 +32,16 @@
             return [obj11.name compare:obj22.name];
         }];
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [PGRouterManager openURL:@"ap://github/binaryparadise" completion:nil];
+    });
+}
+
+- (void)didRouterNotFoundNotification:(NSNotification *)noti {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"路由 %@ 找不到实现", noti.userInfo[KPGRouterURLKey]] preferredStyle:UIAlertControllerStyleAlert];
+    [vc addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

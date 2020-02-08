@@ -87,6 +87,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
             if (config) {
                 [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL object:object callback:completion]];
             } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPGDidRouterNotFoundNotificaion object:nil userInfo:@{KPGRouterURLKey: URLString}];
                 if (completion) {
                     completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
                 }

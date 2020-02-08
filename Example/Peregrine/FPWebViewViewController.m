@@ -122,7 +122,7 @@
     [self presentViewController:alertVC animated:YES completion:^{
         
     }];
-//    [PGRouterManager openURL:ap_tlbb_ym completion:nil];
+    [PGRouterManager openURL:ap_tlbb_ym completion:nil];
 }
 
 #pragma mark - WKScriptMessageHandler
