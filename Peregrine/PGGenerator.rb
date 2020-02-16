@@ -1,14 +1,15 @@
 #!/usr/bin/ruby -W0
 
 require 'xcodeproj'
+require 'fileutils'
 require 'yaml'
 require 'json'
 require 'uri'
+require 'open-uri'
 
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
 CLANG_MODE = 'Clang'
-PG_VERSION = "0.6.6"
 
 class PGGenerator
   attr_accessor:routers
@@ -20,7 +21,7 @@ class PGGenerator
     if ENV["GENERATE_MODE"].eql?(CLANG_MODE)
       buildWithClang(args)
     else
-      @routers = Array.new
+      @routers = Hash.new
       buildWithRegularExpression(args)      
     end    
   end
@@ -80,9 +81,20 @@ class PGGenerator
 
   # 通过正则表达式匹配生成路由表
   def buildWithRegularExpression(args)
+    if ENV['DEBUG'].eql?("1")
+      ENV["BUILT_PRODUCTS_DIR"] = Dir.pwd
+      ENV['SRCROOT'] = "#{Dir.pwd}/Example"
+    end
     srcroot = ENV['SRCROOT']
-    
+
     collectPath(srcroot)
+    # Local Podspecs
+    pods = YAML.load_file("#{srcroot}/Pods/Manifest.lock")
+    ENV["PG_VERSION"] = pods.to_s.scan(/(Peregrine )\((\d.\d.\d)\)/).first.last
+    pods["EXTERNAL SOURCES"].each do |k,v|
+      podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
+        collectPath("#{srcroot}/#{v.values.first}")
+    end
     
     # 生成路由表到目标App中
     destination_file = ENV["BUILT_PRODUCTS_DIR"]
@@ -105,6 +117,7 @@ class PGGenerator
 
   # 收集所有.h中声明的路由
   def collectPath(path)
+    Log.debug(path)
     Dir::entries(path).each {|item| (
       subPath = path+"/"+item
       if File.directory?(subPath)
@@ -132,18 +145,19 @@ class PGGenerator
       class_name = match[0].gsub(/\W+\w+\W/, "")
       class_content = match[1]
       class_content.scan(/PG\w*Method\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
-        @routers.push({ 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] })
+        uri = URI(URI::encode(match1[1]))
+        @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] }
       end
     end
   end
 
   # 路由表格式化为指定结构
   def prettify(routers, destination_file)
-    if routers.class != Array
+    if routers.class != Hash
       return
     end
     routerMap = Hash.new
-    routers.each {|item| (
+    routers.each {|k,item| (
       routerURL = URI(URI::encode(item['url']))
       group = "#{routerURL.scheme}://#{routerURL.host}"
       rootNode = routerMap[group]
@@ -265,16 +279,7 @@ typedef NSString *PGRouterURLKey;
         mode = "export GENERATE_MODE=#{CLANG_MODE}"
       end
 
-      pg_version = PG_VERSION
-      if File::exist?("#{Dir.pwd}/Podfile.lock")
-        file_content = File.read("#{Dir.pwd}/Podfile.lock")
-        file_content.scan(/(Peregrine\s\()(\d.+)(\))/) do |match|
-          pg_version = match[1]
-          break
-        end
-      end
-
-      phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 export PG_VERSION=#{pg_version} #{mode}
+      phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #{mode}
 ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
 
       project.save()
@@ -306,6 +311,33 @@ ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
     return nil
   end
 
+end
+
+# author: Rake Yang
+# 日志输出
+# 2019-10-29
+class Log
+  # 提醒
+  def self.warn(msg)
+    return "\033[32m#{msg}\033[0m"
+  end
+
+  # 信息
+  def self.info(msg)
+    puts "\033[37m#{msg}\033[0m"
+  end
+
+  # 调试
+  def self.debug(msg)
+    if ENV["DEBUG"].eql?("1")
+      puts "\033[35m#{msg}\033[0m"
+    end
+  end
+
+  # 错误
+  def self.error(msg, newline = false)
+    return newline ? "\033[31m#{msg}\033[0m\n":"\033[31m#{msg}\033[0m"
+  end
 end
 
 PGGenerator::new(ARGV)
