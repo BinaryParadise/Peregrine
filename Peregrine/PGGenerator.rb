@@ -141,11 +141,12 @@ class PGGenerator
 
   def mapRouter(file_path)
     file_content = File.read(file_path)
-    file_content.scan(/@interface\s+\b(\w+)([\s\S]+?)(@end)/) do |match|
+    file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0].gsub(/\W+\w+\W/, "")
       class_content = match[1]
-      class_content.scan(/PG\w*Method\((\b\w+\b),\s*\"([\s\S]+?)\"\);/) do |match1|
+      class_content.scan(/PG\w*Method\((\b\w+\b),\s*[@|\"]([\s\S]+?)\"\);*/) do |match1|
         uri = URI(URI::encode(match1[1]))
+        puts uri
         @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] }
       end
     end
