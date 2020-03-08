@@ -89,11 +89,13 @@ class PGGenerator
 
     collectPath(srcroot)
     # Local Podspecs
-    pods = YAML.load_file("#{srcroot}/Pods/Manifest.lock")
-    ENV["PG_VERSION"] = pods.to_s.scan(/(Peregrine )\((\d.\d.\d)\)/).first.last
-    pods["EXTERNAL SOURCES"].each do |k,v|
-      podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
-        collectPath("#{srcroot}/#{v.values.first}")
+    if File::exist?("#{srcroot}/Pods/Manifest.lock")
+      pods = YAML.load_file("#{srcroot}/Pods/Manifest.lock")
+      ENV["PG_VERSION"] = pods.to_s.scan(/(Peregrine )\((\d.\d.\d)\)/).first.last
+      pods["EXTERNAL SOURCES"].each do |k,v|
+        podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
+          collectPath("#{srcroot}/#{v.values.first}")
+      end
     end
     
     # 生成路由表到目标App中

@@ -1,4 +1,6 @@
-`rm -f Podfile.lock`
+if File::exists?('Podfile.lock')
+  `rm -f Podfile.lock`
+end
 if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.7.3')
   install! 'cocoapods',
     :generate_multiple_pod_projects => true,
