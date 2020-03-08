@@ -140,6 +140,9 @@ class PGGenerator
   end
 
   def mapRouter(file_path)
+    if !File::exist?(file_path)
+      return
+    end
     file_content = File.read(file_path)
     file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0].gsub(/\W+\w+\W/, "")
