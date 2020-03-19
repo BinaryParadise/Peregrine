@@ -1,16 +1,16 @@
 //
-//  PGRouter+Generate..h
+//  PGRouteDefine.h
 //  Peregrine
 //
-//  Created by Rake Yang on 2019/12/31.
-//  Copyright © 2019 BinaryParadise. All rights reserved.
+//  Created by Rake Yang on 2020/3/19.
+//  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.6.9 
+  Generated automatic by Peregrine version 0.7.0 
   Don't modify manual ⚠️
 */
   
-/// Build Time 2020-03-08 11:00:14 +0800
+/// Build Time 2020-03-19 23:01:28 +0800
 
 typedef NSString *PGRouterURLKey;
 

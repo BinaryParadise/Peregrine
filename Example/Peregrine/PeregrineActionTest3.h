@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PGRouteDefine.h"
 
 @interface PeregrineActionTest3 : NSObject
 

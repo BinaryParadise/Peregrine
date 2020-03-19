@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'Peregrine'
-  s.version          = '0.6.9'
+  s.version          = '0.7.0'
   s.summary          = 'A short description of Peregrine.'
 
 # This description is used to generate tags and improve search results.
@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/BinaryParadise/Peregrine.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.11'
 
   # s.subspec 'Plugin' do |ss|
   #   ss.source_files = 'Peregrine/**/*'

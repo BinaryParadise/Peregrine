@@ -113,7 +113,7 @@ class PGGenerator
       `mkdir #{destination_file}`
     end    
 
-    prettify(@routers, destination_file)
+    prettify(@routers, destination_file, args)
 
   end
 
@@ -158,7 +158,7 @@ class PGGenerator
   end
 
   # 路由表格式化为指定结构
-  def prettify(routers, destination_file)
+  def prettify(routers, destination_file, args)
     if routers.class != Hash
       return
     end
@@ -177,25 +177,30 @@ class PGGenerator
     router_json_file = File.new("#{destination_file}/routers.json", 'w+')
     router_json_file.write(JSON.pretty_generate(routerMap))
     router_json_file.close
-    puts "🍺router write to #{router_json_file.path}"
+    puts "router write to #{router_json_file.path}"
 
-    generate_header_file(routerMap)
-    generate_header_file(routerMap, false)
+    generate_source_file(routerMap, args)
+    generate_source_file(routerMap, args, false)
 
   end
 
-  def generate_header_file(routerMap, header=true)
+  def generate_source_file(routerMap, args, header=true)
     # 更新路由的定义头文件
     ext = header ? '.h' : '.m'
-    path = "#{File.dirname(__FILE__)}/PGRouter+Generate#{ext}"
-    `chmod 755 #{path}`
+    filename = (args.length > 1 ? args[1]:"PGRouteDefine")+ext
+    path = "#{ENV['SRCROOT']}/#{filename}"
+    if args.length > 0
+      path = "#{args[0]}/#{filename}"
+    end
+    # `chmod 755 #{path}`
+    puts ENV['SRCROOT']
     generate_file = File.new(path, 'w+')
     generate_file.write("//
-//  PGRouter+Generate.#{ext}
+//  #{filename}
 //  Peregrine
 //
-//  Created by Rake Yang on 2019/12/31.
-//  Copyright © 2019 BinaryParadise. All rights reserved.
+//  Created by Rake Yang on 2020/3/19.
+//  Copyright © 2020 BinaryParadise. All rights reserved.
 
 ")
 
@@ -210,7 +215,7 @@ class PGGenerator
 typedef NSString *PGRouterURLKey;
 ")
   else
-    generate_file.write("#import \"PGRouter+Generate.h\"
+    generate_file.write("#import \"#{filename}\"
     ")
   end
 
@@ -232,11 +237,11 @@ typedef NSString *PGRouterURLKey;
     )}
     generate_file.close
 
-    puts "🍺Objective-C header file write to #{generate_file.path}"
+    puts "🍺Objective-C Source file write to #{generate_file.path}, please add to your project."
   end
 
-  # expression=true表示使用正则匹配模式 
-  def self.configure_project(installer, expression=true, condition=nil)
+  # 表示使用正则匹配模式 
+  def self.configure_project(installer, config)
     path = installer.sandbox.development_pods['Peregrine']    
     @ruby_path = path ? path.dirname.to_s : "${PODS_ROOT}/Peregrine"
 
@@ -244,26 +249,20 @@ typedef NSString *PGRouterURLKey;
       if target.user_project_path.exist? && target.user_target_uuids.any?
         project = Xcodeproj::Project.open(target.user_project_path)
         project_targets = self.project_targets(project, target)
-        self.add_shell_script(project_targets, project, expression)
+        self.add_shell_script(project_targets, project, config)
       end
 
     end
 
-    # 处理Pod的路由生成脚本
-    installer.pod_targets.each do |target|
-        if !condition.nil? && condition.call(target.pod_name)
-          project_path = installer.sandbox.root.to_s+"/"+target.pod_name+".xcodeproj"
-          if File::exist?("#{project_path}/project.pbxproj")
-            project = Xcodeproj::Project.open(project_path)
-            self.add_shell_script(project.targets, project, expression)
-          end
-        end
-    end
-
   end
 
-  def self.add_shell_script(project_targets, project, expression=true)
-    install_targets = project_targets.select { |target| ['com.apple.product-type.application','com.apple.product-type.framework'].include?(target.product_type) }
+  def self.add_shell_script(project_targets, project, config)
+    expression = config['expr']
+    if expression.nil?
+      expression = true
+    end
+
+    install_targets = project_targets.select { |target| target.product_type == 'com.apple.product-type.application' }
     install_targets.each do |project_target|
       phase = self.fetch_exist_phase(BUILD_PHASE_NAME_FETCH_ENV, project_target)
       if phase.nil?
@@ -286,7 +285,7 @@ typedef NSString *PGRouterURLKey;
       end
 
       phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #{mode}
-ruby #{@ruby_path}/Peregrine/PGGenerator.rb"
+ruby #{@ruby_path}/Peregrine/PGGenerator.rb #{config['path']} #{config['name']}"
 
       project.save()
     end
