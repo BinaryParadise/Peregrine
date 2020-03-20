@@ -190,10 +190,12 @@ class PGGenerator
     filename = (args.length > 1 ? args[1]:"PGRouteDefine")+ext
     path = "#{ENV['SRCROOT']}/#{filename}"
     if args.length > 0
+      if !File::exist?(args[0])
+        `mkdir #{args[0]}`
+      end
       path = "#{args[0]}/#{filename}"
     end
     # `chmod 755 #{path}`
-    puts ENV['SRCROOT']
     generate_file = File.new(path, 'w+')
     generate_file.write("//
 //  #{filename}
@@ -215,7 +217,7 @@ class PGGenerator
 typedef NSString *PGRouterURLKey;
 ")
   else
-    generate_file.write("#import \"#{filename}\"
+    generate_file.write("#import \"#{(args.length > 1 ? args[1]:"PGRouteDefine")}.h\"
     ")
   end
 
