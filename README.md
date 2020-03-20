@@ -40,10 +40,7 @@ pod 'Peregrine', '~> 0.6.0'
 
 post_install do |installer|
   require_relative 'Pods/Peregrine/Peregrine/PGGenerator.rb'
-  # 依赖库判断条件
-  callback = proc { |name| name.index("Peregrine") == 0 }
-  # true表示使用正则匹配模式
-  PGGenerator::configure_project(installer, true, callback)
+    PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
 end
 ```
 
