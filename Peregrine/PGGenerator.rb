@@ -119,7 +119,9 @@ class PGGenerator
 
   # 收集所有.h中声明的路由
   def collectPath(path)
-    Log.debug(path)
+    if !File::exist?(path)
+      return
+    end
     Dir::entries(path).each {|item| (
       subPath = path+"/"+item
       if File.directory?(subPath)
@@ -213,6 +215,8 @@ class PGGenerator
 */
   
 /// Build Time #{Time.now}
+
+#import <Foundation/Foundation.h>
 
 typedef NSString *PGRouterURLKey;
 ")
@@ -318,33 +322,6 @@ ruby #{@ruby_path}/Peregrine/PGGenerator.rb #{config['path']} #{config['name']}"
     return nil
   end
 
-end
-
-# author: Rake Yang
-# 日志输出
-# 2019-10-29
-class Log
-  # 提醒
-  def self.warn(msg)
-    return "\033[32m#{msg}\033[0m"
-  end
-
-  # 信息
-  def self.info(msg)
-    puts "\033[37m#{msg}\033[0m"
-  end
-
-  # 调试
-  def self.debug(msg)
-    if ENV["DEBUG"].eql?("1")
-      puts "\033[35m#{msg}\033[0m"
-    end
-  end
-
-  # 错误
-  def self.error(msg, newline = false)
-    return newline ? "\033[31m#{msg}\033[0m\n":"\033[31m#{msg}\033[0m"
-  end
 end
 
 PGGenerator::new(ARGV)
