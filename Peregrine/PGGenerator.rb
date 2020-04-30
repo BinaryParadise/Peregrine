@@ -213,8 +213,6 @@ class PGGenerator
   Generated automatic by Peregrine version #{ENV['PG_VERSION']} 
   Don't modify manual ⚠️
 */
-  
-/// Build Time #{Time.now}
 
 #import <Foundation/Foundation.h>
 

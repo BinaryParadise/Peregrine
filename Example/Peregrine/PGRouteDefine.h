@@ -6,11 +6,11 @@
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.7.0 
+  Generated automatic by Peregrine version 0.7.1 
   Don't modify manual ⚠️
 */
-  
-/// Build Time 2020-03-19 23:01:28 +0800
+
+#import <Foundation/Foundation.h>
 
 typedef NSString *PGRouterURLKey;
 
