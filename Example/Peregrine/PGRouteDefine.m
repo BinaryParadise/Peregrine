@@ -32,6 +32,13 @@ PGRouterURLKey const ap_instance_method1 = @"ap://instance/method1";
 
 PGRouterURLKey const ap_webview_UIWebView = @"ap://webview/UIWebView";
 
+#pragma - mark test
+
+
+PGRouterURLKey const pg_test_m1 = @"pg://test/m1?t=%@";
+
+PGRouterURLKey const pg_test_m2 = @"pg://test/m2?t=%@";
+
 #pragma - mark :
 
 

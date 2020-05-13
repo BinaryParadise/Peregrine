@@ -47,6 +47,15 @@ FOUNDATION_EXPORT PGRouterURLKey const ap_instance_method1;
 FOUNDATION_EXPORT PGRouterURLKey const ap_webview_UIWebView;
 
 
+#pragma - mark test
+
+/// pg://test/m1?t=%@
+FOUNDATION_EXPORT PGRouterURLKey const pg_test_m1;
+
+/// pg://test/m2?t=%@
+FOUNDATION_EXPORT PGRouterURLKey const pg_test_m2;
+
+
 #pragma - mark :
 
 /// invalidurl/haha

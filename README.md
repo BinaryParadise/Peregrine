@@ -11,93 +11,92 @@
 
 ## 原理
 
-### Clang模式
+通过正则匹配出预定义的路由实现，生成路由表，应用启动后加载，通过路由地址匹配实现并打开
 
-> llvm: git@github.com:llvm-mirror/llvm.git afd251138596045d02a43768d4b338432580f3bf
-> clang: git@github.com:BinaryParadise/clang.git 2c4ca6832fa6b306ee6a7010bfb80a3f2596f824 [查看源码](https://github.com/BinaryParadise/clang/tree/clang11)
+[~~LLVM模式待完善~~](LLVM.md)
 
-1. ~~Plugin【不推荐】: 高效，在编译阶段就生成，得使用额外编译的clang，可能存在隐藏问题~~
+## 集成到项目中(正则表达式)
 
-  - 自定义clang的属性和插件
-  - 生成AST时在插件中通过属性标识生成路由表，SDK读取路由表并注册，调用方即可使用指定路由~~
-2. LibTooling: 独立工具，对项目无侵入，可能会存在编译是头文件找不到的问题（待解决）
-  - 原理同Plugin
+### 1、添加依赖
 
-**插件安装**
+> 示例会生成两个文件`PGRouteDefine.h`、`PGRouteDefine.m`，加入项目中
 
 ```ruby
-# 通过brew安装已经编译好的`llvm`（预计`300M`），具体安装时间取决于你的网速
-brew tap binaryparadise/formula
-brew install peregrine
-```
-
-## 集成
-
-> 默认为正则匹配模式
-
-```ruby
-pod 'Peregrine', '~> 0.6.0'
+pod 'Peregrine'
 
 post_install do |installer|
+  # 添加编译脚本，每次编译时都会重新收集路由表
   require_relative 'Pods/Peregrine/Peregrine/PGGenerator.rb'
     PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
 end
 ```
 
-```ruby
-pod install
+参数说明
+| 名称 | 类型 | 说明 |
+| --- | --- | --- |
+| expr| boolean | 默认true，是否使用正则表达式模式 |
+| name| string | 路由常量定义类名 |
+| path | string | 路由长岭定义类路径 |
 
-or Enable Code Coverage
-
-test=1 pod install
-```
-
-### 导入头文件
+### 2、导入头文件
 
 
 ```objc
 #import <Peregrine/Peregrine.h>
 ```
 
-### 注册路由
+### 3、注册路由（预定义宏，可直接使用）
 
 ```objc
 
-@interface TestClass
+@interface TestRoute : NSObject
 
-PGMethod(method,"ap://tlbb/wyy")
+// 类方法路由
+PGMethod(classMethod, "pg://test/m1?t=%@")
+
+/// 实例方法路由
+PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 
 @end
 
-@implement TestClass
+@implementation TestRoute
 
-@end
-
-// 实现路由
-+ (void)method:(PGRouterContext *)context {
-  //TOOD: do something
++ (void)classMethod:(PGRouterContext *)context {
+    //context.userInfo：包含携带的参数
+    //context.object: 表示传的对象类型参数
+    [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
 }
+
+- (void)instanceMethod:(PGRouterContext *)context {
+    [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
+}
+
+@end
 
 ```
 ### 调用路由
 
 ```objc
-[PGRouterManager<NSNumber *> openURL:@"ap://tlbb/wyy?result=1" completion:^(BOOL ret, NSNumber * _Nonnull object) {
-  //TOOD: do something
+//调用类方法
+[PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
+  //TODO: do something
+}];
+
+//调用实例方法
+TestRoute *test = [TestRoute new];
+//路由地址可直接使用字符串（推荐导入PGRouteDefine.h使用常量定义）
+[test pg_openURL:[NSString stringWithFormat:pg_test_m2, @"m2"] completion:^(BOOL ret, id object) {
+  //TODO: do something
 }];
 
 ```
 
 ## 常见问题
 
-### Q. Clang模式编译不通过怎么办？
+### Q. 编译不通过怎么办？
 
-目前遇到在使用PCH等一些场景下编译时找不到头文件的问题解决，推荐使用`正则匹配模式`，待以后解决
+头文件的生成会有延迟或缓存，请尝试重新编译
 
-### Q. 正则模式编译不通过怎么办？
-
-头文件的生成会有延迟，请尝试重新编译
-
-## 协议
+## License
 
 Peregrine 被许可在 MIT 协议下使用。查阅 LICENSE 文件来获得更多信息。

@@ -10,6 +10,7 @@
 
 #import <Peregrine/Peregrine.h>
 #import "PeregrineActionTest3.h"
+#import "TestRoute.h"
 
 SpecBegin(InitialSpecs)
 
@@ -87,6 +88,20 @@ describe(@"Lint", ^{
         [test3 pg_dryRun:ap_instance_method1];
         [test3 pg_openURL:ap_instance_method1 object:nil completion:^(BOOL ret, id object) {
             expect(ret).equal(YES);
+        }];
+    });
+    
+    it(@"GuideLine", ^{
+        [PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
+            expect(object).equal(@"m1");
+        }];
+        
+        //实例方法
+        TestRoute *test = [TestRoute new];
+        //路由地址可直接使用字符串（推荐导入PGRouteDefine.h使用常量定义）
+        [test pg_openURL:[NSString stringWithFormat:pg_test_m2, @"m2"] completion:^(BOOL ret, id object) {
+          //TODO: do something
+            expect(object).equal(@"m2");
         }];
     });
     

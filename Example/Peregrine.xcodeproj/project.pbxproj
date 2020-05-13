@@ -31,6 +31,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C91B8E7723B1B6E000875343 /* PeregrineActionTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */; };
+		C9C8F7D4246B93C800232BF7 /* TestRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8F7D3246B93C800232BF7 /* TestRoute.m */; };
 		CE3FD9DE23668E5400F8803D /* FPWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */; };
 		CE3FD9E12366957700F8803D /* webview.html in Resources */ = {isa = PBXBuildFile; fileRef = CE3FD9E02366957700F8803D /* webview.html */; };
 		F2DCDBB4FEDD30281EE2FE9C /* Pods_Peregrine_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1909EA08F13DDBDB76A8D1 /* Pods_Peregrine_Tests.framework */; };
@@ -90,6 +91,8 @@
 		C91B8E6C23B0E92700875343 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeregrineActionTest3.m; sourceTree = "<group>"; };
 		C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeregrineActionTest3.h; sourceTree = "<group>"; };
+		C9C8F7D2246B93C800232BF7 /* TestRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestRoute.h; sourceTree = "<group>"; };
+		C9C8F7D3246B93C800232BF7 /* TestRoute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestRoute.m; sourceTree = "<group>"; };
 		CE3FD9DB23668E5400F8803D /* FPWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPWebViewViewController.h; sourceTree = "<group>"; };
 		CE3FD9DC23668E5400F8803D /* FPWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPWebViewViewController.m; sourceTree = "<group>"; };
 		CE3FD9E02366957700F8803D /* webview.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = webview.html; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				24F05A4B22DB42A700B25CB8 /* PeregrineActionTest2.m */,
 				C91B8E7623B1B6E000875343 /* PeregrineActionTest3.h */,
 				C91B8E7523B1B6E000875343 /* PeregrineActionTest3.m */,
+				C9C8F7D2246B93C800232BF7 /* TestRoute.h */,
+				C9C8F7D3246B93C800232BF7 /* TestRoute.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				2432139223BB8A4500DF8407 /* FPFileBox.swift */,
 				2432139123BB8A4400DF8407 /* Peregrine_Example-Bridging-Header.h */,
@@ -366,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 \nruby /Users/bonana/Github/Peregrine/Peregrine/PGGenerator.rb ${SRCROOT}/Peregrine PGRouteDefine";
+			shellScript = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 \nruby /Users/rakeyang/Github/Peregrine/Peregrine/PGGenerator.rb ${SRCROOT}/Peregrine PGRouteDefine";
 		};
 		7FCDE41F3E32E082F40995E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -462,6 +467,7 @@
 				6003F59E195388D20070C39A /* FPAppDelegate.m in Sources */,
 				24F05A4C22DB42A700B25CB8 /* PeregrineActionTest1.m in Sources */,
 				6003F5A7195388D20070C39A /* FPViewController.m in Sources */,
+				C9C8F7D4246B93C800232BF7 /* TestRoute.m in Sources */,
 				243CA9C62423BF9B0099B3AF /* PGRouteDefine.m in Sources */,
 				2432139323BB8A4500DF8407 /* FPFileBox.swift in Sources */,
 				2440D8402389304E0031BC26 /* FPModel.m in Sources */,
