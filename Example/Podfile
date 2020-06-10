@@ -12,6 +12,7 @@ use_frameworks!
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'
+  pod 'SubPodLib', :path => 'SubPodLib'
 
   target 'Peregrine_Tests' do
     inherit! :search_paths

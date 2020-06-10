@@ -48,7 +48,7 @@ describe(@"Lint", ^{
     });
     
     it(@"LoadRouter", ^{
-        expect([PGRouterManager routerMap].count).equal(3);
+        expect([PGRouterManager routerMap].count).equal(5);
     });
     
     it(@"UnRegister", ^{        

@@ -27,6 +27,13 @@ PGRouterURLKey const ap_tlbb_yangmi = @"ap://tlbb/yangmi?c=杨幂22";
 
 PGRouterURLKey const ap_instance_method1 = @"ap://instance/method1";
 
+#pragma - mark test
+
+
+PGRouterURLKey const swift_test_auth1 = @"swift://test/auth1";
+
+PGRouterURLKey const swift_test_auth2 = @"swift://test/auth2";
+
 #pragma - mark webview
 
 
@@ -43,3 +50,10 @@ PGRouterURLKey const pg_test_m2 = @"pg://test/m2?t=%@";
 
 
 PGRouterURLKey const _invalidurl_haha = @"invalidurl/haha";
+
+#pragma - mark testsub
+
+
+PGRouterURLKey const swift_testsub_auth1 = @"swift://testsub/auth1";
+
+PGRouterURLKey const swift_testsub_auth2 = @"swift://testsub/auth2";
