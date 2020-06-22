@@ -1,12 +1,15 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.7.1)
+  - Peregrine (0.8.0)
   - Specta (1.0.7)
+  - SubPodLib (0.0.1):
+    - Peregrine
 
 DEPENDENCIES:
   - Expecta (~> 1.0)
   - Peregrine (from `../`)
   - Specta (~> 1.0)
+  - SubPodLib (from `SubPodLib`)
 
 SPEC REPOS:
   trunk:
@@ -16,12 +19,15 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Peregrine:
     :path: "../"
+  SubPodLib:
+    :path: SubPodLib
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: e7462c7d7d42f410e65212a0a710af814317edc6
+  Peregrine: 89ce4f09d6c4a9e8334f97099ae22eea8463abec
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  SubPodLib: 49cf37a6333194f4a9c3769ab3a568c9b85efcd5
 
-PODFILE CHECKSUM: d01fa1c1013f049b84e308ee8b39a6b93f6c6204
+PODFILE CHECKSUM: 6c1680b20cb8e45845b2876d6b5d8df7332e2e71
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

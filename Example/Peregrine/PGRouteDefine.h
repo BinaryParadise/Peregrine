@@ -6,7 +6,7 @@
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.7.1 
+  Generated automatic by Peregrine version 0.8.0 
   Don't modify manual ⚠️
 */
 
@@ -41,6 +41,15 @@ FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_yangmi;
 FOUNDATION_EXPORT PGRouterURLKey const ap_instance_method1;
 
 
+#pragma - mark test
+
+/// swift://test/auth1
+FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth1;
+
+/// swift://test/auth2
+FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth2;
+
+
 #pragma - mark webview
 
 /// ap://webview/UIWebView
@@ -60,4 +69,13 @@ FOUNDATION_EXPORT PGRouterURLKey const pg_test_m2;
 
 /// invalidurl/haha
 FOUNDATION_EXPORT PGRouterURLKey const _invalidurl_haha;
+
+
+#pragma - mark testsub
+
+/// swift://testsub/auth1
+FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth1;
+
+/// swift://testsub/auth2
+FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth2;
 

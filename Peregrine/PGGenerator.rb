@@ -94,7 +94,8 @@ class PGGenerator
       ENV["PG_VERSION"] = pods.to_s.scan(/(Peregrine )\((\d.\d.\d)\)/).first.last
       pods["EXTERNAL SOURCES"].each do |k,v|
         podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
-          collectPath("#{srcroot}/#{v.values.first}")
+        next if v.values.first.eql?('../')
+        collectPath("#{srcroot}/#{v.values.first}", podfile_json['name'])
       end
     end
     
@@ -118,7 +119,7 @@ class PGGenerator
   end
 
   # 收集所有.h中声明的路由
-  def collectPath(path)
+  def collectPath(path, libName=nil)
     if !File::exist?(path)
       return
     end
@@ -126,11 +127,13 @@ class PGGenerator
       subPath = path+"/"+item
       if File.directory?(subPath)
         if isDirectory(item)
-          collectPath(subPath)
+          collectPath(subPath, libName)
         end
       else
         if File.extname(item).eql?('.h')
           mapRouter(subPath)
+        elsif File.extname(item).eql?('.swift')
+          mapRouterSwift(subPath, libName)
         end
       end
     )}
@@ -146,15 +149,42 @@ class PGGenerator
   def mapRouter(file_path)
     if !File::exist?(file_path)
       return
-    end
+    end    
     file_content = File.read(file_path)
     file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0].gsub(/\W+\w+\W/, "")
       class_content = match[1]
       class_content.scan(/PG\w*Method\((\b\w+\b),\s*[@|\"]([\s\S]+?)\"\);*/) do |match1|
         uri = URI(URI::encode(match1[1]))
-        puts uri
         @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] }
+      end
+    end
+  end
+
+  def mapRouterSwift(file_path, libName)
+    if !File::exist?(file_path)
+      return
+    end
+    puts "#{file_path}🍺"
+    if libName.nil?
+      # 获取模块名称
+      pod_root = ENV['PODS_ROOT']+"/"
+      if file_path.start_with?(pod_root)
+        paths = "#{file_path[pod_root.length, file_path.length-pod_root.length]}".split('/')
+        if paths.length > 0
+          libName = paths.first
+        end
+      else
+        libName = ENV['EXECUTABLE_NAME']
+      end
+    end
+    file_content = File.read(file_path)
+    file_content.scan(/extension\s+(\w+)\s*([\s\S]+?\n[\s\S]+?)\n}/) do |match|
+      class_name = match[0].gsub(/\W+\w+\W/, "")
+      class_content = match[1]
+      class_content.scan(/@available\s*\(\*,\s*renamed:\s*"route",\s*message\s*:\s*"(\S+)"\)\n\s*@objc\s+static\s+func\s+(\w+)\(context:PGRouterContext\)/) do |match1|
+        uri = URI(URI::encode(match1[0]))
+        @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => "#{libName}.#{class_name}", 'selector' => match1[1] + 'WithContext:', 'url' => match1[0] }
       end
     end
   end
