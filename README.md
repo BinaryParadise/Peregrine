@@ -68,7 +68,7 @@ import Peregrine
 // 类方法路由
 PGMethod(classMethod, "pg://test/m1?t=%@")
 
-/// 实例方法路由
+// 实例方法路由
 PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 
 @end
@@ -86,6 +86,7 @@ PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 }
 
 @end
+```
 
 #### Swift
 
@@ -106,7 +107,6 @@ public class SwiftRoute {
 
 #### Objective-C
 
-```
 ​```objc
 //调用类方法
 [PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
@@ -129,7 +129,6 @@ PGRouterManager<AnyObject>.openURL("pg://test/m1?t=90812") { (ret, obj) in
     //TODO:do something                                          
 }
 ```
-
 
 
 ## 常见问题
