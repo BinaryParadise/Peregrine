@@ -9,11 +9,11 @@
 
 一个高效、灵活、使用方便的路由组件
 
+自定义注册路由，按照规范实现后，组件自动生成路由表
+
 ## 原理
 
 通过正则匹配出预定义的路由实现，生成路由表，应用启动后加载，通过路由地址匹配实现并打开
-
-[~~LLVM模式待完善~~](LLVM.md)
 
 ## 集成到项目中(正则表达式)
 
@@ -57,31 +57,41 @@ import Peregrine
 
 ### 三、注册路由
 
+> - 推荐在对应的`业务类`中实现路由
+>- 路由的回调由具体实现场景控制，默认不回调
+
 #### Objective-C
 
-可直接使用预定义宏
+直接使用预定义宏，保证定义的统一
+
+例如需要实现一个用户登录的路由pg://test/login，可按如下示例定义，swift同理
 
 ```objc
+//加入登录页面类是PGLoginViewController
 
-@interface TestRoute : NSObject
+//PGLoginViewController.h中定义路由
+@interface PGLoginViewController.h : NSObject
 
 // 类方法路由
-PGMethod(classMethod, "pg://test/m1?t=%@")
+PGMethod(login, "pg://test/login?t=%@")
 
 // 实例方法路由
-PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
+PGInstanceMethod(logout, "pg://test/logout?t=%@")
 
 @end
 
+//在PGLoginViewController.m中实现路由
 @implementation TestRoute
 
-+ (void)classMethod:(PGRouterContext *)context {
++ (void)login:(PGRouterContext *)context {
     //context.userInfo：包含携带的参数
     //context.object: 表示传的对象类型参数
+  	//跳转登录页逻辑
     [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
 }
 
-- (void)instanceMethod:(PGRouterContext *)context {
+- (void)logout:(PGRouterContext *)context {
+  	//退出登录逻辑
     [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
 }
 
@@ -92,12 +102,12 @@ PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 
 ```swift
 //如果是外部调用需要设置为public
-public class SwiftRoute {
+public class PGLoginViewController {
   	//路由地址和方法名可修改，其它的方法定义必须和示例保持一致
   	//类方法实现
     @available(*, renamed: "route", message: "pg://test/m1?t=%@")
-    @objc static func test1(context:PGRouterContext) -> Void {
-        //TODO:do something
+    @objc static func login(context:PGRouterContext) -> Void {
+        //TODO:跳转登录页逻辑
         context.onDone(true, object: "done")
     }
 }
@@ -107,16 +117,16 @@ public class SwiftRoute {
 
 #### Objective-C
 
-​```objc
+```objc
 //调用类方法
-[PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
+[PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_login, @"m1"] completion:^(BOOL ret, NSString *object) {
   //TODO: do something
 }];
 
 //调用实例方法
 TestRoute *test = [TestRoute new];
 //路由地址可直接使用字符串（推荐导入PGRouteDefine.h使用常量定义）
-[test pg_openURL:[NSString stringWithFormat:pg_test_m2, @"m2"] completion:^(BOOL ret, id object) {
+[test pg_openURL:[NSString stringWithFormat:pg_test_logout, @"m2"] completion:^(BOOL ret, id object) {
   //TODO: do something
 }];
 
@@ -125,9 +135,11 @@ TestRoute *test = [TestRoute new];
 #### Swift
 
 ```swift
-PGRouterManager<AnyObject>.openURL("pg://test/m1?t=90812") { (ret, obj) in
+PGRouterManager<AnyObject>.openURL("pg://test/login?t=90812") { (ret, obj) in
     //TODO:do something                                          
 }
+```
+
 ```
 
 
@@ -140,3 +152,5 @@ PGRouterManager<AnyObject>.openURL("pg://test/m1?t=90812") { (ret, obj) in
 ## License
 
 Peregrine 被许可在 MIT 协议下使用。查阅 LICENSE 文件来获得更多信息。
+
+```
