@@ -17,7 +17,7 @@
 
 ## 集成到项目中(正则表达式)
 
-### 1、添加依赖
+### 一、添加依赖
 
 > 示例会生成两个文件`PGRouteDefine.h`、`PGRouteDefine.m`，加入项目中
 
@@ -38,7 +38,7 @@ end
 | name| string | 路由常量类名 |
 | path | string | 路由常量类路径 |
 
-### 2、导入头文件
+### 二、导入头文件
 
 ##### Objective-C
 
@@ -55,7 +55,7 @@ import Peregrine
 
 
 
-### 3、注册路由
+### 三、注册路由
 
 #### Objective-C
 
@@ -87,12 +87,7 @@ PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 
 @end
 
-
-​```obj
-
-```
-
-
+#### Swift
 
 ```swift
 //如果是外部调用需要设置为public
