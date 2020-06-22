@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
+  s.swift_version = '5.0'
 
   # s.subspec 'Plugin' do |ss|
   #   ss.source_files = 'Peregrine/**/*'

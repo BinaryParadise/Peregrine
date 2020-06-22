@@ -1,7 +1,7 @@
 if File::exists?('Podfile.lock')
   `rm -f Podfile.lock`
 end
-if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.7.3')
+if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.9.3')
   install! 'cocoapods',
     :generate_multiple_pod_projects => true,
     :incremental_installation => true
@@ -9,6 +9,8 @@ end
 
 platform :ios, '9.0'
 use_frameworks!
+
+#plugin 'slather'
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'
@@ -27,7 +29,3 @@ target 'Peregrine_Example' do
     PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
   end
 end
-
-# target 'Peregrine_Example_Plugin' do
-#   pod 'Peregrine/Plugin', :path => '../'
-# end

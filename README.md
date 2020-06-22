@@ -35,17 +35,31 @@ end
 | 名称 | 类型 | 说明 |
 | --- | --- | --- |
 | expr| boolean | 默认true，是否使用正则表达式模式 |
-| name| string | 路由常量定义类名 |
-| path | string | 路由长岭定义类路径 |
+| name| string | 路由常量类名 |
+| path | string | 路由常量类路径 |
 
 ### 2、导入头文件
+
+##### Objective-C
 
 
 ```objc
 #import <Peregrine/Peregrine.h>
 ```
 
-### 3、注册路由（预定义宏，可直接使用）
+Swift
+
+```swif
+import Peregrine
+```
+
+
+
+### 3、注册路由
+
+#### Objective-C
+
+可直接使用预定义宏
 
 ```objc
 
@@ -73,10 +87,32 @@ PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
 
 @end
 
-```
-### 调用路由
 
-```objc
+​```obj
+
+```
+
+
+
+```swift
+//如果是外部调用需要设置为public
+public class SwiftRoute {
+  	//路由地址和方法名可修改，其它的方法定义必须和示例保持一致
+  	//类方法实现
+    @available(*, renamed: "route", message: "pg://test/m1?t=%@")
+    @objc static func test1(context:PGRouterContext) -> Void {
+        //TODO:do something
+        context.onDone(true, object: "done")
+    }
+}
+```
+
+### 路由调用
+
+#### Objective-C
+
+```
+​```objc
 //调用类方法
 [PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
   //TODO: do something
@@ -90,6 +126,16 @@ TestRoute *test = [TestRoute new];
 }];
 
 ```
+
+#### Swift
+
+```swift
+PGRouterManager<AnyObject>.openURL("pg://test/m1?t=90812") { (ret, obj) in
+    //TODO:do something                                          
+}
+```
+
+
 
 ## 常见问题
 

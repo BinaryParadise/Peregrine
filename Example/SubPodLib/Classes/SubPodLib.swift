@@ -9,7 +9,7 @@
 import Foundation
 import Peregrine
 
-class SwiftRoute {
+public class SwiftRoute {
     
 }
 
