@@ -44,6 +44,8 @@
     IMP imp = [cls methodForSelector:selector];
     void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
     targetMethod(cls, selector, PGRouterContext.new);
+    
+    [[FPFileBox alloc] initWithString];
 }
 
 - (void)didRouterNotFoundNotification:(NSNotification *)noti {

@@ -2,7 +2,6 @@ coverage_service: coveralls
 workspace: Example/Peregrine.xcworkspace
 xcodeproj: Example/Peregrine.xcodeproj
 scheme: Peregrine_Example
-source_directory: Peregrine/Classes
-output_directory: ./DerivedData
+source_directory: ./Peregrine
 ignore:
   - Example/*

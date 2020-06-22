@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import SubPodLib
 
-@objc public class FPFileBox: NSObject {
+class FPFileBox: NSObject {
     @objc public func initWithString() {
-        
+        SwiftRoute.test1(context: PGRouterContext.init())
     }
 }

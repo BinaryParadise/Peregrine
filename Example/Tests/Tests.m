@@ -11,6 +11,7 @@
 #import <Peregrine/Peregrine.h>
 #import "PeregrineActionTest3.h"
 #import "TestRoute.h"
+#import "Peregrine_Tests-Swift.h"
 
 SpecBegin(InitialSpecs)
 
@@ -103,7 +104,7 @@ describe(@"Lint", ^{
           //TODO: do something
             expect(object).equal(@"m2");
         }];
-    });
+    });    
     
     });
 });
