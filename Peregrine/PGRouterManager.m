@@ -97,11 +97,13 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 }
 
 + (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {
-    if ([router.targetClass respondsToSelector:router.selector]) {
+    if ([router.targetClass respondsToSelector:router.selector] || router.swift) {
         context.config = router;
         IMP imp = [router.targetClass methodForSelector:router.selector];
-        void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
-        targetMethod(router.targetClass, router.selector, context);
+        if (imp != NULL) {
+            void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
+            targetMethod(router.targetClass, router.selector, context);
+        }
     }
 }
 

@@ -103,7 +103,7 @@ PGInstanceMethod(logout, "pg://test/logout?t=%@")
 ```swift
 //如果是外部调用需要设置为public
 public class PGLoginViewController {
-  	//路由地址和方法名可修改，其它的方法定义必须和示例保持一致
+  	//路由地址和方法名可修改，其它的方法定义必须和示例保持一致，且只支持单行定义（方法实现无要求）
   	//类方法实现
     @available(*, renamed: "route", message: "pg://test/m1?t=%@")
     @objc static func login(context:PGRouterContext) -> Void {

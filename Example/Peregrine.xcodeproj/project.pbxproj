@@ -217,8 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
-				6003F5B6195388D20070C39A /* Supporting Files */,
 				C908D6CE249C633E00845908 /* FPTestSpec.swift */,
+				6003F5B6195388D20070C39A /* Supporting Files */,
 				C908D6CD249C633E00845908 /* Peregrine_Tests-Bridging-Header.h */,
 			);
 			path = Tests;
@@ -412,10 +412,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Peregrine_Example/Pods-Peregrine_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Peregrine/Peregrine.framework",
+				"${BUILT_PRODUCTS_DIR}/SubPodLib/SubPodLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Peregrine.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SubPodLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -553,6 +555,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -594,6 +597,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

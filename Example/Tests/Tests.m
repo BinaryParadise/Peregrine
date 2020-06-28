@@ -8,6 +8,8 @@
 
 // https://github.com/Specta/Specta
 
+#import <Specta/Specta.h>
+#import <Expecta/Expecta.h>
 #import <Peregrine/Peregrine.h>
 #import "PeregrineActionTest3.h"
 #import "TestRoute.h"

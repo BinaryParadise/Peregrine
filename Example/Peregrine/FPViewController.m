@@ -41,6 +41,7 @@
     Class cls = NSClassFromString(@"SubPodLib.SwiftRoute");
     const char * name = class_getImageName(cls);
     SEL selector = @selector(test1WithContext:);
+    BOOL responds = [cls respondsToSelector:selector];
     IMP imp = [cls methodForSelector:selector];
     void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
     targetMethod(cls, selector, PGRouterContext.new);

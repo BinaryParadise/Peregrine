@@ -11,6 +11,7 @@
 static  NSString * _Nonnull const PGRouterKeyURL = @"url";
 static  NSString * _Nonnull const PGRouterKeyClass = @"class";
 static  NSString * _Nonnull const PGRouterKeySelector = @"selector";
+static  NSString * _Nonnull const PGRouterKeySwift = @"swift";
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,9 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PGRouterConfig : NSObject
 
 @property (nonatomic, copy) NSURL *URL;
-@property (nonatomic, copy) NSDictionary<NSString *,NSString *> *parameters;
-@property (nonatomic, assign) Class targetClass;
-@property (nonatomic, assign) SEL selector;
+@property (nonatomic, copy, nullable) NSDictionary<NSString *,NSString *> *parameters;
+@property (nonatomic, assign, nullable) Class targetClass;
+@property (nonatomic, assign, nullable) SEL selector;
+
+/// 是否是swift中定义，默认为NO
+@property (nonatomic, assign) BOOL swift;
+
 
 - (NSString *)actionName;
 

@@ -165,7 +165,6 @@ class PGGenerator
     if !File::exist?(file_path)
       return
     end
-    puts "#{file_path}🍺"
     if libName.nil?
       # 获取模块名称
       pod_root = ENV['PODS_ROOT']+"/"
@@ -179,12 +178,12 @@ class PGGenerator
       end
     end
     file_content = File.read(file_path)
-    file_content.scan(/extension\s+(\w+)\s*([\s\S]+?\n[\s\S]+?)\n}/) do |match|
-      class_name = match[0].gsub(/\W+\w+\W/, "")
-      class_content = match[1]
-      class_content.scan(/@available\s*\(\*,\s*renamed:\s*"route",\s*message\s*:\s*"(\S+)"\)\n\s*@objc\s+static\s+func\s+(\w+)\(context:PGRouterContext\)/) do |match1|
+    file_content.scan(/(class|extension)\s+(\w+)\s*([\s\S]+?\n[\s\S]+?)\n}/) do |match|
+      class_name = match[1].gsub(/\W+\w+\W/, "")
+      class_content = match[2]
+      class_content.scan(/@available\s*\(\*,\s*renamed:\s*"route",\s*message\s*:\s*"(\S+)"\)\n\s*@objc\s+static\s+func\s+(\w+)\(context:\s*PGRouterContext\)/) do |match1|
         uri = URI(URI::encode(match1[0]))
-        @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => "#{libName}.#{class_name}", 'selector' => match1[1] + 'WithContext:', 'url' => match1[0] }
+        @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = {'swift' => true, 'class' => "#{libName}.#{class_name}", 'selector' => match1[1] + 'WithContext:', 'url' => match1[0] }
       end
     end
   end

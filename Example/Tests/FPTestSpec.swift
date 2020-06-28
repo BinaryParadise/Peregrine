@@ -21,8 +21,20 @@ class FPTestSpec: XCTestCase {
 
     func testExample() {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.        
         PGRouterManager<AnyObject>.openURL(swift_test_auth1) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
+        PGRouterManager<AnyObject>.openURL(swift_testsub_auth0) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
+        PGRouterManager<AnyObject>.openURL(swift_testsub_auth1) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
+        PGRouterManager<AnyObject>.openURL(swift_testsub_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
     }

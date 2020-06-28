@@ -28,7 +28,8 @@
         _selector = NSSelectorFromString(keyValues[PGRouterKeySelector]);
         
         NSString *URLString = keyValues[PGRouterKeyURL];
-        _URL = [NSURL pg_SafeURLWithString:URLString];        
+        _URL = [NSURL pg_SafeURLWithString:URLString];
+        _swift = [keyValues[PGRouterKeySwift] boolValue];
         [self parseParameters];
     }
     return self;

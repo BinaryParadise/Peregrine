@@ -10,7 +10,10 @@ import Foundation
 import Peregrine
 
 public class SwiftRoute {
-    
+    @available(*, renamed: "route", message: "swift://testsub/auth0")
+    @objc static func test0(context:PGRouterContext) -> Void {
+        context.onDone(true, object: "done")
+    }
 }
 
 extension SwiftRoute {
@@ -22,5 +25,6 @@ extension SwiftRoute {
     @available(*, renamed: "route", message: "swift://testsub/auth2")
     @objc static func test2(context:PGRouterContext) -> Void {
         print(#function)
+        context.onDone(true, object: nil)
     }
 }

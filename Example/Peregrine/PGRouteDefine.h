@@ -6,7 +6,7 @@
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.8.0 
+  Generated automatic by Peregrine version 0.8.1 
   Don't modify manual ⚠️
 */
 
@@ -72,6 +72,9 @@ FOUNDATION_EXPORT PGRouterURLKey const _invalidurl_haha;
 
 
 #pragma - mark testsub
+
+/// swift://testsub/auth0
+FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth0;
 
 /// swift://testsub/auth1
 FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth1;

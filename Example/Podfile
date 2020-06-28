@@ -21,6 +21,9 @@ target 'Peregrine_Example' do
 
     pod 'Specta', '~> 1.0'
     pod 'Expecta', '~> 1.0'
+    
+#    pod 'Quick'
+#    pod 'Nimble'
   end
 
   post_install do |installer|

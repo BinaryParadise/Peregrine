@@ -2,8 +2,6 @@
 
 #ifdef __OBJC__
 
-#import <Specta/Specta.h>
-#import <Expecta/Expecta.h>
-#import <Peregrine/Peregrine.h>
+
 
 #endif
