@@ -6,6 +6,7 @@ require 'yaml'
 require 'json'
 require 'uri'
 require 'open-uri'
+require 'digest/md5'
 
 BUILD_PHASE_NAME_FETCH_ENV = '[Peregrine] Generator Routing Table'
 CLANG_TOOL_PATH = '/usr/local/bin/clang-peregrine'
@@ -227,7 +228,7 @@ class PGGenerator
       path = "#{args[0]}/#{filename}"
     end
     # `chmod 755 #{path}`
-    generate_file = File.new(path, 'w+')
+    generate_file = File.new("#{path}.tmp", 'w+')
     generate_file.write("//
 //  #{filename}
 //  Peregrine
@@ -269,6 +270,18 @@ typedef NSString *PGRouterURLKey;
       )}
     )}
     generate_file.close
+
+    newMD5 = Digest::MD5.hexdigest(File.open("#{path}.tmp", 'rb'){|fs|fs.read})
+    oldMD5 = ''
+    if File::exist?(path)
+      oldMD5 = Digest::MD5.hexdigest(File.open(path, 'rb'){|fs|fs.read})
+    end
+    if newMD5.eql?(oldMD5)
+      `rm #{path}.tmp`
+    else
+      # 更新文件（头文件重新编译）
+      `mv #{path}.tmp #{path}`
+    end
 
     puts "🍺Objective-C Source file write to #{generate_file.path}, please add to your project."
   end

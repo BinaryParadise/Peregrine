@@ -49,6 +49,12 @@ FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth1;
 /// swift://test/auth2
 FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth2;
 
+/// swift://test/auth3
+FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth3;
+
+/// swift://test/auth4
+FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth4;
+
 
 #pragma - mark webview
 

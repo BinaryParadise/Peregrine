@@ -21,16 +21,20 @@ extension SwiftRoute {
     @available(*, renamed: "route", message: "swift://test/auth2")
     @objc static func test2(context:PGRouterContext) -> Void {
         print(#function)
+        context.onDone(true, object: nil)
     }
 }
 
 public class WhatThe {
-    @available(*, unavailable, renamed: "route", message: "swift://test/auth2")
-    public static func a987801() {
+    @available(*, renamed: "route", message: "swift://test/auth3")
+    @objc static func a987801(context:PGRouterContext) {
         print(#file+" "+#function)
+        context.onDone(true, object: nil)
     }
-    
-    public static func a987802() {
+
+    @available(*, renamed: "route", message: "swift://test/auth4")
+    @objc static func a987802(context: PGRouterContext) -> Void {
         print(#file+" "+#function)
+        context.onDone(true, object: nil)
     }
 }

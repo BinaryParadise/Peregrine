@@ -8,9 +8,9 @@ if Gem::Version.new(`pod --version`) >= Gem::Version.new('1.9.3')
 end
 
 platform :ios, '9.0'
-use_frameworks!
-
 #plugin 'slather'
+
+use_frameworks!
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'

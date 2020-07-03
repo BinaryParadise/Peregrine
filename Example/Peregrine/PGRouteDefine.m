@@ -34,6 +34,10 @@ PGRouterURLKey const swift_test_auth1 = @"swift://test/auth1";
 
 PGRouterURLKey const swift_test_auth2 = @"swift://test/auth2";
 
+PGRouterURLKey const swift_test_auth3 = @"swift://test/auth3";
+
+PGRouterURLKey const swift_test_auth4 = @"swift://test/auth4";
+
 #pragma - mark webview
 
 

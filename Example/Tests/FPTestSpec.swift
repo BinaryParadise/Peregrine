@@ -26,6 +26,18 @@ class FPTestSpec: XCTestCase {
             XCTAssert(ret)
         }
         
+        PGRouterManager<AnyObject>.openURL(swift_test_auth2) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
+        PGRouterManager<AnyObject>.openURL(swift_test_auth3) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
+        PGRouterManager<AnyObject>.openURL(swift_test_auth4) { (ret, obj) in
+            XCTAssert(ret)
+        }
+        
         PGRouterManager<AnyObject>.openURL(swift_testsub_auth0) { (ret, obj) in
             XCTAssert(ret)
         }
