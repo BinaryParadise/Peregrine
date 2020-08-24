@@ -95,7 +95,7 @@ class PGGenerator
       ENV["PG_VERSION"] = pods.to_s.scan(/(Peregrine )\((\d.\d.\d)\)/).first.last
       pods["EXTERNAL SOURCES"].each do |k,v|
         podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
-        next if v.values.first.eql?('../')
+        next if !v.values.first.eql?('../')
         collectPath("#{srcroot}/#{v.values.first}", podfile_json['name'])
       end
     end
