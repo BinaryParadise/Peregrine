@@ -55,6 +55,11 @@ PGRouterURLKey const pg_test_m2 = @"pg://test/m2?t=%@";
 
 PGRouterURLKey const _invalidurl_haha = @"invalidurl/haha";
 
+#pragma - mark helloworld
+
+
+PGRouterURLKey const pg_helloworld = @"pg://helloworld";
+
 #pragma - mark testsub
 
 

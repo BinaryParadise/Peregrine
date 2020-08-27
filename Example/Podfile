@@ -9,12 +9,12 @@ end
 
 platform :ios, '9.0'
 #plugin 'slather'
-
-use_frameworks!
+use_modular_headers!
+#use_frameworks!
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'
-  pod 'SubPodLib', :path => 'SubPodLib'
+  pod 'SubPodLib', :path => '../SubPodLib'
 
   target 'Peregrine_Tests' do
     inherit! :search_paths

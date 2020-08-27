@@ -59,6 +59,10 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
     if (components.firstObject) {
         [components removeObject:components.firstObject];
     }
+    if (components.count == 0) {
+        node.config = config;
+        return;
+    }
     __block PGRouterNode *context = node;
     [components enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         context = [context addChildWithName:obj];
@@ -74,6 +78,19 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 
 + (void)openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL, id))completion {
     NSURL *patternURL = [NSURL pg_SafeURLWithString:URLString];
+    PGRouterConfig *config = [self configForURL:URLString];
+    if (config) {
+        [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL object:object callback:completion]];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPGDidRouterNotFoundNotificaion object:nil userInfo:@{KPGRouterURLKey: URLString}];
+        if (completion) {
+            completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
+        }
+    }
+}
+
++ (PGRouterConfig *)configForURL:(NSString *)url {
+    NSURL *patternURL = [NSURL pg_SafeURLWithString:url];
     PGRouterNode *node = _routerTree[patternURL.host];
     NSMutableArray *componets = [patternURL.pathComponents mutableCopy];
     if (componets.firstObject) {
@@ -82,18 +99,8 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
     __block PGRouterNode *curNode = node;
     [componets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         curNode = [curNode nodeForName:obj];
-        if (idx == componets.count - 1) {
-            PGRouterConfig *config = curNode.config;
-            if (config) {
-                [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL object:object callback:completion]];
-            } else {
-                [[NSNotificationCenter defaultCenter] postNotificationName:kPGDidRouterNotFoundNotificaion object:nil userInfo:@{KPGRouterURLKey: URLString}];
-                if (completion) {
-                    completion(NO, [NSString stringWithFormat:@"router: %@ no match.", URLString]);
-                }
-            }
-        }
     }];
+    return curNode.config;
 }
 
 + (void)openWithRouter:(PGRouterConfig *)router context:(PGRouterContext *)context {
@@ -126,6 +133,10 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
         }
     }];
     return valid;
+}
+
++ (void)helloWorld:(PGRouterContext *)context {
+    [context finished];
 }
 
 @end

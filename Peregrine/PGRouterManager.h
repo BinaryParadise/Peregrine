@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PGRouterNode.h"
 
+@class PGRouterContext;
+
 /// 路由未实现时的通知
 static NSString * const kPGDidRouterNotFoundNotificaion  = @"PGDidRouterNotFoundNotificaion";
 /// 通知userinfo地址的Key
@@ -48,11 +50,17 @@ static NSString * const KPGRouterURLKey = @"PGRouterURLKey";
 */
 + (void)openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL ret, ObjectType object))completion;
 
+/// 获得路由对象
+/// @param url 标准的URL地址（RFC 2396）
++ (PGRouterConfig *)configForURL:(NSString *)url;
+
 /**
  验证路由地址是否有效
 
  @param URLString 标准的URL地址（RFC 2396）
  */
 + (BOOL)dryRun:(NSString *)URLString;
+
+PGMethod(helloWorld, "pg://helloworld")
 
 @end
