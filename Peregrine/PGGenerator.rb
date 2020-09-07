@@ -283,7 +283,7 @@ typedef NSString *PGRouterURLKey;
       `mv #{path}.tmp #{path}`
     end
 
-    puts "🍺Objective-C Source file write to #{generate_file.path}, please add to your project."
+    puts "🍺路由常量定义Objective-C源文件已生成到 #{path}, 请添加到项目中⚠️."
   end
 
   # 表示使用正则匹配模式 
