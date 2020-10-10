@@ -1,6 +1,6 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.8.2)
+  - Peregrine (0.8.3)
   - Specta (1.0.7)
   - SubPodLib (0.0.1):
     - Peregrine
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: b780499e7fc8189debbf627a2c25e85f155ab76d
+  Peregrine: bb4bfe7b0338940b16b81bce5db9ca87a20cca30
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
   SubPodLib: 49cf37a6333194f4a9c3769ab3a568c9b85efcd5
 

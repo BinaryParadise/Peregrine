@@ -16,15 +16,14 @@ class PGGenerator
   attr_accessor:routers
   attr_accessor:version
   def initialize(args)
-    if args[0].eql?('install')
-      return
+    if ENV['ACTION'].eql?('build')
+        if ENV["GENERATE_MODE"].eql?(CLANG_MODE)
+          buildWithClang(args)
+        else
+          @routers = Hash.new
+          buildWithRegularExpression(args)
+        end
     end
-    if ENV["GENERATE_MODE"].eql?(CLANG_MODE)
-      buildWithClang(args)
-    else
-      @routers = Hash.new
-      buildWithRegularExpression(args)      
-    end    
   end
 
   # 通过Clang生成路由表
