@@ -16,7 +16,7 @@ class PGGenerator
   attr_accessor:routers
   attr_accessor:version
   def initialize(args)
-    if ENV['ACTION'].eql?('build')
+    if ENV['ACTION'].eql?('build') || ENV['ACTION'].eql?('install')
         if ENV["GENERATE_MODE"].eql?(CLANG_MODE)
           buildWithClang(args)
         else
