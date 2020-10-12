@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'Peregrine'
-  s.version          = '0.8.3'
+  s.version          = '0.8.4'
   s.summary          = 'A short description of Peregrine.'
 
 # This description is used to generate tags and improve search results.
