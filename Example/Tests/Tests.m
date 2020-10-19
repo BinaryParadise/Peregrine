@@ -35,7 +35,7 @@ describe(@"Lint", ^{
             }
             
             [PGRouterManager openURL:ap_tlbb_yangmi completion:^(BOOL ret, id _Nonnull object) {
-                expect(object).will.beNil();
+                expect(object).willNot.beNil();
             }];
             
             [PGRouterManager openURL:@"ap://nullable/wtf" completion:^(BOOL ret, id object) {
@@ -80,6 +80,10 @@ describe(@"Lint", ^{
             config = [[PGRouterConfig alloc] initWithDictionary:@{@"url": @"ap://tbbb/?c=t033&"}];
             expect(config.parameters.count).equal(1);
             expect(config.parameters[@"c"]).equal(@"t033");
+            
+            [PGRouterManager openURL:@"ap://tlbb/yangmi?url=http%3a%2f%2fwww.csgo.com%2fcn%3fenv%3d0%26t%3d%e9%87%8e%e8%8d%b7" completion:^(BOOL ret, NSDictionary *object) {
+                
+            }];
         });
         
         it(@"MulitComponent", ^{

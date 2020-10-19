@@ -6,7 +6,7 @@
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.8.2 
+  Generated automatic by Peregrine version 0.8.5 
   Don't modify manual ⚠️
 */
 

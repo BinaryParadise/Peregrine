@@ -29,15 +29,15 @@
 }
 
 + (NSDictionary *)queryDictionaryForURL:(NSURL *)openURL {
-    NSMutableDictionary *mdict = [NSMutableDictionary dictionary];
-    NSString *query = [openURL.query stringByRemovingPercentEncoding];
-    [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.length) {
-            NSArray<NSString *> *arr = [obj componentsSeparatedByString:@"="];
-            mdict[arr.firstObject] = arr.lastObject.length ? arr.lastObject : @"";
-        }
-    }];
-    return mdict.count ? mdict : nil;
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:openURL resolvingAgainstBaseURL:NO];
+     NSMutableDictionary<NSString *, NSString *> *queryParams = [NSMutableDictionary<NSString *, NSString *> new];
+     for (NSURLQueryItem *queryItem in [urlComponents queryItems]) {
+         if (queryItem.value == nil) {
+             continue;
+         }
+         [queryParams setObject:queryItem.value forKey:queryItem.name];
+     }
+     return queryParams;
 }
 
 - (void)onDone:(BOOL)ret object:(id)object {

@@ -17,7 +17,7 @@
 }
 
 + (void)verification2:(nullable PGRouterContext *)context {
-    [context finished];
+    [context onDone:true object:context.userInfo];
 }
 
 + (void)webview:(PGRouterContext *)context {
