@@ -27,4 +27,10 @@ extension SwiftRoute {
         print(#function)
         context.onDone(true, object: nil)
     }
+    
+    @available(*, renamed: "route", message: "swift://testsub/url")
+    @objc static func test3(context:PGRouterContext) -> Void {
+        print(#function)
+        context.onDone(true, object: context.originURLString)
+    }
 }

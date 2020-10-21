@@ -77,10 +77,9 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 }
 
 + (void)openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL, id))completion {
-    NSURL *patternURL = [NSURL pg_SafeURLWithString:URLString];
     PGRouterConfig *config = [self configForURL:URLString];
     if (config) {
-        [self openWithRouter:config context:[PGRouterContext contextWithURL:patternURL object:object callback:completion]];
+        [self openWithRouter:config context:[PGRouterContext contextWithString:URLString object:object callback:completion]];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:kPGDidRouterNotFoundNotificaion object:nil userInfo:@{KPGRouterURLKey: URLString}];
         if (completion) {

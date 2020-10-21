@@ -94,3 +94,6 @@ FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth1;
 /// swift://testsub/auth2
 FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_auth2;
 
+/// swift://testsub/url
+FOUNDATION_EXPORT PGRouterURLKey const swift_testsub_url;
+

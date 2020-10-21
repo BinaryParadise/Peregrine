@@ -17,7 +17,10 @@ typedef void(^PGRouterCallback)(BOOL ret, id object);
 @property (nonatomic, retain, readonly) id object;
 @property (nonatomic, copy, readonly) NSDictionary *userInfo;
 
-+ (instancetype)contextWithURL:(NSURL *)openURL object:(id)object callback:(PGRouterCallback)callback;
+/// 原始未处理路由地址
+@property (nonatomic, copy, readonly) NSString *originURLString;
+
++ (instancetype)contextWithString:(NSString *)URLString object:(id)object callback:(PGRouterCallback)callback;
 
 /**
  路由完成

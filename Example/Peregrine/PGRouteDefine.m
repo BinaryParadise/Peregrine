@@ -68,3 +68,5 @@ PGRouterURLKey const swift_testsub_auth0 = @"swift://testsub/auth0";
 PGRouterURLKey const swift_testsub_auth1 = @"swift://testsub/auth1";
 
 PGRouterURLKey const swift_testsub_auth2 = @"swift://testsub/auth2";
+
+PGRouterURLKey const swift_testsub_url = @"swift://testsub/url";

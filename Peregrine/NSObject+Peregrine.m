@@ -18,7 +18,7 @@
 - (void)pg_openURL:(NSString *)URLString object:(id)object completion:(void (^)(BOOL, id))completion {
     PGRouterConfig *config = [PGRouterManager configForURL:URLString];
     if (config) {
-        [self pg_openWithRouter:config context:[PGRouterContext contextWithURL:[NSURL pg_SafeURLWithString:URLString] object:object callback:completion]];
+        [self pg_openWithRouter:config context:[PGRouterContext contextWithString:URLString object:object callback:completion]];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:kPGDidRouterNotFoundNotificaion object:nil userInfo:@{KPGRouterURLKey: URLString}];
         if (completion) {
