@@ -113,6 +113,15 @@ public class PGLoginViewController {
 }
 ```
 
+代码段（Snippet）
+
+```swift
+@available(*, renamed: "route", message: "<#path#>")
+@objc static func <#function#>(context: PGRouterContext) -> Void {
+    <#code#>
+}
+```
+
 ### 路由调用
 
 #### Objective-C
