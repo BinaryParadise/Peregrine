@@ -6,7 +6,7 @@
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 /**
-  Generated automatic by Peregrine version 0.8.5 
+  Generated automatic by Peregrine version 0.9.0 
   Don't modify manual ⚠️
 */
 
@@ -75,12 +75,6 @@ FOUNDATION_EXPORT PGRouterURLKey const pg_test_m2;
 
 /// invalidurl/haha
 FOUNDATION_EXPORT PGRouterURLKey const _invalidurl_haha;
-
-
-#pragma - mark helloworld
-
-/// pg://helloworld
-FOUNDATION_EXPORT PGRouterURLKey const pg_helloworld;
 
 
 #pragma - mark testsub

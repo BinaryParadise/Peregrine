@@ -11,26 +11,26 @@ import Peregrine
 
 public class SwiftRoute {
     @available(*, renamed: "route", message: "swift://testsub/auth0")
-    @objc static func test0(context:PGRouterContext) -> Void {
-        context.onDone(true, object: "done")
+    @objc static func test0(context: RouteContext) -> Void {
+        context.onDone(true, data: "done")
     }
 }
 
 extension SwiftRoute {
     @available(*, renamed: "route", message: "swift://testsub/auth1")
-    @objc static func test1(context:PGRouterContext) -> Void {
-        context.onDone(true, object: "done")
+    @objc static func test1(context:RouteContext) -> Void {
+        context.onDone(true, data: "done")
     }
     
     @available(*, renamed: "route", message: "swift://testsub/auth2")
-    @objc static func test2(context:PGRouterContext) -> Void {
+    @objc static func test2(context:RouteContext) -> Void {
         print(#function)
-        context.onDone(true, object: nil)
+        context.onDone(true, data: nil)
     }
     
     @available(*, renamed: "route", message: "swift://testsub/url")
-    @objc static func test3(context:PGRouterContext) -> Void {
+    @objc static func test3(context:RouteContext) -> Void {
         print(#function)
-        context.onDone(true, object: context.originURLString)
+        context.onDone(true, data: context.userInfo["title"])
     }
 }

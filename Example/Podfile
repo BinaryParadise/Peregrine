@@ -10,13 +10,13 @@ end
 platform :ios, '9.0'
 #plugin 'slather'
 use_modular_headers!
-#use_frameworks!
+use_frameworks!
 
 target 'Peregrine_Example' do
   pod 'Peregrine', :path => '../'
   pod 'SubPodLib', :path => '../SubPodLib'
 
-  target 'Peregrine_Tests' do
+  target 'Peregrine_Example_Tests' do
     inherit! :search_paths
 
     pod 'Specta', '~> 1.0'
@@ -27,8 +27,8 @@ target 'Peregrine_Example' do
   end
 
   post_install do |installer|
-    require_relative '../Peregrine/PGGenerator.rb'
+    require_relative '../Sources/PGGenerator.rb'
 #    callback = proc { |name| name.index("Peregrine") == 0 }
-    PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
+    PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine_Example'})
   end
 end

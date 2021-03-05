@@ -8,6 +8,7 @@
 
 import XCTest
 import Peregrine_Example
+import Peregrine
 
 class FPTestSpec: XCTestCase {
 
@@ -21,41 +22,37 @@ class FPTestSpec: XCTestCase {
 
     func testExample() {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.        
-        PGRouterManager<AnyObject>.openURL(swift_test_auth1) { (ret, obj) in
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        RouteManager.shared.openURL(swift_test_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_test_auth2) { (ret, obj) in
+        RouteManager.shared.openURL(swift_test_auth3) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_test_auth3) { (ret, obj) in
+        RouteManager.shared.openURL(swift_test_auth4) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_test_auth4) { (ret, obj) in
+        RouteManager.shared.openURL(swift_testsub_auth0) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_testsub_auth0) { (ret, obj) in
+        RouteManager.shared.openURL(swift_testsub_auth1) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_testsub_auth1) { (ret, obj) in
+        RouteManager.shared.openURL(swift_testsub_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        PGRouterManager<AnyObject>.openURL(swift_testsub_auth2) { (ret, obj) in
+        RouteManager.shared.openURL("\(swift_testsub_url)?env=0&needlogin=1&title=haha") { (ret, data) in
             XCTAssert(ret)
+            XCTAssert("haha" == data as? String ?? "")
         }
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }

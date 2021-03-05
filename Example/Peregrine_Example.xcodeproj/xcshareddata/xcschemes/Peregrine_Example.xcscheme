@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6003F589195388D20070C39A"
                BuildableName = "Peregrine_Example.app"
                BlueprintName = "Peregrine_Example"
-               ReferencedContainer = "container:Peregrine.xcodeproj">
+               ReferencedContainer = "container:Peregrine_Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,7 +34,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "Peregrine_Example.app"
             BlueprintName = "Peregrine_Example"
-            ReferencedContainer = "container:Peregrine.xcodeproj">
+            ReferencedContainer = "container:Peregrine_Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Peregrine_Tests.xctest"
-               BlueprintName = "Peregrine_Tests"
-               ReferencedContainer = "container:Peregrine.xcodeproj">
+               BuildableName = "Peregrine_Example_Tests.xctest"
+               BlueprintName = "Peregrine_Example_Tests"
+               ReferencedContainer = "container:Peregrine_Example.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "Peregrine_Example.app"
             BlueprintName = "Peregrine_Example"
-            ReferencedContainer = "container:Peregrine.xcodeproj">
+            ReferencedContainer = "container:Peregrine_Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -84,7 +84,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "Peregrine_Example.app"
             BlueprintName = "Peregrine_Example"
-            ReferencedContainer = "container:Peregrine.xcodeproj">
+            ReferencedContainer = "container:Peregrine_Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

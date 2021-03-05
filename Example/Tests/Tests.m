@@ -13,7 +13,7 @@
 #import <Peregrine/Peregrine.h>
 #import "PeregrineActionTest3.h"
 #import "TestRoute.h"
-#import "Peregrine_Tests-Swift.h"
+#import "Peregrine_Example_Tests-Swift.h"
 
 SpecBegin(InitialSpecs)
 
@@ -44,7 +44,7 @@ describe(@"Lint", ^{
         });
         
         it(@"LoadRouter", ^{
-            expect([PGRouterManager routerMap].count).equal(6);
+            expect([PGRouterManager routerMap].count).equal(5);
         });
         
         it(@"UnRegister", ^{
@@ -83,10 +83,6 @@ describe(@"Lint", ^{
             
             [PGRouterManager openURL:@"ap://tlbb/yangmi?url=http%3a%2f%2fwww.csgo.com%2fcn%3fenv%3d0%26t%3d%e9%87%8e%e8%8d%b7" completion:^(BOOL ret, NSDictionary *object) {
             }];
-            
-            [PGRouterManager openURL:@"swift://testsub/url?env=0&needlogin=1&title=haha" completion:^(BOOL ret, NSString *object) {
-                expect(object).equal(@"swift://testsub/url?env=0&needlogin=1&title=haha");
-            }];
         });
         
         it(@"MulitComponent", ^{
@@ -101,35 +97,11 @@ describe(@"Lint", ^{
     });
     
     context(@"", ^{
-        __block PeregrineActionTest3 *test3 = [PeregrineActionTest3 new];
-        
-        it(@"instance", ^{
-            [test3 pg_dryRun:ap_instance_method1];
-            [test3 pg_openURL:ap_instance_method1 object:nil completion:^(BOOL ret, id object) {
-                expect(ret).equal(YES);
-            }];
-            
-            [test3 pg_openURL:@"ap://instance/undefined" completion:^(BOOL ret, id object) {
-                expect(ret).equal(false);
-            }];
-        });
         
         it(@"GuideLine", ^{
             [PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_m1, @"m1"] completion:^(BOOL ret, NSString *object) {
                 expect(object).equal(@"m1");
-            }];
-            
-            [PGRouterManager openURL:pg_helloworld completion:^(BOOL ret, id object) {
-                expect(ret).equal(true);
-            }];
-            
-            //实例方法
-            TestRoute *test = [TestRoute new];
-            //路由地址可直接使用字符串（推荐导入PGRouteDefine.h使用常量定义）
-            [test pg_openURL:[NSString stringWithFormat:pg_test_m2, @"m2"] completion:^(BOOL ret, id object) {
-              //TODO: do something
-                expect(object).equal(@"m2");
-            }];
+            }];            
         });
     });
         

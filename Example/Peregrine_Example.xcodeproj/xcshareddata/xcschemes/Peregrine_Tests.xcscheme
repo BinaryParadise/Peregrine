@@ -18,14 +18,12 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Peregrine_Tests.xctest"
-               BlueprintName = "Peregrine_Tests"
-               ReferencedContainer = "container:Peregrine.xcodeproj">
+               BuildableName = "Peregrine_Example_Tests.xctest"
+               BlueprintName = "Peregrine_Example_Tests"
+               ReferencedContainer = "container:Peregrine_Example.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -37,8 +35,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

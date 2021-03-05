@@ -13,28 +13,28 @@ public class SwiftRoute {
 
 extension SwiftRoute {    
     @available(*, renamed: "route", message: "swift://test/auth1")
-    @objc static func test1(context:PGRouterContext) -> Void {
+    @objc static func test1(context:RouteContext) -> Void {
         print(#file+" "+#function)
-        context.onDone(true, object: "done")
+        context.onDone(true, data: "done")
     }
     
     @available(*, renamed: "route", message: "swift://test/auth2")
-    @objc static func test2(context:PGRouterContext) -> Void {
+    @objc static func test2(context:RouteContext) -> Void {
         print(#function)
-        context.onDone(true, object: nil)
+        context.onDone(true, data: nil)
     }
 }
 
 public class WhatThe {
     @available(*, renamed: "route", message: "swift://test/auth3")
-    @objc static func a987801(context:PGRouterContext) {
+    @objc static func a987801(context:RouteContext) {
         print(#file+" "+#function)
-        context.onDone(true, object: nil)
+        context.onDone(true, data: nil)
     }
 
     @available(*, renamed: "route", message: "swift://test/auth4")
-    @objc static func a987802(context: PGRouterContext) -> Void {
+    @objc static func a987802(context: RouteContext) -> Void {
         print(#file+" "+#function)
-        context.onDone(true, object: nil)
+        context.onDone(true, data: nil)
     }
 }

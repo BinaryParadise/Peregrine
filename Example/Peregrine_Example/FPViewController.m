@@ -37,16 +37,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [PGRouterManager openURL:@"ap://github/binaryparadise" completion:nil];
     });
-    
-    Class cls = NSClassFromString(@"SubPodLib.SwiftRoute");
-    const char * name = class_getImageName(cls);
-    SEL selector = @selector(test1WithContext:);
-    BOOL responds = [cls respondsToSelector:selector];
-    IMP imp = [cls methodForSelector:selector];
-    void (*targetMethod)(id, SEL, PGRouterContext *) = (void *)imp;
-    targetMethod(cls, selector, PGRouterContext.new);
-    
-    [[FPFileBox alloc] initWithString];
 }
 
 - (void)didRouterNotFoundNotification:(NSNotification *)noti {

@@ -18,7 +18,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 @implementation PGRouterManager
 
 + (NSDictionary<NSString *, PGRouterNode *> *)routerMap {
-    return _routerTree;
+    return _routerTree ?:@{};
 }
 
 + (void)initialize {
@@ -132,10 +132,6 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
         }
     }];
     return valid;
-}
-
-+ (void)helloWorld:(PGRouterContext *)context {
-    [context finished];
 }
 
 @end

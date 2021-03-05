@@ -95,7 +95,9 @@ class PGGenerator
       pods["EXTERNAL SOURCES"].each do |k,v|
         podfile_json = JSON.parse(File.read("#{srcroot}/Pods/Local Podspecs/#{k}.podspec.json"))
         puts "💎 #{srcroot}/#{v.values.first}"
-        collectPath("#{srcroot}/#{v.values.first}", podfile_json['name'])
+        if !podfile_json['name'].eql?('Peregrine') #忽略开发中的Peregrine
+          collectPath("#{srcroot}/#{v.values.first}", podfile_json['name'])
+        end
       end
     end
     
@@ -170,6 +172,7 @@ class PGGenerator
       pod_root = ENV['PODS_ROOT']+"/"
       if file_path.start_with?(pod_root)
         paths = "#{file_path[pod_root.length, file_path.length-pod_root.length]}".split('/')
+        puts paths
         if paths.length > 0
           libName = paths.first
         end
@@ -177,11 +180,12 @@ class PGGenerator
         libName = ENV['EXECUTABLE_NAME']
       end
     end
+    puts libName+" "+file_path
     file_content = File.read(file_path)
     file_content.scan(/(class|extension)\s+(\w+)\s*([\s\S]+?\n[\s\S]+?)\n}/) do |match|
       class_name = match[1].gsub(/\W+\w+\W/, "")
       class_content = match[2]
-      class_content.scan(/@available\s*\(\*,\s*renamed:\s*"route",\s*message\s*:\s*"(\S+)"\)\n\s*@objc\s+static\s+func\s+(\w+)\(context:\s*PGRouterContext\)/) do |match1|
+      class_content.scan(/@available\s*\(\*,\s*renamed:\s*"route",\s*message\s*:\s*"(\S+)"\)\n\s*[@objc]*\s+static\s+func\s+(\w+)\(context:\s*[PG]*Route[r]*Context\)/) do |match1|
         uri = URI(URI::encode(match1[0]))
         @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = {'swift' => true, 'class' => "#{libName}.#{class_name}", 'selector' => match1[1] + 'WithContext:', 'url' => match1[0] }
       end
@@ -288,7 +292,7 @@ typedef NSString *PGRouterURLKey;
   # 表示使用正则匹配模式 
   def self.configure_project(installer, config)
     path = installer.sandbox.development_pods['Peregrine']    
-    @ruby_path = path ? path.dirname.to_s : "${PODS_ROOT}/Peregrine"
+    @ruby_path = path ? path.dirname.to_s+"/Sources" : "${PODS_ROOT}/Peregrine"
 
     installer.analysis_result.targets.each do |target|
       if target.user_project_path.exist? && target.user_target_uuids.any?
@@ -330,7 +334,7 @@ typedef NSString *PGRouterURLKey;
       end
 
       phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #{mode}
-ruby #{@ruby_path}/Peregrine/PGGenerator.rb #{config['path']} #{config['name']}"
+ruby #{@ruby_path}/PGGenerator.rb #{config['path']} #{config['name']}"
 
       project.save()
     end

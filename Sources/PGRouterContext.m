@@ -10,13 +10,18 @@
 
 @interface PGRouterContext ()
 
+@property (nonatomic, copy) PGRouterCallback callback;
+@property (nonatomic, strong) id object;
+@property (nonatomic, copy) NSDictionary *userInfo;
+@property (nonatomic, copy) NSString *originURLString;
+
 @end
 
 @implementation PGRouterContext
 
 - (instancetype)initWithCallback:(PGRouterCallback)callback {
     if (self = [super init]) {
-        _callback = callback;
+        self.callback = callback;
     }
     return self;
 }
@@ -24,9 +29,9 @@
 + (instancetype)contextWithString:(NSString *)URLString object:(id)object callback:(PGRouterCallback)callback {
     PGRouterContext *context = [[PGRouterContext alloc] initWithCallback:callback];
     NSURL *openURL = [NSURL pg_SafeURLWithString:URLString];
-    context->_userInfo = [self queryDictionaryForURL:openURL];
-    context->_object = object;
-    context->_originURLString = URLString;
+    context.userInfo = [self queryDictionaryForURL:openURL];
+    context.object = object;
+    context.originURLString = URLString;
     return context;
 }
 

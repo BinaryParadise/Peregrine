@@ -31,7 +31,7 @@ static NSString * const KPGRouterURLKey = @"PGRouterURLKey";
 @interface PGRouterManager<__covariant ObjectType> : NSObject
 
 /// 完整的路由表
-+ (NSDictionary<NSString *, PGRouterNode *> *)routerMap;
++ (NSDictionary<NSString *, PGRouterNode *> * _Nonnull)routerMap;
 
 /**
  同步打开路由（立即回调）
@@ -60,7 +60,5 @@ static NSString * const KPGRouterURLKey = @"PGRouterURLKey";
  @param URLString 标准的URL地址（RFC 2396）
  */
 + (BOOL)dryRun:(NSString *)URLString;
-
-PGMethod(helloWorld, "pg://helloworld")
 
 @end
