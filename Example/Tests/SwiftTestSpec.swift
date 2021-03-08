@@ -24,15 +24,19 @@ class FPTestSpec: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
+        RouteManager.shared.openURL("pg://zoooooooo/纳尼?lang=简体中文&z=&#") { (ret, data) in
+            XCTAssertFalse(ret)
+        }
+        
+        RouteManager.shared.openURL("swift://test") { (ret, data) in
+            XCTAssertFalse(ret)
+        }
+        
         RouteManager.shared.openURL(swift_test_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
         
         RouteManager.shared.openURL(swift_test_auth3) { (ret, obj) in
-            XCTAssert(ret)
-        }
-        
-        RouteManager.shared.openURL(swift_test_auth4) { (ret, obj) in
             XCTAssert(ret)
         }
         

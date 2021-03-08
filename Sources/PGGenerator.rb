@@ -120,7 +120,7 @@ class PGGenerator
 
   end
 
-  # 收集所有.h中声明的路由
+  # 收集所有.h中声明的路由 TODO：忽略以收集过的文件
   def collectPath(path, libName=nil)
     if !File::exist?(path)
       return

@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PGRouteDefine.h"
+#import <Peregrine/Peregrine.h>
 
 @interface PeregrineActionTest3 : NSObject
 
 PGMethod(verification1, "ap://tlbb/xxlv?c=小龙女");
-
-PGInstanceMethod(instanceMethod, "ap://instance/method1");
 
 @end

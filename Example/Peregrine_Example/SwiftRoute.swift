@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Peregrine
 
 public class SwiftRoute {
 }
@@ -21,7 +22,7 @@ extension SwiftRoute {
     @available(*, renamed: "route", message: "swift://test/auth2")
     @objc static func test2(context:RouteContext) -> Void {
         print(#function)
-        context.onDone(true, data: nil)
+        context.onFinished()
     }
 }
 
@@ -32,9 +33,9 @@ public class WhatThe {
         context.onDone(true, data: nil)
     }
 
-    @available(*, renamed: "route", message: "swift://test/auth4")
+    @available(*, renamed: "route", message: "")
     @objc static func a987802(context: RouteContext) -> Void {
         print(#file+" "+#function)
-        context.onDone(true, data: nil)
+        context.onFinished()
     }
 }

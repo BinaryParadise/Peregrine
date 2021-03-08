@@ -14,12 +14,12 @@ public class RouteGroup {
     
     func append(element: [String : Any]) {
         let node = RouteNode()
-        node.url = element["url"] as? String ?? ""
+        node.url = element["url"] as! String
         node.targetClass = NSClassFromString(element["class"] as! String)
         node.selector = NSSelectorFromString(element["selector"] as! String)
         node.swift = element["swift"] as? Bool ?? false
         if let url = URL(string: node.url) {
-            childs["\(url.scheme ?? "")://\(url.host ?? "")\(url.path)"] = node
+            childs["\(url.scheme!)://\(url.host!)\(url.path)"] = node
         }
     }
 }

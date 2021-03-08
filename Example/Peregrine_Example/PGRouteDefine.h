@@ -35,12 +35,6 @@ FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_xxlv;
 FOUNDATION_EXPORT PGRouterURLKey const ap_tlbb_yangmi;
 
 
-#pragma - mark instance
-
-/// ap://instance/method1
-FOUNDATION_EXPORT PGRouterURLKey const ap_instance_method1;
-
-
 #pragma - mark test
 
 /// swift://test/auth1
@@ -51,9 +45,6 @@ FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth2;
 
 /// swift://test/auth3
 FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth3;
-
-/// swift://test/auth4
-FOUNDATION_EXPORT PGRouterURLKey const swift_test_auth4;
 
 
 #pragma - mark webview

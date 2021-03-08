@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import <Peregrine/Peregrine.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "PGRouteDefine.h"
 
 @protocol FPJSExportProtocol <JSExport>
 

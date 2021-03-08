@@ -10,8 +10,8 @@
 
 #import <Specta/Specta.h>
 #import <Expecta/Expecta.h>
-#import <Peregrine/Peregrine.h>
 #import "PeregrineActionTest3.h"
+#import "PGRouteDefine.h"
 #import "TestRoute.h"
 #import "Peregrine_Example_Tests-Swift.h"
 
@@ -44,7 +44,10 @@ describe(@"Lint", ^{
         });
         
         it(@"LoadRouter", ^{
-            expect([PGRouterManager routerMap].count).equal(5);
+            expect([PGRouterManager routerMap].count).equal(4);
+            [PGRouterManager openURL:ap_tlbb_xxlv completion:^(BOOL ret, id object) {
+                expect(ret).equal(true);
+            }];
         });
         
         it(@"UnRegister", ^{

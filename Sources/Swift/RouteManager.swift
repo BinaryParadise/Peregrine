@@ -12,18 +12,19 @@ public class RouteManager {
     public static let shared = RouteManager()
     
     init() {
-        guard let routePath = Bundle.main.path(forResource: "Peregrine.bundle/routers.json", ofType: nil) else { return }
-        do {
-            guard let jsonObj = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: routePath)), options: .mutableContainers) as? [String :  [Any]] else { return }
-            registerRoute(map: jsonObj)
-        } catch {
-            print("\(error)")
+        if let routePath = Bundle.main.path(forResource: "Peregrine.bundle/routers.json", ofType: nil) {
+            do {
+                guard let jsonObj = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: routePath)), options: .mutableContainers) as? [String :  [Any]] else { return }
+                registerRoute(map: jsonObj)
+            } catch {
+                print("\(error)")
+            }
         }
     }
     
     private func registerRoute(map: [String : [Any]]) {
         map.forEach { (key, value) in
-            guard let url = URL(string: key) else { return }
+            let url = URL(string: key)!
             if let scheme = url.scheme, let host = url.host {
                 let groupUrl = "\(scheme)://\(host)"
                 var group = routeMap[groupUrl]
@@ -49,15 +50,13 @@ public class RouteManager {
                     typealias Function = @convention(c) (AnyObject, Selector, RouteContext) -> Void
                     let targetMethod = unsafeBitCast(imp, to: Function.self)
                     targetMethod(cls, sel, context)
-                    return
                 }
             }
         }
-        context.onDone(false, data: "无法找到目标函数调用")
     }
     
     public func openURL(_ url: String, object: Any? = nil, completion: ((Bool, Any?) -> Void)? = nil) {
-        let routeURL = URL(string: url) ?? URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+        let routeURL = URL.safe(url: url)
         if let routeURL = routeURL, let scheme = routeURL.scheme, let host = routeURL.host {
             if let group = routeMap["\(scheme)://\(host)"] {
                 if let node = group.childs["\(scheme)://\(host)\(routeURL.path)"] {
@@ -67,7 +66,7 @@ public class RouteManager {
                 }
             }
         }
-        completion?(false, "路由地址不合法")
+        completion?(false, "路由地址不合法或未找到对应实现")
     }
 }
 

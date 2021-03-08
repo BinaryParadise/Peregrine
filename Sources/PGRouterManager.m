@@ -18,7 +18,7 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
 @implementation PGRouterManager
 
 + (NSDictionary<NSString *, PGRouterNode *> *)routerMap {
-    return _routerTree ?:@{};
+    return _routerTree;
 }
 
 + (void)initialize {
@@ -58,10 +58,6 @@ static NSMutableDictionary<NSString *, PGRouterNode *> *_routerTree;
     NSMutableArray *components = [config.URL.pathComponents mutableCopy];
     if (components.firstObject) {
         [components removeObject:components.firstObject];
-    }
-    if (components.count == 0) {
-        node.config = config;
-        return;
     }
     __block PGRouterNode *context = node;
     [components enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

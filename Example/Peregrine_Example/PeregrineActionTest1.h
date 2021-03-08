@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Peregrine/Peregrine.h>
 
 @interface PeregrineActionTest1 : NSObject
 

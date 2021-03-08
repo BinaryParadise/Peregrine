@@ -39,10 +39,9 @@
     NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:openURL resolvingAgainstBaseURL:NO];
      NSMutableDictionary<NSString *, NSString *> *queryParams = [NSMutableDictionary<NSString *, NSString *> new];
      for (NSURLQueryItem *queryItem in [urlComponents queryItems]) {
-         if (queryItem.value == nil) {
-             continue;
+         if (queryItem.value != nil) {             
+             [queryParams setObject:queryItem.value forKey:queryItem.name];
          }
-         [queryParams setObject:queryItem.value forKey:queryItem.name];
      }
      return queryParams;
 }

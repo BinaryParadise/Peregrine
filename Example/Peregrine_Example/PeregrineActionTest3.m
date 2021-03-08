@@ -11,9 +11,6 @@
 @implementation PeregrineActionTest3
 
 + (void)verification1:(PGRouterContext *)context {
-}
-
-- (void)instanceMethod:(PGRouterContext *)context {
     [context finished];
 }
 
