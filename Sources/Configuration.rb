@@ -285,7 +285,7 @@ public class #{clsname}: NSObject {
   # 表示使用正则匹配模式 
   def self.configure_project(installer, config)
     path = installer.sandbox.development_pods['Peregrine']    
-    @ruby_path = path ? path.dirname.to_s+"/Sources" : "${PODS_ROOT}/Peregrine"
+    @ruby_path = path ? path.dirname.to_s+"/Sources" : "${PODS_ROOT}/Peregrine/Sources"
 
     installer.analysis_result.targets.each do |target|
       if target.user_project_path.exist? && target.user_target_uuids.any?
@@ -316,9 +316,7 @@ public class #{clsname}: NSObject {
             project_target.build_phases.insert(source_index, phase)
           end
       else
-        if false
-            phase.remove_from_project()
-        end
+        phase.remove_from_project()
       end
 
       mode = nil
