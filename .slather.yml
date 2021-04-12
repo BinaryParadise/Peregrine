@@ -1,7 +1,8 @@
 coverage_service: coveralls
-workspace: Example/Peregrine.xcworkspace
-xcodeproj: Example/Peregrine.xcodeproj
+workspace: Example/Peregrine_Example.xcworkspace
+xcodeproj: Example/Peregrine_Example.xcodeproj
 scheme: Peregrine_Example
-source_directory: ./Peregrine
+source_directory: ./Sources
 ignore:
   - Example/*
+  - SubPodLib/*

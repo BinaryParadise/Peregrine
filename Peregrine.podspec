@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'Peregrine'
-  s.version          = '0.8.6'
+  s.version          = '0.9.0'
   s.summary          = 'A short description of Peregrine.'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,10 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
-  s.swift_version = '5.0'
+  s.swift_version = '4.2'
+  s.static_framework = true
+  
+  s.pod_target_xcconfig = { "DEFINES_MODULE" => "YES" }
 
   # s.subspec 'Plugin' do |ss|
   #   ss.source_files = 'Peregrine/**/*'
@@ -35,6 +38,6 @@ Pod::Spec.new do |s|
   #   ss.pod_target_xcconfig = {'COMPILER_INDEX_STORE_ENABLE' => 'NO', 'CC' => '${CCROOT}/bin/clang', 'CCROOT' => '/usr/local', 'OTHER_CFLAGS' => '-Xclang -load -Xclang ${CCROOT}/lib/PeregrinePlugin.dylib -Xclang -add-plugin -Xclang PeregrinePlugin -Xclang -plugin-arg-PeregrinePlugin -Xclang ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}${WRAPPER_SUFFIX}/Peregrine.bundle'}
   # end
 
-  s.source_files = 'Peregrine/**/*'
+  s.source_files = 'Sources/**/*'
 
 end

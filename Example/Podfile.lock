@@ -1,20 +1,46 @@
 PODS:
   - Expecta (1.0.6)
-  - Peregrine (0.8.5)
+  - Peregrine (0.9.0)
+  - SnapKit (4.2.0)
   - Specta (1.0.7)
   - SubPodLib (0.0.1):
     - Peregrine
+  - SwifterSwift (5.1.0):
+    - SwifterSwift/AppKit (= 5.1.0)
+    - SwifterSwift/CoreGraphics (= 5.1.0)
+    - SwifterSwift/CoreLocation (= 5.1.0)
+    - SwifterSwift/Dispatch (= 5.1.0)
+    - SwifterSwift/Foundation (= 5.1.0)
+    - SwifterSwift/MapKit (= 5.1.0)
+    - SwifterSwift/SceneKit (= 5.1.0)
+    - SwifterSwift/SpriteKit (= 5.1.0)
+    - SwifterSwift/SwiftStdlib (= 5.1.0)
+    - SwifterSwift/UIKit (= 5.1.0)
+  - SwifterSwift/AppKit (5.1.0)
+  - SwifterSwift/CoreGraphics (5.1.0)
+  - SwifterSwift/CoreLocation (5.1.0)
+  - SwifterSwift/Dispatch (5.1.0)
+  - SwifterSwift/Foundation (5.1.0)
+  - SwifterSwift/MapKit (5.1.0)
+  - SwifterSwift/SceneKit (5.1.0)
+  - SwifterSwift/SpriteKit (5.1.0)
+  - SwifterSwift/SwiftStdlib (5.1.0)
+  - SwifterSwift/UIKit (5.1.0)
 
 DEPENDENCIES:
   - Expecta (~> 1.0)
   - Peregrine (from `../`)
+  - SnapKit
   - Specta (~> 1.0)
   - SubPodLib (from `../SubPodLib`)
+  - SwifterSwift
 
 SPEC REPOS:
   trunk:
     - Expecta
+    - SnapKit
     - Specta
+    - SwifterSwift
 
 EXTERNAL SOURCES:
   Peregrine:
@@ -24,10 +50,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Peregrine: 3a48981319c4f030cae997499eda815c08998ffd
+  Peregrine: 29093f1dc872b4201478dcc59da5b0054e7aa88a
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
   SubPodLib: 49cf37a6333194f4a9c3769ab3a568c9b85efcd5
+  SwifterSwift: a9e8e144832638c2850b43da5feaf9598c6ad65b
 
-PODFILE CHECKSUM: 5e1c46f4d7ea7bbdab8e007c58bdc530d59618ec
+PODFILE CHECKSUM: 3ba738d29fa6b3b0f1e44f3c56d4b3681a819561
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

@@ -17,82 +17,74 @@
 
 ## 集成到项目中(正则表达式)
 
-### 一、添加依赖
+### 一、项目集成
 
-> 示例会生成两个文件`PGRouteDefine.h`、`PGRouteDefine.m`，加入项目中
+> 示例会生成文件`PGRouteDefine.swift`、加入项目中
 
+`Podfile增加以下代码`
 ```ruby
 pod 'Peregrine'
 
 post_install do |installer|
-  # 添加编译脚本，每次编译时都会重新收集路由表
-  require_relative 'Pods/Peregrine/Peregrine/PGGenerator.rb'
-    PGGenerator::configure_project(installer, {'expr' => true, 'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
+  # 添加编译脚本，每次编译时都会自动收集路由表
+  require_relative 'Pods/Peregrine/Sources/Configuration.rb'
+    PGGenerator::configure_project(installer, {'name' => 'PGRouteDefine', 'path' => '${SRCROOT}/Peregrine'})
 end
 ```
 
 参数说明
 | 名称 | 类型 | 说明 |
 | --- | --- | --- |
-| expr| boolean | 默认true，是否使用正则表达式模式 |
-| name| string | 路由常量类名 |
-| path | string | 路由常量类路径 |
+| name| string | 路由常量定义类名 |
+| path | string | 路由常量类生成路径 |
 
-### 二、导入头文件
 
-##### Objective-C
+### 二、注册路由
 
+>- 路由的回调由具体业务场景控制，默认不回调
+
+#### ObjC
+
+使用宏定义创建路由，保证统一，不支持自定义
 
 ```objc
-#import <Peregrine/Peregrine.h>
+@import Peregrine;
+
+//创建路由（必须，不允许修改，否则不能匹配路由表）
+#define RouteDefine(func, _url) \
++ (void)func:(RouteContext *)context;
 ```
-
-Swift
-
-```swif
-import Peregrine
-```
-
-
-
-### 三、注册路由
-
-> - 推荐在对应的`业务类`中实现路由
->- 路由的回调由具体实现场景控制，默认不回调
-
-#### Objective-C
-
-直接使用预定义宏，保证定义的统一
 
 例如需要实现一个用户登录的路由pg://test/login，可按如下示例定义，swift同理
 
 ```objc
-//加入登录页面类是PGLoginViewController
+//登录页面Class: PGLoginViewController
 
 //PGLoginViewController.h中定义路由
 @interface PGLoginViewController.h : NSObject
 
-// 类方法路由
-PGMethod(login, "pg://test/login?t=%@")
+// 发起登录
+RouteDefine(login, "pg://test/login?t=%@")
 
-// 实例方法路由
-PGInstanceMethod(logout, "pg://test/logout?t=%@")
+// 退出登录
+RouteDefine(logout, "pg://test/logout?t=%@")
 
 @end
 
 //在PGLoginViewController.m中实现路由
-@implementation TestRoute
 
-+ (void)login:(PGRouterContext *)context {
+@implementation PGLoginViewController
+
++ (void)login:(RouteContext *)context {
     //context.userInfo：包含携带的参数
     //context.object: 表示传的对象类型参数
-  	//跳转登录页逻辑
+  	//跳转登录页逻辑...
     [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
 }
 
-- (void)logout:(PGRouterContext *)context {
+- (void)logout:(RouteContext *)context {
   	//退出登录逻辑
-    [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
+    [context onFinished];
 }
 
 @end
@@ -113,29 +105,36 @@ public class PGLoginViewController {
 }
 ```
 
-代码段（Snippet）
+添加代码段后通过代码段创建路由，防止手写失误
 
 ```swift
-@available(*, renamed: "route", message: "<#path#>")
-@objc static func <#function#>(context: PGRouterContext) -> Void {
+@available(*, renamed: "route", message: "<#url#>")
+@objc static func <#function#>(context: RouteContext) -> Void {
     <#code#>
+}
+```
+
+`示例`
+```swift
+@available(*, renamed: "route", message: "swift://test/auth1")
+@objc static func test1(context: RouteContext) -> Void {
+  print(#file+" "+#function)
+  context.onDone(true, result: "done")
 }
 ```
 
 ### 路由调用
 
-#### Objective-C
+#### ObjC
 
 ```objc
-//调用类方法
-[PGRouterManager<NSString *> openURL:[NSString stringWithFormat:pg_test_login, @"m1"] completion:^(BOOL ret, NSString *object) {
+//使用字符串
+[RouteManager openURL:@"pg://test/login" object:nil completion:^(BOOL ret, NSString *object) {
   //TODO: do something
 }];
 
-//调用实例方法
-TestRoute *test = [TestRoute new];
-//路由地址可直接使用字符串（推荐导入PGRouteDefine.h使用常量定义）
-[test pg_openURL:[NSString stringWithFormat:pg_test_logout, @"m2"] completion:^(BOOL ret, id object) {
+//使用常量
+[RouteManager openURL:PGRouteDefine.pg_test_login object:nil completion:^(BOOL ret, NSString *object) {
   //TODO: do something
 }];
 
@@ -144,13 +143,16 @@ TestRoute *test = [TestRoute new];
 #### Swift
 
 ```swift
-PGRouterManager<AnyObject>.openURL("pg://test/login?t=90812") { (ret, obj) in
+//使用字符串
+RouteManager.openURL("pg://test/login?t=90812") { (ret, obj) in
     //TODO:do something                                          
 }
+
+//验证路由是否可用
+RouteManager.dryRun("pg://test/validation") > true or false
 ```
 
 ```
-
 
 ## 常见问题
 
