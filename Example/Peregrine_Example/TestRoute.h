@@ -7,14 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Peregrine/Peregrine.h>
+#import "RouteDefine.h"
 
 @interface TestRoute : NSObject
 
 // 类方法路由
-PGMethod(classMethod, "pg://test/m1?t=%@")
-
-/// 实例方法路由
-PGInstanceMethod(instanceMethod, "pg://test/m2?t=%@")
+RouteDefine(classMethod, "pg://test/m1?t=%@")
 
 @end

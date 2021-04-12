@@ -7,18 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Peregrine/Peregrine.h>
+#import "RouteDefine.h"
 
 @interface PeregrineActionTest1 : NSObject
 
-PGMethod(verification1, "ap://tlbb/wyy?c=王语嫣1&result=%d");
+RouteDefine(verification1, "ap://tlbb/wyy?c=王语嫣1&result=%d");
 
-PGMethod(verification2, "ap://tlbb/yangmi?c=杨幂22");
+RouteDefine(verification2, "ap://tlbb/yangmi?c=杨幂22");
 
-PGMethod(webview, "ap://webview/UIWebView");
-
-PGMethodA(wkwebview, "ap://webview/WKWebView");
-
-PGMethodA(jscalloc, "ap://webview/calloc");
+RouteDefine(webview, "ap://webview/UIWebView");
 
 @end

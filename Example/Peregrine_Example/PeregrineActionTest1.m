@@ -11,34 +11,33 @@
 
 @implementation PeregrineActionTest1
 
-+ (void)verification1:(nullable PGRouterContext *)context {    
-    NSAssert([context.config.actionName isEqualToString:@"wyy"], @"not the same");
-    [context onDone:YES object:context.userInfo[@"result"]];
++ (void)verification1:(nullable RouteContext *)context {
+    [context onDone:YES result:context.userInfo[@"result"]];
 }
 
-+ (void)verification2:(nullable PGRouterContext *)context {
-    [context onDone:true object:context.userInfo];
++ (void)verification2:(nullable RouteContext *)context {
+    [context onDone:true result:context.userInfo];
 }
 
-+ (void)webview:(PGRouterContext *)context {
++ (void)webview:(RouteContext *)context {
     FPWebViewViewController *vc = [[FPWebViewViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:^{
-        [context finished];
+        [context onFinished];
     }];
 }
 
-+ (void)wkwebview:(PGRouterContext *)context {
++ (void)wkwebview:(RouteContext *)context {
     FPWebViewViewController *vc = [[FPWebViewViewController alloc] init];
     vc.webkit = YES;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:^{
-        [context finished];
+        [context onFinished];
     }];
 }
 
-+ (void)jscalloc:(PGRouterContext *)context {
-    [context onDone:YES object:context.userInfo[@"c"]];
++ (void)jscalloc:(RouteContext *)context {
+    [context onDone:YES result:context.userInfo[@"c"]];
 }
 
 @end

@@ -74,7 +74,7 @@ class PGGenerator
     puts "#{shell}"
     `#{shell}`
     
-    routers = JSON.parse(File.read("#{output}/routers.json"))      
+    routers = JSON.parse(File.read("#{output}/Routes.json"))      
     prettify(routers, output)
 
   end
@@ -156,7 +156,7 @@ class PGGenerator
     file_content.scan(/@interface\s+(\w+)\s*[\s\S]+?\n([\s\S]+?)@end/) do |match|
       class_name = match[0].gsub(/\W+\w+\W/, "")
       class_content = match[1]
-      class_content.scan(/PG\w*Method\((\b\w+\b),\s*[@|\"]([\s\S]+?)\"\);*/) do |match1|
+      class_content.scan(/RouteDefine\((\b\w+\b),\s*[@|\"]([\s\S]+?)\"\);*/) do |match1|
         uri = URI(URI::encode(match1[1]))
         @routers["#{uri.scheme}/#{uri.host}/#{uri.path}"] = { 'class' => class_name, 'selector' => match1[0] + ':', 'url' => match1[1] }
       end
@@ -209,20 +209,20 @@ class PGGenerator
       rootNode.push(item)
     )}
 
-    router_json_file = File.new("#{destination_file}/routers.json", 'w+')
+    router_json_file = File.new("#{destination_file}/Routes.json", 'w+')
     router_json_file.write(JSON.pretty_generate(routerMap))
     router_json_file.close
     puts "router write to #{router_json_file.path}"
 
     generate_source_file(routerMap, args)
-    generate_source_file(routerMap, args, false)
+    # generate_source_file(routerMap, args, false)
 
   end
 
   def generate_source_file(routerMap, args, header=true)
     # 更新路由的定义头文件
-    ext = header ? '.h' : '.m'
-    filename = (args.length > 1 ? args[1]:"PGRouteDefine")+ext
+    clsname = (args.length > 1 ? args[1]:"PGRouteDefine")
+    filename = clsname+'.swift'
     path = "#{ENV['SRCROOT']}/#{filename}"
     if args.length > 0
       if !File::exist?(args[0])
@@ -236,7 +236,7 @@ class PGGenerator
 //  #{filename}
 //  Peregrine
 //
-//  Created by Rake Yang on 2020/3/19.
+//  Created by Rake Yang on #{Time.new.strftime("%Y/%m/%d")}.
 //  Copyright © 2020 BinaryParadise. All rights reserved.
 
 ")
@@ -244,12 +244,12 @@ class PGGenerator
   if header
     generate_file.write("/**
   Generated automatic by Peregrine version #{ENV['PG_VERSION']} 
-  Don't modify manual ⚠️
+  Don't modify manually ⚠️
 */
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-typedef NSString *PGRouterURLKey;
+public class #{clsname}: NSObject {
 ")
   else
     generate_file.write("#import \"#{(args.length > 1 ? args[1]:"PGRouteDefine")}.h\"
@@ -257,21 +257,14 @@ typedef NSString *PGRouterURLKey;
   end
 
     routerMap.each {|key, value| (
-      generate_file.write("
-#pragma - mark #{key.split('//').last}
-
-")
       sorted = value.sort {|a, b| a['url'] <=> b['url'] }
       sorted.each {|item| (
         uri = URI(URI::encode(item['url']))
-        if header
-          generate_file.write("/// #{item['url']}\n")
-          generate_file.write("FOUNDATION_EXPORT PGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')};\n\n")
-        else
-          generate_file.write("\nPGRouterURLKey const #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = @\"#{item['url']}\";\n")
-        end
+        generate_file.write("\t@objc static let #{uri.scheme}_#{uri.host}#{uri.path.split('/').join('_')} = \"#{item['url']}\"\n")        
       )}
     )}
+
+    generate_file.write("}")
     generate_file.close
 
     newMD5 = Digest::MD5.hexdigest(File.open("#{path}.tmp", 'rb'){|fs|fs.read})
@@ -334,7 +327,7 @@ typedef NSString *PGRouterURLKey;
       end
 
       phase.shell_script = "export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #{mode}
-ruby #{@ruby_path}/PGGenerator.rb #{config['path']} #{config['name']}"
+ruby #{@ruby_path}/Configuration.rb #{config['path']} #{config['name']}"
 
       project.save()
     end

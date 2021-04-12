@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Peregrine_Example
+@testable import Peregrine_Example
 import Peregrine
 
 class FPTestSpec: XCTestCase {
@@ -24,35 +24,38 @@ class FPTestSpec: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        RouteManager.shared.openURL("pg://zoooooooo/纳尼?lang=简体中文&z=&#") { (ret, data) in
+        RouteManager.openURL("pg://zoooooooo/纳尼?lang=简体中文&z=&#") { (ret, data) in
             XCTAssertFalse(ret)
         }
         
-        RouteManager.shared.openURL("swift://test") { (ret, data) in
-            XCTAssertFalse(ret)
+        XCTAssert(RouteManager.dryRun("swift://test/auth1"))
+        XCTAssertFalse(RouteManager.dryRun("swift://test/auth99"))
+        
+        RouteManager.openURL("swift://test/auth1") { (ret, data) in
+            XCTAssertTrue(ret)
         }
         
-        RouteManager.shared.openURL(swift_test_auth2) { (ret, obj) in
+        RouteManager.openURL(PGRouteDefine.swift_test_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        RouteManager.shared.openURL(swift_test_auth3) { (ret, obj) in
+        RouteManager.openURL(PGRouteDefine.swift_test_auth3) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        RouteManager.shared.openURL(swift_testsub_auth0) { (ret, obj) in
+        RouteManager.openURL(PGRouteDefine.swift_testsub_auth0) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        RouteManager.shared.openURL(swift_testsub_auth1) { (ret, obj) in
+        RouteManager.openURL(PGRouteDefine.swift_testsub_auth1) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        RouteManager.shared.openURL(swift_testsub_auth2) { (ret, obj) in
+        RouteManager.openURL(PGRouteDefine.swift_testsub_auth2) { (ret, obj) in
             XCTAssert(ret)
         }
         
-        RouteManager.shared.openURL("\(swift_testsub_url)?env=0&needlogin=1&title=haha") { (ret, data) in
+        RouteManager.openURL("\(PGRouteDefine.swift_testsub_url)?env=0&needlogin=1&title=haha") { (ret, data) in
             XCTAssert(ret)
             XCTAssert("haha" == data as? String ?? "")
         }

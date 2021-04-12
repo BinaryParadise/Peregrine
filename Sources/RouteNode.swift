@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class RouteNode {
+public class RouteNode: NSObject {
     var swift: Bool = false
     var targetClass: AnyClass?
     var selector: Selector?
-    public var url: String = ""
+    public var url: URL = URL(string:"pg://placeholder")!
 }

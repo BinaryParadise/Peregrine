@@ -10,8 +10,8 @@
 
 @implementation PeregrineActionTest3
 
-+ (void)verification1:(PGRouterContext *)context {
-    [context finished];
++ (void)verification1:(RouteContext *)context {
+    [context onFinished];
 }
 
 @end

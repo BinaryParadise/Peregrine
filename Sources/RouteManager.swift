@@ -7,24 +7,22 @@
 
 import Foundation
 
-public class RouteManager {
+public class RouteManager: NSObject {
     public var routeMap: [String: RouteGroup] = [:]
     public static let shared = RouteManager()
     
-    init() {
-        if let routePath = Bundle.main.path(forResource: "Peregrine.bundle/routers.json", ofType: nil) {
-            do {
-                guard let jsonObj = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: routePath)), options: .mutableContainers) as? [String :  [Any]] else { return }
+    override init() {
+        super.init()
+        if let routePath = Bundle.main.path(forResource: "Peregrine.bundle/Routes.json", ofType: nil) {
+            if let jsonObj = try? JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: routePath)), options: .mutableContainers) as? [String :  [Any]] {                
                 registerRoute(map: jsonObj)
-            } catch {
-                print("\(error)")
             }
         }
     }
     
-    private func registerRoute(map: [String : [Any]]) {
-        map.forEach { (key, value) in
-            let url = URL(string: key)!
+    private func registerRoute(map: [String : [Any]]?) {
+        map?.forEach { (key, value) in
+            guard let url = URL.safe(url: key) else { return }
             if let scheme = url.scheme, let host = url.host {
                 let groupUrl = "\(scheme)://\(host)"
                 var group = routeMap[groupUrl]
@@ -42,7 +40,7 @@ public class RouteManager {
         }
     }
         
-    private func invokeMethod(for node: RouteNode, context: RouteContext) -> Void {
+    private static func invokeMethod(for node: RouteNode, context: RouteContext) -> Void {
         if let cls = node.targetClass, let sel = node.selector {
             if cls.responds(to: sel) {
                 if let method = class_getClassMethod(cls, sel) {
@@ -55,18 +53,34 @@ public class RouteManager {
         }
     }
     
-    public func openURL(_ url: String, object: Any? = nil, completion: ((Bool, Any?) -> Void)? = nil) {
+    @objc public static func dryRun(_ url: String) -> Bool {
         let routeURL = URL.safe(url: url)
         if let routeURL = routeURL, let scheme = routeURL.scheme, let host = routeURL.host {
-            if let group = routeMap["\(scheme)://\(host)"] {
+             if let group = shared.routeMap["\(scheme)://\(host)"] {
+                 if let _ = group.childs["\(scheme)://\(host)\(routeURL.path)"] {
+                     return true
+                 }
+             }
+        }
+        return false
+    }
+
+    
+    @objc @discardableResult static public func openURL(_ url: String, object: Any? = nil, completion: ((Bool, Any?) -> Void)? = nil) -> Bool {
+        let routeURL = URL.safe(url: url)
+        if let routeURL = routeURL, let scheme = routeURL.scheme, let host = routeURL.host {
+            if let group = shared.routeMap["\(scheme)://\(host)"] {
                 if let node = group.childs["\(scheme)://\(host)\(routeURL.path)"] {
-                    let context = RouteContext(url: url, object: object, callback: completion)
+                    let context = RouteContext(url: url, object: object) { (ret, data) in
+                        completion?(ret, data)
+                    }
                     invokeMethod(for: node, context: context)
-                    return
+                    return true
                 }
             }
         }
         completion?(false, "路由地址不合法或未找到对应实现")
+        return false
     }
 }
 

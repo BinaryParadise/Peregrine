@@ -10,14 +10,14 @@
 
 @implementation TestRoute
 
-+ (void)classMethod:(PGRouterContext *)context {
++ (void)classMethod:(RouteContext *)context {
     //context.userInfo：包含携带的参数
     //context.object: 表示传的对象类型参数
-    [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
+    [context onDone:YES result:[context.userInfo valueForKey:@"t"]];
 }
 
-- (void)instanceMethod:(PGRouterContext *)context {
-    [context onDone:YES object:[context.userInfo valueForKey:@"t"]];
+- (void)instanceMethod:(RouteContext *)context {
+    [context onDone:YES result:[context.userInfo valueForKey:@"t"]];
 }
 
 @end

@@ -27,7 +27,10 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
-  s.swift_version = '5.0'
+  s.swift_version = '4.2'
+  s.static_framework = true
+  
+  s.pod_target_xcconfig = { "DEFINES_MODULE" => "YES" }
 
   # s.subspec 'Plugin' do |ss|
   #   ss.source_files = 'Peregrine/**/*'

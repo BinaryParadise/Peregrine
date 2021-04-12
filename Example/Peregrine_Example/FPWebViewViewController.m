@@ -8,9 +8,9 @@
 
 #import "FPWebViewViewController.h"
 #import <WebKit/WebKit.h>
-#import <Peregrine/Peregrine.h>
+@import Peregrine;
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "PGRouteDefine.h"
+#import "Peregrine_Example-Swift.h"
 
 @protocol FPJSExportProtocol <JSExport>
 
@@ -80,8 +80,8 @@
 #pragma mark - UIWebView
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
-    if ([PGRouterManager dryRun:request.URL.absoluteString]) {
-        [PGRouterManager openURL:request.URL.absoluteString completion:^(BOOL ret, id object) {
+    if ([RouteManager dryRun:request.URL.absoluteString]) {
+        [RouteManager openURL:request.URL.absoluteString object:nil completion:^(BOOL ret, id object) {
             [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"callJSFunc('%@')", [object stringByRemovingPercentEncoding]]];
         }];
         return NO;
@@ -123,15 +123,15 @@
     [self presentViewController:alertVC animated:YES completion:^{
         
     }];
-    [PGRouterManager openURL:ap_tlbb_yangmi completion:nil];
+    [RouteManager openURL:PGRouteDefine.ap_tlbb_yangmi object:nil completion:nil];
 }
 
 #pragma mark - WKScriptMessageHandler
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSDictionary *dict = message.body;
-    if ([PGRouterManager dryRun:dict[@"url"]]) {
-        [PGRouterManager openURL:dict[@"url"] completion:^(BOOL ret, id object) {
+    if ([RouteManager dryRun:dict[@"url"]]) {
+        [RouteManager openURL:dict[@"url"] object:nil completion:^(BOOL ret, id object) {
             if (dict[@"callback"]) {             
                 [message.webView evaluateJavaScript:[NSString stringWithFormat:@"%@('%@')",dict[@"callback"], [object stringByRemovingPercentEncoding]] completionHandler:^(id _Nullable ret, NSError * _Nullable error) {
                     

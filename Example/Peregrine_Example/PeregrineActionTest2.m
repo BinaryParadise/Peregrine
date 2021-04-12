@@ -10,20 +10,19 @@
 
 @implementation PeregrineActionTest2
 
-+ (void)verification1:(PGRouterContext *)context {
-    NSAssert([context.config.actionName isEqualToString:@"xlv"], @"not the same");
-    [context onDone:YES object:context.userInfo[@"result"]];
++ (void)verification1:(RouteContext *)context {
+    [context onDone:YES result:context.userInfo[@"result"]];
 }
 
-+ (void)multiComponent:(PGRouterContext *)context {
-    [context onDone:YES object:context.config.actionName];
++ (void)multiComponent:(RouteContext *)context {
+    [context onDone:YES result:context.originURL];
 }
 
-+ (void)multiComponent1:(PGRouterContext *)context {
-    [context onDone:YES object:context.userInfo];
++ (void)multiComponent1:(RouteContext *)context {
+    [context onDone:YES result:context.userInfo];
 }
 
-+ (void)invalid:(PGRouterContext *)context {
++ (void)invalid:(RouteContext *)context {
     
 }
 

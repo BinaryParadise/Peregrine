@@ -11,8 +11,8 @@ import Foundation
 public class RouteContext: NSObject {
     var callback: ((Bool, Any?) -> Void)?
     var object: Any?
-    public var userInfo: [String : Any] = [ : ]
-    public var originURL: String = ""
+    @objc public var userInfo: [String : Any] = [ : ]
+    @objc public var originURL: String = ""
     
     init(url: String, object: Any?, callback: ((Bool, Any?) -> Void)?) {
         self.originURL = url
@@ -21,12 +21,12 @@ public class RouteContext: NSObject {
         self.userInfo = RouteContext.queryParameters(for: URL.safe(url: url))
     }
     
-    public func onFinished() -> Void {
+    @objc public func onFinished() -> Void {
         callback?(true, nil)
     }
     
-    public func onDone(_ success: Bool, data: Any?) -> Void {
-        callback?(success, data)
+    @objc public func onDone(_ success: Bool, result: Any?) -> Void {
+        callback?(success, result)
     }
     
     static func queryParameters(for url: URL?) -> [String : Any] {

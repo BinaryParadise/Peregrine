@@ -5,3 +5,4 @@ scheme: Peregrine_Example
 source_directory: ./Sources
 ignore:
   - Example/*
+  - SubPodLib/*

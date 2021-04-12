@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Peregrine/Peregrine.h>
+#import "RouteDefine.h"
 
 @interface PeregrineActionTest3 : NSObject
 
-PGMethod(verification1, "ap://tlbb/xxlv?c=小龙女");
+RouteDefine(verification1, "ap://tlbb/xxlv?c=小龙女");
 
 @end
