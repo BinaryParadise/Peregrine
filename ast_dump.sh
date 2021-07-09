@@ -1,8 +1,7 @@
-/usr/local/bin/clang \
+../llvm-project/build/Debug/bin/clang \
 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
--include-pch "./Example/Peregrine/PrefixHeader.pch" \
 -I"./Peregrine" \
 -I"./Example/Pods/Headers/Public" \
 -fmodules \
 -fsyntax-only \
--Xclang -ast-dump Example/Peregrine/PeregrineActionTest3.m
+-Xclang -ast-dump Example/Peregrine_Example/ClangPeregrineTest.m

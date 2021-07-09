@@ -8,7 +8,7 @@
 import Foundation
 
 /// 路由调用上下文
-public class RouteContext: NSObject {
+@objc public class RouteContext: NSObject {
     var callback: ((Bool, Any?) -> Void)?
     var object: Any?
     @objc public var userInfo: [String : Any] = [ : ]

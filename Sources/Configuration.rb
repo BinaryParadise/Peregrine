@@ -65,6 +65,7 @@ class PGGenerator
     -fobjc-arc -ferror-limit=0 -w -fmacro-backtrace-limit=0 \
     -Wobjc-missing-super-calls \
     -isysroot #{ENV['SDKROOT']} \
+    #{ENV['OTHER_CFLAGS']} \
     #{include} \
     -I\"#{ENV['SRCROOT']}\" \
     -I#{header_searchs.join(' -I')} \
@@ -74,8 +75,7 @@ class PGGenerator
     puts "#{shell}"
     `#{shell}`
     
-    routers = JSON.parse(File.read("#{output}/Routes.json"))      
-    prettify(routers, output)
+    prettify(@routers, output, args)
 
   end
 
